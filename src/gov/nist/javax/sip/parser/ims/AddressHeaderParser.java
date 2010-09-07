@@ -30,13 +30,14 @@
 package gov.nist.javax.sip.parser.ims;
 
 import gov.nist.javax.sip.address.AddressImpl;
+import gov.nist.javax.sip.header.ims.AddressHeaderIms;
 import gov.nist.javax.sip.parser.AddressParser;
 import gov.nist.javax.sip.parser.HeaderParser;
 import gov.nist.javax.sip.parser.Lexer;
 
 import java.text.ParseException;
 
-import gov.nist.javax.sip.header.ims.AddressHeaderIms;
+
 
 /**
  * @author ALEXANDRE MIGUEL SILVA SANTOS

@@ -11,39 +11,19 @@ import javax.sip.message.Response;
  * @since v2.0
  */
 public class ResponseEventExt extends ResponseEvent {
-    private ClientTransactionExt  m_originalTransaction;
+    /**
+     * Constructor. This is just a stub for backwards compatibility.
+     * 
+     * @since 2.0
+     * @param source - provider associated with this event.
+     * @param clientTransaction - the client transaction
+     * @param dialog - the dialog associated with this event.
+     * @param response - the response associated with this event.
+     */
     public ResponseEventExt(Object source, ClientTransactionExt clientTransaction, 
             Dialog dialog,  Response response) {
         super(source,clientTransaction,dialog,response);
-        m_originalTransaction = clientTransaction;
-    }
-    
-    /**
-     * Return true if this is a forked response.
-     * 
-     * @return true if the response event is for a forked response.
-     */
-    public boolean isForkedResponse() {
-        return super.getClientTransaction() == null && m_originalTransaction != null;
-    }
-    
-    /**
-     * Set the original transaction for a forked response.
-     * 
-     * @param originalTransaction - the original transaction for which this response event is a fork.
-     */
-    public void setOriginalTransaction(ClientTransactionExt originalTransaction ) {
-        m_originalTransaction = originalTransaction;
-    }
-    
-    /**
-     * Get the original transaction for which this is a forked response.
-     * Note that this transaction can be in a TERMINATED state.
-     * 
-     * @return the original clientTx for which this is a forked response.
-     */
-    public ClientTransactionExt getOriginalTransaction() {
-        return this.m_originalTransaction;
+      
     }
     
     

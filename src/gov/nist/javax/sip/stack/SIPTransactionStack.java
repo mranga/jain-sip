@@ -43,8 +43,6 @@ import gov.nist.javax.sip.SipProviderImpl;
 import gov.nist.javax.sip.SipStackImpl;
 import gov.nist.javax.sip.header.Event;
 import gov.nist.javax.sip.header.Via;
-import gov.nist.javax.sip.header.extensions.JoinHeader;
-import gov.nist.javax.sip.header.extensions.ReplacesHeader;
 import gov.nist.javax.sip.message.SIPMessage;
 import gov.nist.javax.sip.message.SIPRequest;
 import gov.nist.javax.sip.message.SIPResponse;
@@ -81,6 +79,8 @@ import javax.sip.address.Hop;
 import javax.sip.address.Router;
 import javax.sip.header.CallIdHeader;
 import javax.sip.header.EventHeader;
+import javax.sip.header.JoinHeader;
+import javax.sip.header.ReplacesHeader;
 import javax.sip.message.Request;
 import javax.sip.message.Response;
 

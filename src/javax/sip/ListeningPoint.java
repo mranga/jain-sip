@@ -1,8 +1,8 @@
 /**
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Unpublished - rights reserved under the Copyright Laws of the United States.
- * Copyright © 2003 Sun Microsystems, Inc. All rights reserved.
- * Copyright © 2005 BEA Systems, Inc. All rights reserved.
+ * Copyright  2003 Sun Microsystems, Inc. All rights reserved.
+ * Copyright  2005 Oracle inc., Inc. All rights reserved.
  *
  * Use is subject to license terms.
  *
@@ -24,6 +24,9 @@ package javax.sip;
 import java.io.*;
 import java.text.ParseException;
 
+import javax.sip.header.ContactHeader;
+import javax.sip.header.ViaHeader;
+
 /**
  * This interface represents a unique IP network listening point,
  * which consists of port transport and IP. A ListeningPoint is a Java
@@ -34,7 +37,7 @@ import java.text.ParseException;
  * If set, this string will be placed in the sent-by parameter of the
  * top most Via header of outgoing requests.
  *
- * @author BEA Systems, NIST
+ * @author Oracle inc., NIST
  * @version 1.2
  */
 
@@ -97,6 +100,35 @@ public interface ListeningPoint extends Cloneable, Serializable {
      * @since v1.2
      */
     public String getSentBy();
+    
+    /**
+     * Create a contact for this listening point.
+     *
+     * @return a contact header corresponding to this listening point.
+     *
+     * @since 2.0
+     *
+     */
+
+    ContactHeader createContactHeader() ;
+
+    /**
+     * Send a heartbeat to the specified Ip address and port
+     * via this listening point. This method can be used to send out a period
+     * CR-LF for NAT keepalive.
+     *
+     * @since 2.0
+     */
+    public void sendHeartbeat(String ipAddress, int port) throws IOException ;
+    
+    /**
+     * Create a Via header for this listening point.
+     * 
+     * @return a via header corresponding to this listening point. Branch ID is set to NULL.
+     * 
+     * @since 2.0
+     */
+    public ViaHeader createViaHeader();
 
     /**
      * This method indicates whether the specified object is equal to this

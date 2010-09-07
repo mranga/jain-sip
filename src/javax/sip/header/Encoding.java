@@ -1,8 +1,9 @@
 /**
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Unpublished - rights reserved under the Copyright Laws of the United States.
- * Copyright © 2003 Sun Microsystems, Inc. All rights reserved.
- * Copyright © 2005 BEA Systems, Inc. All rights reserved.
+ * Copyright  2003 Sun Microsystems, Inc. All rights reserved.
+ * Copyright  2005 BEA Systems Inc. All rights reserved.
+ * Copyright  2010 Oracle Inc.,  All rights reserved.
  *
  * Use is subject to license terms.
  *
@@ -30,8 +31,9 @@ import java.text.ParseException;
  * @see AcceptEncodingHeader
  * @see ContentEncodingHeader
  *
- * @author BEA Systems, NIST
- * @version 1.2
+ * @author Oracle Inc., NIST
+ * @since 1.1
+ * @version 2.0
  */
 public interface Encoding {
 

@@ -86,8 +86,8 @@ c:/jakarta-ant/bin/ant all
     <property name="docdir" value="${root}/javadoc" />
     <property name="srcroot" value="${root}/src" />
     <property name="dist" value="dist" />
-    <property name="jain-sip-api-jar" value="${root}/jain-sip-api-1.2.jar" />
-    <property name="jain-sip-api-src-jar" value="${root}/jain-sip-api-1.2-src.jar" />
+    <property name="jain-sip-api-jar" value="${root}/jain-sip-api-2.0.jar" />
+    <property name="jain-sip-api-src-jar" value="${root}/jain-sip-api-2.0.src.jar" />
     <property name='j2se_api' value='http://java.sun.com/j2se/1.5/docs/api' />
     <property name="junit_jar" value="${junit}" />
     <property name="log4j_jar" value="${log4j}" />
@@ -167,7 +167,7 @@ c:/jakarta-ant/bin/ant all
             <fileset dir="src/javax/sip" includes="**/*.html" />
         </copy>
 
-        <javadoc packagenames="javax.sip.*,javax.sip.header.*,javax.sip.message.*,javax.sip.address.*,gov.nist.javax.sip.*,gov.nist.javax.sip.address.*,gov.nist.javax.sip.message.*,gov.nist.javax.sip.header.*,gov.nist.javas.sip.header.ims.*,gov.nist.javax.sip.stack.*,gov.nist.core.net.*,gov.nist.javax.sip.parser.*,javax.sdp.*,gov.nist.javax.sdp.*,gov.nist.javax.sdp.fields.*" sourcepath="${srcroot}" overview="${docdir}/overview.html" destdir="javadoc" use="true" splitindex="true" windowtitle="The JAIN-SIP-1.2 RI For the People !" doctitle="NIST-SIP: The Reference Implementation for JAIN-SIP 1.2" public="true" author="true" version="true" defaultexcludes="yes" additionalparam="-breakiterator">
+        <javadoc packagenames="javax.sip.*,javax.sip.header.*,javax.sip.message.*,javax.sip.address.*,gov.nist.javax.sip.*,gov.nist.javax.sip.address.*,gov.nist.javax.sip.message.*,gov.nist.javax.sip.header.*,gov.nist.javas.sip.header.ims.*,gov.nist.javax.sip.stack.*,gov.nist.core.net.*,gov.nist.javax.sip.parser.*,javax.sdp.*,gov.nist.javax.sdp.*,gov.nist.javax.sdp.fields.*" sourcepath="${srcroot}" overview="${docdir}/overview.html" destdir="javadoc" use="true" splitindex="true" windowtitle="The JAIN-SIP-2.0 RI For the People !" doctitle="NIST-SIP: The Reference Implementation for JAIN-SIP 2.0" public="true" author="true" version="true" defaultexcludes="yes" additionalparam="-breakiterator">
             <classpath>
                 <pathelement location="${log4j_jar}" />
                 <pathelement location="${jain-sip-api-jar}" />
@@ -175,7 +175,7 @@ c:/jakarta-ant/bin/ant all
             <link href="${j2se_api}" />
             <header>
                 <![CDATA[
-                    <b> NIST-SIP: The Reference Implementation for JAIN-SIP 1.2 </b>
+                    <b> NIST-SIP: The Reference Implementation for JAIN-SIP 2.0 </b>
                 ]]>
             </header>
         <bottom>
@@ -197,14 +197,14 @@ c:/jakarta-ant/bin/ant all
 
             <mkdir dir='javadoc-jain' />
 
-            <javadoc packagenames="javax.sip.*,javax.sip.header.*,javax.sip.message.*,javax.sip.address.*,javax.sdp.*" sourcepath="${srcroot}" overview="${docdir}/overview.html" destdir="javadoc-jain" use="true" splitindex="true" windowtitle="JAIN-SIP-1.2 RI For the People !" doctitle="NIST SIP/SDP Parser and Stack (v1.3)" public="true" author="true" version="true" defaultexcludes="yes" additionalparam="-breakiterator">
+            <javadoc packagenames="javax.sip.*,javax.sip.header.*,javax.sip.message.*,javax.sip.address.*,javax.sdp.*" sourcepath="${srcroot}" overview="${docdir}/overview.html" destdir="javadoc-jain" use="true" splitindex="true" windowtitle="JAIN-SIP-2.0 RI For the People !" doctitle="NIST SIP/SDP Parser and Stack (v1.3)" public="true" author="true" version="true" defaultexcludes="yes" additionalparam="-breakiterator">
                 <classpath>
                     <pathelement location="${jain-sip-api-jar}" />
                 </classpath>
                 <link href="${j2se_api}" />
                 <header>
                     <![CDATA[
-                    <b> JAIN-SIP 1.2 API </b>
+                    <b> JAIN-SIP 2.0 API </b>
                 ]]>
             </header>
             <bottom>
@@ -721,14 +721,14 @@ c:/jakarta-ant/bin/ant all
                 <target name="push-to-maven-prepare">
                     <taskdef resource="maven-repository-importer.properties">
                         <classpath>
-                            <pathelement path="tools/maven-repository-importer-1.2.jar" />
+                            <pathelement path="tools/maven-repository-importer-2.0.jar" />
                         </classpath>
                     </taskdef>
                     <delete dir="build/maven-repo" />
                     <!-- clean it -->
-                    <maven-repository-importer destdir="build/maven-repo" version="1.2">
-                        <artifact jar="jain-sip-api-1.2.jar" pom="poms/api-pom.xml" />
-                        <artifact jar="jain-sip-ri-1.2.jar" pom="poms/ri-pom.xml" />
+                    <maven-repository-importer destdir="build/maven-repo" version="2.0">
+                        <artifact jar="jain-sip-api-2.0.jar" pom="poms/api-pom.xml" />
+                        <artifact jar="jain-sip-ri-2.0.jar" pom="poms/ri-pom.xml" />
                     </maven-repository-importer>
                 </target>
 

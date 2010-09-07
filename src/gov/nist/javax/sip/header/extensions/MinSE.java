@@ -11,6 +11,7 @@ import gov.nist.javax.sip.header.*;
 
 import javax.sip.*;
 import javax.sip.header.ExtensionHeader;
+import javax.sip.header.MinSEHeader;
 
 /**
  * MinSE SIP Header.

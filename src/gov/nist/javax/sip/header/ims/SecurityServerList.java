@@ -33,6 +33,8 @@ package gov.nist.javax.sip.header.ims;
 
 
 
+import javax.sip.header.ims.SecurityServerHeader;
+
 import gov.nist.javax.sip.header.SIPHeaderList;
 import gov.nist.javax.sip.header.ims.SecurityServer;
 

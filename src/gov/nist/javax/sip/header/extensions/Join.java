@@ -9,6 +9,7 @@ import javax.sip.header.ExtensionHeader;
 /*
 * This code is in the public domain.
 */
+import javax.sip.header.JoinHeader;
 
 /**
  * Join SIPHeader.

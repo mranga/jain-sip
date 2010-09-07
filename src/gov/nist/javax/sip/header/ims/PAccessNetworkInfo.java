@@ -32,6 +32,7 @@ import java.text.ParseException;
 
 import javax.sip.header.ContactHeader;
 import javax.sip.header.ExtensionHeader;
+import javax.sip.header.ims.PAccessNetworkInfoHeader;
 
 import gov.nist.javax.sip.header.ParametersHeader;
 
@@ -47,11 +48,9 @@ public class PAccessNetworkInfo
     extends ParametersHeader
     implements PAccessNetworkInfoHeader, ExtensionHeader {
 
-    // TODO: serialVersionUID
-
     private String accessType;
 
-    private Object extendAccessInfo;
+    private String extendAccessInfo;
 
     /**
      * Public constructor.
@@ -227,7 +226,7 @@ public class PAccessNetworkInfo
      *
      * @param extendAccessInfo - extended Access Information
      */
-    public void setExtensionAccessInfo(Object extendAccessInfo)
+    public void setExtensionAccessInfo(String extendAccessInfo)
             throws ParseException {
 
         if (extendAccessInfo == null)
@@ -241,7 +240,7 @@ public class PAccessNetworkInfo
 
     }
 
-    public Object getExtensionAccessInfo() {
+    public String getExtensionAccessInfo() {
         return this.extendAccessInfo;
     }
 

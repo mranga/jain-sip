@@ -1,8 +1,8 @@
 /**
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Unpublished - rights reserved under the Copyright Laws of the United States.
- * Copyright © 2003 Sun Microsystems, Inc. All rights reserved.
- * Copyright © 2005 BEA Systems, Inc. All rights reserved.
+ * Copyright  2003 Sun Microsystems, Inc. All rights reserved.
+ * Copyright  2005 Oracle inc., Inc. All rights reserved.
  *
  * Use is subject to license terms.
  *
@@ -96,7 +96,7 @@ import java.lang.reflect.Constructor;
  * stack from that of the Reference Implementation. An application can not mix
  * different vendor's peer implementation objects.
  *
- * @author BEA Systems, NIST
+ * @author Oracle inc., NIST
  * @version 1.2
  */
 

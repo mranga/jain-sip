@@ -1,8 +1,8 @@
 /**
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Unpublished - rights reserved under the Copyright Laws of the United States.
- * Copyright © 2003 Sun Microsystems, Inc. All rights reserved.
- * Copyright © 2005 BEA Systems, Inc. All rights reserved.
+ * Copyright  2003 Sun Microsystems, Inc. All rights reserved.
+ * Copyright  2005 Oracle inc., Inc. All rights reserved.
  *
  * Use is subject to license terms.
  *
@@ -13,10 +13,12 @@
  * Module Name   : JSIP Specification
  * File Name     : ServerTransaction.java
  * Author        : Phelim O'Doherty
+ *               : M. Ranganathan 
  *
  *  HISTORY
  *  Version   Date      Author              Comments
  *  1.1     08/10/2002  Phelim O'Doherty    Initial version
+ *          10/22/2010  M. Ranganathan      version 2.0 additions
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 package javax.sip;
@@ -66,7 +68,7 @@ import javax.sip.message.Response;
  * <b>Non-Invite Transaction:</b><br>
  * Trying --> Proceeding --> Completed --> Terminated
  *
- * @author BEA Systems, NIST
+ * @author Oracle inc., NIST
  * @version 1.2
  */
 public interface ServerTransaction extends Transaction {
@@ -143,6 +145,16 @@ public interface ServerTransaction extends Transaction {
      * @since 1.2
      */
     public void enableRetransmissionAlerts() throws SipException ;
+    
+    
+    /**
+     * Return the canceled Invite transaction corresponding to an
+     * incoming CANCEL server transaction.
+     *
+     * @return -- the canceled Invite transaction.
+     *
+     */
+    public ServerTransaction getCanceledInviteTransaction();
 
 
 

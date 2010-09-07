@@ -8,6 +8,8 @@ package gov.nist.javax.sip.header.extensions;
 import java.text.ParseException;
 
 import javax.sip.header.ExtensionHeader;
+import javax.sip.header.ReferredByHeader;
+
 import gov.nist.javax.sip.header.*;
 
 import gov.nist.javax.sip.address.*;

@@ -1,11 +1,11 @@
 package test.unit.gov.nist.javax.sip.stack.reinvitechallenge;
 
+import javax.sip.AccountManager;
 import javax.sip.ClientTransaction;
+import javax.sip.UserCredentials;
 
 
 
-import gov.nist.javax.sip.clientauthutils.AccountManager;
-import gov.nist.javax.sip.clientauthutils.UserCredentials;
 
 public class AccountManagerImpl implements AccountManager {
 

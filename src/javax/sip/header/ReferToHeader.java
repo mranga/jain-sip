@@ -1,8 +1,9 @@
 /**
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Unpublished - rights reserved under the Copyright Laws of the United States.
- * Copyright © 2003 Sun Microsystems, Inc. All rights reserved.
- * Copyright © 2005 BEA Systems, Inc. All rights reserved.
+ * Copyright  2003 Sun Microsystems, Inc. All rights reserved.
+ * Copyright  2005 BEA Systems Inc. All rights reserved.
+ * Copyright  2010 Oracle Inc. All rights reserved.
  *
  * Use is subject to license terms.
  *
@@ -32,7 +33,7 @@ package javax.sip.header;
  * encryption. The resource identified by the Refer-To URI is contacted using 
  * the normal mechanisms for that URI type. 
  *
- * @author BEA Systems, NIST
+ * @author Oracle Inc., NIST
  * @version 1.2
  */
 public interface ReferToHeader extends HeaderAddress, Parameters, Header {

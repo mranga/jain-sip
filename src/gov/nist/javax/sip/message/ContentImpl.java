@@ -4,6 +4,7 @@ import java.text.ParseException;
 
 import javax.sip.header.ContentDispositionHeader;
 import javax.sip.header.ContentTypeHeader;
+import javax.sip.message.Content;
 
 public class ContentImpl implements Content {
    

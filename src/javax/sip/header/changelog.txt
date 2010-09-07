@@ -1,0 +1,6 @@
+The Following new headers have been introduced in version 2.0 of this specification:
+MinSEHeader (RFC 4028)
+SessionExpiresHeader (RFC 4028)
+ReferredByHeader (RFC 3892)
+ReplacesHeader (RFC 3891)
+JoinHeader (RFC 3911)

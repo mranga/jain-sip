@@ -1,8 +1,8 @@
 /**
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Unpublished - rights reserved under the Copyright Laws of the United States.
- * Copyright © 2003 Sun Microsystems, Inc. All rights reserved.
- * Copyright © 2005 BEA Systems, Inc. All rights reserved.
+ * Copyright  2003 Sun Microsystems, Inc. All rights reserved.
+ * Copyright  2005 Oracle inc., Inc. All rights reserved.
  *
  * Use is subject to license terms.
  *
@@ -104,7 +104,7 @@ import javax.sip.InvalidArgumentException;
  * @see javax.sip.header.ContactHeader
  * @see URI
  *
- * @author BEA Systems, NIST 
+ * @author Oracle inc., NIST 
  * @version 1.2
  *
  */
@@ -364,7 +364,38 @@ public interface SipURI extends URI, Parameters {
      */
     public void setLrParam();
 
-    
+    /**
+     * Strip the headers that are tacked to the URI.
+     *
+     * @since 2.0
+     */
+    public void removeHeaders();
+
+    /**
+     * Strip a specific header tacked to the URI.
+     *
+     * @param headerName -- the name of the header.
+     *
+     * @since 2.0
+     */
+    public void removeHeader(String headerName);
+
+    /**
+     * Returns whether the <code>gr</code> parameter is set.
+     *
+     * @since 2.0
+     */
+    public boolean hasGrParam();
+
+    /**
+     * Sets the <code>gr</code> parameter.
+     *
+     * @param value -- the GRUU param value.
+     *
+     * @since 2.0
+     */
+    public void setGrParam(String value);
+
     
     /**
      * This method returns the URI as a string. 

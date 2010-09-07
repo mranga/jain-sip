@@ -36,6 +36,7 @@ package gov.nist.javax.sip.header.ims;
 import java.text.ParseException;
 import javax.sip.InvalidArgumentException;
 import javax.sip.header.Parameters;
+import javax.sip.header.ims.SecurityAgreeHeader;
 
 import gov.nist.core.NameValue;
 import gov.nist.core.Separators;

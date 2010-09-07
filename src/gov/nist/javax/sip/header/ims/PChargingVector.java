@@ -32,8 +32,8 @@ package gov.nist.javax.sip.header.ims;
 import java.text.ParseException;
 
 import javax.sip.header.ExtensionHeader;
+import javax.sip.header.ims.PChargingVectorHeader;
 
-import gov.nist.javax.sip.header.ims.PChargingVectorHeader;
 import gov.nist.javax.sip.header.ims.ParameterNamesIms;
 
 /**

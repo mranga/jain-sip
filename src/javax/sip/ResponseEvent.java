@@ -1,8 +1,8 @@
 /**
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Unpublished - rights reserved under the Copyright Laws of the United States.
- * Copyright © 2003 Sun Microsystems, Inc. All rights reserved.
- * Copyright © 2005 BEA Systems, Inc. All rights reserved.
+ * Copyright  2003 Sun Microsystems, Inc. All rights reserved.
+ * Copyright  2005 Oracle inc., Inc. All rights reserved.
  *
  * Use is subject to license terms.
  *
@@ -18,6 +18,7 @@
  *  Version   Date      Author              Comments
  *  1.1     08/10/2002  Phelim O'Doherty    Initial version
  *  1.2     12/15/2004  M. Ranganathan      Added getDialog method
+ *  2.0     10/24/2010  M. Ranganathan      2.0 methods.
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 package javax.sip;
@@ -53,7 +54,7 @@ import javax.sip.message.Response;
  * that needs passed to the application encapsulated in a ResponseEvent.
  * </ul>
  *
- * @author BEA Systems, NIST
+ * @author Oracle inc., NIST
  * @version 1.2
  */
 public class ResponseEvent extends EventObject {
@@ -74,6 +75,7 @@ public class ResponseEvent extends EventObject {
         m_response = response;
         m_transaction = clientTransaction;
         m_dialog = dialog;
+        m_originalTransaction = clientTransaction;
     }
 
     /**
@@ -110,14 +112,52 @@ public class ResponseEvent extends EventObject {
      * a subsequent response.
      *
      * @return the dialog associated with the response event or null if there is no dialog.
+     * 
      * @since v1.2
      */
     public Dialog getDialog() {
         return m_dialog;
     }
-    // internal variables
+    /**
+     * Return true if this is a forked response.
+     * 
+     * @since 2.0
+     * 
+     * @return true if the response event is for a forked response.
+     */
+    public boolean isForkedResponse() {
+        return this.getClientTransaction() == null && m_originalTransaction != null;
+    }
+
+    /**
+     * Set the original transaction for a forked response. This is set by the stack
+     * implementation and can be retrieved by the application later.
+     * 
+     * @since 2.0
+     * 
+     * @param originalTransaction - the original transaction for which this response event.
+     *  is a fork.
+     */
+    public void setOriginalTransaction(ClientTransaction originalTransaction) {
+        m_originalTransaction = originalTransaction;
+    }
+
+    /**
+     * Get the original transaction for which this is a forked response.
+     * Note that this transaction can be in a TERMINATED state.
+     * 
+     * @since 2.0
+     * 
+     * @return the original clientTx for which this is a forked response.
+     */
+    public ClientTransaction getOriginalTransaction() {
+        return this.m_originalTransaction;
+    }
+     // internal variables
     private Response m_response;
     private ClientTransaction m_transaction;
     private Dialog m_dialog;
+    private ClientTransaction m_originalTransaction;
+    
 }
 

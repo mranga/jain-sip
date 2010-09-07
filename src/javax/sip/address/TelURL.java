@@ -1,8 +1,8 @@
 /**
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Unpublished - rights reserved under the Copyright Laws of the United States.
- * Copyright © 2003 Sun Microsystems, Inc. All rights reserved.
- * Copyright © 2005 BEA Systems, Inc. All rights reserved.
+ * Copyright  2003 Sun Microsystems, Inc. All rights reserved.
+ * Copyright  2005 Oracle inc., Inc. All rights reserved.
  *
  * Use is subject to license terms.
  *
@@ -57,7 +57,7 @@ import javax.sip.header.Parameters;
  * See <a href = "http://www.ietf.org/rfc/rfc2806.txt">RFC2806</a> for more 
  * information on the use of TelURL's.
  *
- * @author BEA Systems, NIST
+ * @author Oracle inc., NIST
  * @version 1.2
  */
 

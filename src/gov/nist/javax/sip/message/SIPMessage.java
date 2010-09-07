@@ -101,6 +101,7 @@ import javax.sip.header.ExpiresHeader;
 import javax.sip.header.FromHeader;
 import javax.sip.header.Header;
 import javax.sip.header.MaxForwardsHeader;
+import javax.sip.header.MultipartMimeContent;
 import javax.sip.header.RecordRouteHeader;
 import javax.sip.header.RouteHeader;
 import javax.sip.header.ToHeader;
@@ -968,10 +969,19 @@ public abstract class SIPMessage extends MessageObject implements javax.sip.mess
     /**
      * Get the contentType header (null if one does not exist).
      * 
+     * @deprecated
      * @return contentType header
      */
     
     public ContentType getContentTypeHeader() {
+        return (ContentType) getHeaderLowerCase(CONTENT_TYPE_LOWERCASE);
+    }
+    
+    /*
+     * (non-Javadoc)
+     * @see javax.sip.message.Message#getContentType()
+     */
+    public ContentType getContentType() {
         return (ContentType) getHeaderLowerCase(CONTENT_TYPE_LOWERCASE);
     }
     

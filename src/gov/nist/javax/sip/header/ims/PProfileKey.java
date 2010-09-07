@@ -29,6 +29,7 @@ import java.text.ParseException;
 import gov.nist.javax.sip.address.AddressImpl;
 import gov.nist.javax.sip.header.AddressParametersHeader;
 import javax.sip.header.ExtensionHeader;
+import javax.sip.header.ims.PProfileKeyHeader;
 
 /**
  *

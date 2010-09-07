@@ -28,13 +28,15 @@ package gov.nist.javax.sip.address;
 import javax.sip.address.Hop;
 import javax.sip.address.Router;
 
-/**
- * 
- */
 public interface RouterExt extends Router {
     
     /**
      * Record that a transaction failure occured for the given hop.
+     * This method should be called by the Stack implementation
+     * when a timeout is detected for a hop. It allows the Router
+     * implementation to pick an alternate route.
+     * 
+     * @param hop -- hop that timed out.
      * 
      */
     public void transactionTimeout(Hop hop);

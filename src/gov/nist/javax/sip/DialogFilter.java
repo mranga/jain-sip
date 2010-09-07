@@ -58,6 +58,7 @@ import javax.sip.DialogState;
 import javax.sip.ListeningPoint;
 import javax.sip.ObjectInUseException;
 import javax.sip.RequestEvent;
+import javax.sip.ResponseEvent;
 import javax.sip.ServerTransaction;
 import javax.sip.SipException;
 import javax.sip.SipProvider;
@@ -1422,7 +1423,7 @@ class DialogFilter implements ServerRequestInterface, ServerResponseInterface {
             // Pass the response up to the application layer to handle
             // statelessly.
 
-            ResponseEventExt sipEvent = new ResponseEventExt(sipProvider,
+            ResponseEvent sipEvent = new ResponseEventExt(sipProvider,
                     transaction, dialog, (Response) response);
 
             if (sipStack.getMaxForkTime() != 0
@@ -1443,7 +1444,7 @@ class DialogFilter implements ServerRequestInterface, ServerResponseInterface {
             return;
         }
 
-        ResponseEventExt responseEvent = null;
+        ResponseEvent responseEvent = null;
 
         // Here if there is an assigned dialog
         responseEvent = new ResponseEventExt(sipProvider,
@@ -1687,7 +1688,7 @@ class DialogFilter implements ServerRequestInterface, ServerResponseInterface {
             sipDialog.setLastResponse(transaction, sipResponse);
         }
 
-        ResponseEventExt responseEvent = new ResponseEventExt(sipProvider,
+        ResponseEvent responseEvent = new ResponseEventExt(sipProvider,
                 (ClientTransactionExt) transaction, sipDialog,
                 (Response) sipResponse);
 

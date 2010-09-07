@@ -3,15 +3,15 @@ package test.unit.gov.nist.javax.sip.multipartmime;
 import java.util.Iterator;
 
 import javax.sip.header.ContentTypeHeader;
+import javax.sip.header.MultipartMimeContent;
+import javax.sip.message.Content;
 import javax.sip.message.Request;
 
 import gov.nist.javax.sip.header.HeaderFactoryExt;
 import gov.nist.javax.sip.header.HeaderFactoryImpl;
-import gov.nist.javax.sip.message.Content;
 import gov.nist.javax.sip.message.MessageExt;
 import gov.nist.javax.sip.message.MessageFactoryExt;
 import gov.nist.javax.sip.message.MessageFactoryImpl;
-import gov.nist.javax.sip.message.MultipartMimeContent;
 import junit.framework.TestCase;
 
 public class MultipartMimeParserTest extends TestCase {

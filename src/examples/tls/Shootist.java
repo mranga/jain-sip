@@ -1,6 +1,5 @@
 package examples.tls;
 import gov.nist.javax.sip.ClientTransactionExt;
-import gov.nist.javax.sip.TlsSecurityPolicy;
 import gov.nist.javax.sip.stack.SIPTransaction;
 
 import javax.net.ssl.SSLPeerUnverifiedException;

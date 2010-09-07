@@ -1,8 +1,8 @@
 /**
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Unpublished - rights reserved under the Copyright Laws of the United States.
- * Copyright © 2003 Sun Microsystems, Inc. All rights reserved.
- * Copyright © 2005 BEA Systems, Inc. All rights reserved.
+ * Copyright  2003 Sun Microsystems, Inc. All rights reserved.
+ * Copyright  2005 Oracle inc., Inc. All rights reserved.
  *
  * Use is subject to license terms.
  *
@@ -22,12 +22,18 @@
  *                                          method with IP address
  *                                          Added start and stop stack methods
  *                      M. Ranganathan      Fixed documentation.
+ *  2.0   10/24/2010    M. Ranganathan      Updated to 2.0 spec.
+ *
  *
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 package javax.sip;
 
 import javax.sip.address.Router;
+import javax.sip.header.HeaderFactory;
+import javax.sip.header.JoinHeader;
+import javax.sip.header.ReplacesHeader;
+
 import java.util.*;
 
 /**
@@ -303,6 +309,111 @@ import java.util.*;
  * <p>
  * <b>Since v1.2.</b>
  * </td>
+ * <tr>
+ * <td align="left" valign="top">
+ * <p class="table">
+ *<li>javax.sip.AUTOMATIC_DIALOG_ERROR_HANDLING
+ * </p>
+ * </td>
+ * <td align="left" valign="top">
+ * <p class="table">
+ * </p>
+ * <b>Since 2.0 </b>
+ *</td>
+ *<tr>
+ *
+ *<td align="left" valign="top">
+ *<p class="table">
+ * javax.sip.IS_BACK_TO_BACK_USER_AGENT
+ * </p>
+ * </td>
+ * <td align="left" valign="top">
+ * <p class="table">
+ * </p>
+ * <b>Since 2.0 </b>
+ *</td>
+ *
+ *<td align="left" valign="top">
+ *<p class="table">
+ * javax.sip.DELIVER_TERMINATED_EVENT_FOR_NULL_DIALOG
+ * </p>
+ * </td>
+ * <td align="left" valign="top">
+ * <p class="table">
+ * </p>
+ * <b>Since 2.0 </b>
+ *</td>
+ *
+ *<td align="left" valign="top">
+ *<p class="table">
+ * javax.sip.MAX_FORK_TIME_SECONDS
+ * </p>
+ * </td>
+ * <td align="left" valign="top">
+ * <p class="table">
+ * </p>
+ * <b>Since 2.0 </b>
+ *</td>
+ *
+ *<td align="left" valign="top">
+ *<p class="table">
+ * javax.sip.DELIVER_UNSOLICITED_NOTIFY
+ * </p>
+ * </td>
+ * <td align="left" valign="top">
+ * <p class="table">
+ * <b>[true|false] </b> <br/>
+ * Default is <it>false</it>. This flag is added to allow Sip Listeners to
+ * receive all NOTIFY requests including those that are not part of a valid
+ * dialog.
+ * </p>
+ * <b>Since 2.0 </b>
+ *</td>
+ *
+ *<td align="left" valign="top">
+ *<p class="table">
+ * javax.sip.TLS_CLIENT_PROTOCOLS
+ * </p>
+ * </td>
+ * <td align="left" valign="top">
+ * <p class="table">
+ * Comma-separated list of protocols to use when creating outgoing TLS connections.
+ * The default is "SSLv3, SSLv2Hello, TLSv1". 
+ * </p>
+ * <b>Since 2.0 </b>
+ *</td> 
+ * 
+ *<td align="left" valign="top">
+ *<p class="table">
+ * javax.sip.TLS_SECURITY_POLICY
+ * </p>
+ * </td>
+ * <td align="left" valign="top">
+ * <p class="table">
+ * The fully qualified path
+ * name of a TLS Security Policy implementation that is consulted for certificate verification
+ * of outbund TLS connections.
+ * </p>
+ * <b>Since 2.0 </b>
+ *</td> 
+ *
+ *
+ *<td align="left" valign="top">
+ *<p class="table">
+ * javax.sip.TLS_SECURITY_POLICY
+ * </p>
+ * </td>
+ * <td align="left" valign="top">
+ * <p class="table">
+ * The fully qualified path
+ * name of a TLS Security Policy implementation that is consulted for certificate verification
+ * of outbund TLS connections.
+ * </p>
+ * <b>Since 2.0 </b>
+ *</td> 
+ * 
+ * 
+ * </ul>
  * </tr>
  *
  * </table> </center>
@@ -310,7 +421,7 @@ import java.util.*;
  * @see SipFactory
  * @see SipProvider
  *
- * @author BEA Systems, NIST
+ * @author Oracle inc., NIST
  * @version 1.2
  *
  */
@@ -495,6 +606,91 @@ public interface SipStack {
      * @since 1.2
      */
     public void start() throws SipException;
+    
+    /**
+     * Get the ReferedTo dialog in the Replaces header.
+     *
+     * @return Dialog object matching the Replaces header, provided it is in an appropriate state
+     *         to be replaced, <code>null</code> otherwise
+     *
+     * @since 2.0
+     */
+    public Dialog getReplacesDialog(ReplacesHeader replacesHeader);
+
+    /**
+     * Get the authentication helper.
+     *
+     *
+     * @param accountManager -- account manager (for fetching credentials).
+     * @param headerFactory -- header factory.
+     *
+     * @return - the authentication helper which can be used for generating the appropriate
+     *         headers for handling authentication challenges for user agents.
+     *
+     * @since 2.0
+     */
+    public AuthenticationHelper getAuthenticationHelper(AccountManager accountManager,
+            HeaderFactory headerFactory);
+    
+    /**
+     * Get the authentication helper.
+     *
+     *
+     * @param accountManager -- account manager (for fetching credentials).
+     * @param headerFactory -- header factory.
+     *
+     * @return - the authentication helper which can be used for generating the appropriate
+     *         headers for handling authentication challenges for user agents.
+     *
+     * @since 2.0
+     */
+    public AuthenticationHelper getSecureAuthenticationHelper(SecureAccountManager accountManager,
+            HeaderFactory headerFactory);
+
+   
+
+    /**
+     * Get the dialog in the Join header.
+     *
+     * @return Dialog object matching the Join header, provided it is in an appropriate state to
+     *         be replaced, <code>null</code> otherwise
+     *
+     * @since 2.0
+     */
+    public Dialog getJoinDialog(JoinHeader joinHeader);
+
+    /**
+     * Set the list of cipher suites supported by the stack. A stack can have only one set of
+     * suites. These are not validated against the supported cipher suites of the java runtime, so
+     * specifying a cipher here does not guarantee that it will work.<br>
+     * The stack has a default cipher suite of:
+     * <ul>
+     * <li> TLS_RSA_WITH_AES_128_CBC_SHA </li>
+     * <li> SSL_RSA_WITH_3DES_EDE_CBC_SHA </li>
+     * <li> TLS_DH_anon_WITH_AES_128_CBC_SHA </li>
+     * <li> SSL_DH_anon_WITH_3DES_EDE_CBC_SHA </li>
+     * </ul>
+     *
+     * <b>NOTE: This function must be called before adding a TLS listener</b>
+     *
+     * @since 2.0
+     * @param newCipherSuites -- The new set of ciphers to support.
+     *
+     */
+    public void setEnabledCipherSuites(String[] newCipherSuites);
+    
+    /**
+     * Get the collection of dialogs currently in the Dialog table. Dialogs returned
+     * in this method are either in Early or Established state.
+     * 
+     * @since 2.0
+     * @return the collection of Dialogs active (not Terminated) dialogs
+     *  that are currently in the dialog table. 
+     * 
+     *
+     */
+    public Collection<Dialog> getDialogs();
+
 
     /**
      * This method returns the value of the retransmission filter helper

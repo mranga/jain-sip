@@ -1,12 +1,12 @@
 package examples.authorization;
 
 import gov.nist.javax.sip.SipStackExt;
-import gov.nist.javax.sip.clientauthutils.AuthenticationHelper;
 
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import javax.sip.AuthenticationHelper;
 import javax.sip.ClientTransaction;
 import javax.sip.Dialog;
 import javax.sip.DialogState;

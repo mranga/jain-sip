@@ -15,15 +15,14 @@
  */
 package test.unit.gov.nist.javax.sip.stack.dialog.timeout;
 
-import gov.nist.javax.sip.DialogTimeoutEvent;
 import gov.nist.javax.sip.SipListenerExt;
-import gov.nist.javax.sip.DialogTimeoutEvent.Reason;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.sip.Dialog;
 import javax.sip.DialogTerminatedEvent;
+import javax.sip.DialogTimeoutEvent;
 import javax.sip.IOExceptionEvent;
 import javax.sip.ListeningPoint;
 import javax.sip.RequestEvent;
@@ -32,6 +31,7 @@ import javax.sip.ServerTransaction;
 import javax.sip.SipProvider;
 import javax.sip.Transaction;
 import javax.sip.TransactionTerminatedEvent;
+import javax.sip.DialogTimeoutEvent.Reason;
 import javax.sip.address.Address;
 import javax.sip.address.AddressFactory;
 import javax.sip.header.CSeqHeader;

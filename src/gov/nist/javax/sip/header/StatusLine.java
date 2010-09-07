@@ -28,6 +28,8 @@
  *******************************************************************************/
 package gov.nist.javax.sip.header;
 
+import javax.sip.message.SipStatusLine;
+
 import gov.nist.javax.sip.SIPConstants;
 
 /**

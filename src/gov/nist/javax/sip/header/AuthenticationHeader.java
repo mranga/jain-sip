@@ -440,7 +440,7 @@ public abstract class AuthenticationHeader extends ParametersHeader {
     }
 
     /**
-     * Set the nonce count pakrameter. Bug fix sent in by Andreas Bystr�m
+     * Set the nonce count pakrameter. Bug fix sent in by Andreas Bystrm
      */
 
     public void setNonceCount(int param) throws java.text.ParseException {
@@ -473,7 +473,7 @@ public abstract class AuthenticationHeader extends ParametersHeader {
     public void setResponse(String response) throws ParseException {
         if (response == null)
             throw new NullPointerException("Null parameter");
-        // Bug fix from Andreas Bystr�m
+        // Bug fix from Andreas Bystrm
         this.setParameter(RESPONSE, response);
     }
 

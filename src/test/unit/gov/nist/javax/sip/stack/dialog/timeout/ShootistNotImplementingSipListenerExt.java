@@ -15,9 +15,7 @@
  */
 package test.unit.gov.nist.javax.sip.stack.dialog.timeout;
 
-import gov.nist.javax.sip.DialogTimeoutEvent;
 import gov.nist.javax.sip.SipStackImpl;
-import gov.nist.javax.sip.DialogTimeoutEvent.Reason;
 
 import java.util.ArrayList;
 import java.util.Properties;
@@ -25,6 +23,7 @@ import java.util.Properties;
 import javax.sip.ClientTransaction;
 import javax.sip.Dialog;
 import javax.sip.DialogTerminatedEvent;
+import javax.sip.DialogTimeoutEvent;
 import javax.sip.IOExceptionEvent;
 import javax.sip.ListeningPoint;
 import javax.sip.RequestEvent;
@@ -34,6 +33,7 @@ import javax.sip.SipFactory;
 import javax.sip.SipListener;
 import javax.sip.SipProvider;
 import javax.sip.TransactionTerminatedEvent;
+import javax.sip.DialogTimeoutEvent.Reason;
 import javax.sip.address.Address;
 import javax.sip.address.AddressFactory;
 import javax.sip.address.SipURI;

@@ -1,7 +1,5 @@
 package examples.parser;
 
-import gov.nist.javax.sip.header.ims.PAssertedIdentityHeader;
-import gov.nist.javax.sip.header.ims.PPreferredIdentityHeader;
 
 import javax.sdp.SdpFactory;
 import javax.sdp.SessionDescription;
@@ -9,6 +7,8 @@ import javax.sip.SipFactory;
 import javax.sip.address.AddressFactory;
 import javax.sip.header.ExtensionHeader;
 import javax.sip.header.HeaderFactory;
+import javax.sip.header.ims.PAssertedIdentityHeader;
+import javax.sip.header.ims.PPreferredIdentityHeader;
 import javax.sip.message.MessageFactory;
 import javax.sip.message.Request;
 import javax.sip.message.Response;

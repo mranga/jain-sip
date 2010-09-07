@@ -1,8 +1,8 @@
 /**
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Unpublished - rights reserved under the Copyright Laws of the United States.
- * Copyright © 2003 Sun Microsystems, Inc. All rights reserved.
- * Copyright © 2005 BEA Systems, Inc. All rights reserved.
+ * Copyright  2003 Sun Microsystems, Inc. All rights reserved.
+ * Copyright  2005 Oracle inc., Inc. All rights reserved.
  *
  * Use is subject to license terms.
  *
@@ -172,7 +172,7 @@ import java.io.Serializable;
  * or not the outgoing INVITE was sent through a ClientTransaction or statelessly
  * via a SipProvider.
  *
- * @author BEA Systems, NIST
+ * @author Oracle inc., NIST
  * @version 1.2
  */
 
@@ -652,17 +652,7 @@ public interface Dialog extends Serializable {
      */
     public void delete();
 
-    /**
-     * This method retrieves the transaction which resulted in the creation of
-     * this Dialog. The transaction type either server or client can be
-     * determined based on whether this is a server or client Dialog, see
-     * {@link Dialog#isServer()}.
-     *
-     * @deprecated Since v1.2. Reduces the amount of state that
-         * the stack needs to keep track of.
-     * @return the Transaction that created the Dialog.
-     */
-    public Transaction getFirstTransaction();
+    
 
     /**
      * Get the Local Tag of this Dialog. On the client side, this tag is
@@ -714,7 +704,7 @@ public interface Dialog extends Serializable {
      * subscriptions in it are destroyed. Hence, if the application is aware of
      * active subscriptions in a dialog it should set this flag to false. In
      * this case when BYE is received the dialog will not be terminated and it
-     * will be the application’s responsibility to call the
+     * will be the applications responsibility to call the
      * {@link Dialog#delete()} function when all active subscriptions are
      * terminated.
      *
@@ -726,5 +716,88 @@ public interface Dialog extends Serializable {
      *
      */
     public void terminateOnBye(boolean terminateFlag) throws SipException;
+    
+    /**
+     * Returns the SipProvider that was used for the first transaction in this Dialog
+     * 
+     * @return SipProvider
+     * 
+     * @since 2.0
+     */
+    public SipProvider getSipProvider();
+
+    /**
+     * Sets a flag that indicates that this Dialog is part of a BackToBackUserAgent. If this flag
+     * is set, INVITEs are not allowed to interleave and timed out ACK transmission results in a
+     * BYE being sent to the other side. Setting this flag instructs the stack to automatically
+     * handle dialog errors. Once this flag is set for a dialog, it cannot be changed.
+     * This flag can be set on a stack-wide basis, on a per-provider basis or on a per Dialog basis.
+     * This flag must only be set at the time of Dialog creation. If the flag is set after the first
+     * request or response is seen by the Dialog, the behavior of this flag is undefined.
+     * 
+     * @since 2.0
+     */
+    public void setBackToBackUserAgent();
+    
+    
+    /**
+     * Turn off sequence number validation for this dialog. This passes all requests to the
+     * application layer including those that arrive out of order. This interface is provided for testing
+     * purposes. Validation is delegated to the application and the stack will not attempt to
+     * block requests arriving out of sequence from reaching the application. In particular, the
+     * validation of CSeq and the ACK retransmission recognition are delegated to the application.
+     * Your application will be responsible for error handling of these cases.
+     * Sequence number validation is ON by default.
+     * 
+     * @since 2.0
+     */
+    public void disableSequenceNumberValidation();
+
+    /**
+     * retrieve the value of release references to know if the stack performs optimizations
+     * on cleanup to save on memory
+     * @return release references value
+     * 
+     * @since 2.0
+     */
+    public boolean isReleaseReferences();
+    
+    /**
+     * If set to true it will release all references that it no longer needs. This will include the reference to the
+     * Request, Transactions, Any unused timers etc. This will significantly reduce memory
+     * consumption under high load
+     * @param releaseReferences 
+     * 
+     * @since 2.0
+     */
+    public void setReleaseReferences(boolean releaseReferences);
+    
+    /**
+     * Sets the early dialog timeout period. Overrides the value set by the stack configuration property
+     * EARLY_DIALOG_TIMEOUT_SECONDS. 
+     * A dialog may remain in early state indefinitely. UACs may kill a dialog in early state of periodic 
+     * provisional responses are not seen for 3 minutes. This allows you to override the RFC
+     * specified value of 3 minutes hence allowing for fast fail over from unresponsive servers.
+     * 
+     * @param timeoutValue - the timeout value for early Dialog timeout in seconds.
+     * 
+     * @since 2.0
+     */
+    public void setEarlyDialogTimeoutSeconds(int timeoutValue);
+    
+    /**
+     * This method retrieves the transaction which resulted in the creation of
+     * this Dialog. The transaction type either server or client can be
+     * determined based on whether this is a server or client Dialog, see
+     * {@link Dialog#isServer()}.
+     *
+     * @deprecated Since v1.2. Reduces the amount of state that
+     * the stack needs to keep track of. Note to developers : Store a reference
+     * to the Dialog creating transaction in the Dialog Application Data if you
+     * need to.
+     * 
+     * @return the Transaction that created the Dialog.
+     */
+    public Transaction getFirstTransaction();
 
 }

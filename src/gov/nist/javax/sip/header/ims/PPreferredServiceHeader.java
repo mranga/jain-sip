@@ -1,4 +1,6 @@
 package gov.nist.javax.sip.header.ims;
+
+import javax.sip.header.Header;
 /*
 * Conditions Of Use
 *
@@ -24,12 +26,10 @@ package gov.nist.javax.sip.header.ims;
 * .
 *
 */
-import javax.sip.header.Header;
 
 /**
  *
- * @author aayush.bhatnagar
- *
+*
  * The ABNF for this header is all follows:
  *
  *  PPreferredService = "P-Preferred-Service"
@@ -47,6 +47,8 @@ import javax.sip.header.Header;
  *
  * Egs: P-Preferred-Service: urn:urn-7:3gpp-service.exampletelephony.version1
  *      P-Preferred-Service: urn:urn-7:3gpp-application.exampletelephony.version1
+ *
+ *@author aayush.bhatnagar
  *
  */
 public interface PPreferredServiceHeader extends Header{

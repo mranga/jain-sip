@@ -30,6 +30,8 @@
 
 package gov.nist.javax.sip.header.ims;
 
+import javax.sip.header.ims.PMediaAuthorizationHeader;
+
 import gov.nist.javax.sip.header.SIPHeaderList;
 
 /**

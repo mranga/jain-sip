@@ -1,6 +1,5 @@
 package test.unit.gov.nist.javax.sip.stack.forkedinvite;
 
-import gov.nist.javax.sip.ResponseEventExt;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -197,7 +196,7 @@ public class Shootist implements SipListener {
 
     public synchronized void processResponse(ResponseEvent responseReceived) {
         logger.info("Got a response");
-        ResponseEventExt responseReceivedEvent = (ResponseEventExt) responseReceived;
+        ResponseEvent responseReceivedEvent = (ResponseEvent) responseReceived;
         Response response = (Response) responseReceivedEvent.getResponse();
         ClientTransaction tid = responseReceivedEvent.getClientTransaction();
         CSeqHeader cseq = (CSeqHeader) response.getHeader(CSeqHeader.NAME);
@@ -259,7 +258,7 @@ public class Shootist implements SipListener {
 
 
                     } else {
-                        ResponseEventExt responseEventExt  = (ResponseEventExt) responseReceivedEvent;
+                        ResponseEvent responseEventExt  = (ResponseEvent) responseReceivedEvent;
                         TestCase.assertTrue("forked event must set flag",responseEventExt.isForkedResponse());
                         this.canceledDialog.add(dialog);
                         SipProvider sipProvider = (SipProvider) responseReceivedEvent

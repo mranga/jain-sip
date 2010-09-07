@@ -1,7 +1,7 @@
 /**
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Unpublished - rights reserved under the Copyright Laws of the United States.
- * Copyright © 2005 BEA Systems, Inc. All rights reserved.
+ * Copyright  2005 Oracle inc., Inc. All rights reserved.
  *
  * Use is subject to license terms.
  *
@@ -24,7 +24,7 @@ package javax.sip;
  * The TransportAlreadySupportedException indicates that a specific transport is 
  * already supported by a SipProvider via its ListeningPoints.
  *
- * @author BEA Systems, NIST
+ * @author Oracle inc., NIST
  * @since 1.2
  */
 

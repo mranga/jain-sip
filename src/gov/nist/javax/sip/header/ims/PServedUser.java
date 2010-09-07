@@ -27,6 +27,8 @@ package gov.nist.javax.sip.header.ims;
 import java.text.ParseException;
 import javax.sip.InvalidArgumentException;
 import javax.sip.header.ExtensionHeader;
+import javax.sip.header.ims.PServedUserHeader;
+
 import gov.nist.javax.sip.address.AddressImpl;
 import gov.nist.javax.sip.header.AddressParametersHeader;
 

@@ -1,8 +1,8 @@
 /**
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Unpublished - rights reserved under the Copyright Laws of the United States.
- * Copyright © 2003 Sun Microsystems, Inc. All rights reserved.
- * Copyright © 2005 BEA Systems, Inc. All rights reserved.
+ * Copyright  2003 Sun Microsystems, Inc. All rights reserved.
+ * Copyright  2005 Oracle inc., Inc. All rights reserved.
  *
  * Use is subject to license terms.
  *
@@ -13,16 +13,19 @@
  * Module Name   : JSIP Specification
  * File Name     : ClientTransaction.java
  * Author        : Phelim O'Doherty
+ *                 M. Ranganathan (NIST)
  *
  *  HISTORY
  *  Version   Date      Author              Comments
  *  1.1     08/10/2002  Phelim O'Doherty    Initial version
  *  1.2     16/06/2005  Phelim O'Doherty    Deprecated createAck method.
+ *  2.0     08/22/2010  M. Ranganathan      Version 2.0 interfaces
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 package javax.sip;
 
 
+import javax.sip.address.Hop;
 import javax.sip.message.Request;
 
 /**
@@ -60,7 +63,7 @@ import javax.sip.message.Request;
  * <b>Non-Invite Transaction:</b><br>
  * Trying --> Proceeding --> Completed --> Terminated
  * 
- * @author BEA Systems, NIST
+ * @author Oracle inc., NIST
  * @version 1.2
  */
 public interface ClientTransaction extends Transaction {
@@ -135,6 +138,61 @@ public interface ClientTransaction extends Transaction {
      * can't be cancelled i.e. ACK.
      */    
     public Request createCancel() throws SipException;
+    
+    
+    /**
+     * Notify on retransmission from the client transaction side. The listener will get a
+     * notification on retransmission when this flag is set. When set the client transaction
+     * listener will get a Timeout.RETRANSMIT event on each retransmission.
+     * 
+     * @param flag -- the flag that indicates whether or not notification is desired.
+     * 
+     * @since 2.0
+     */
+    public void setNotifyOnRetransmit(boolean flag);
+
+    /**
+     * Send a transaction timeout event to the application if Tx is still in Calling state in the
+     * given time period ( in base timer interval count ) after sending request. The stack will
+     * start a timer and alert the application if the client transaction does not transition out
+     * of the Trying state by the given interval. This is a "one shot" alert.
+     * 
+     * @param count -- the number of base timer intervals after which an alert is issued.
+     * 
+     * 
+     * @since 2.0
+     */
+    public void alertIfStillInCallingStateBy(int count);
+    
+    /**
+     * Get the next hop that was computed by the routing layer.
+     * when it sent out the request. This allows you to route requests
+     * to the SAME destination if required ( for example if you get
+     * an authentication challenge ).
+     * 
+     * @since 2.0
+     */
+    public Hop getNextHop();
+    
+    /**
+     * Return true if this Client Transaction is a secure transport.
+     * 
+     * @since 2.0
+     * 
+     */
+    public boolean isSecure();
+    
+    /**
+     * Get the default dialog that was originally assigned to the client transaction.
+     * This will differ from the dialog that is assigned to the transaction when a
+     * forked response comes in. This method is useful for UACs that have to deal with
+     * forked responses.
+     * 
+     * @since 2.0
+     * 
+     */
+    public Dialog getDefaultDialog();
+  
     
     /**
      * Creates a new Ack message from the Request associated with this client

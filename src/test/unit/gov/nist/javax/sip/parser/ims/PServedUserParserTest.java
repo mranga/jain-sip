@@ -26,9 +26,10 @@ package test.unit.gov.nist.javax.sip.parser.ims;
 */
 import java.text.ParseException;
 import javax.sip.address.AddressFactory;
+import javax.sip.header.ims.PServedUserHeader;
+
 import gov.nist.javax.sip.address.AddressFactoryImpl;
 import gov.nist.javax.sip.header.HeaderFactoryImpl;
-import gov.nist.javax.sip.header.ims.PServedUserHeader;
 import gov.nist.javax.sip.parser.ims.PServedUserParser;
 import test.unit.gov.nist.javax.sip.parser.ParserTestCase;
 

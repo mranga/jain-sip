@@ -15,13 +15,13 @@
  */
  package test.unit.gov.nist.javax.sip.stack.dialog.timeout;
 
-import gov.nist.javax.sip.DialogTimeoutEvent;
 import gov.nist.javax.sip.SipListenerExt;
 import gov.nist.javax.sip.SipStackImpl;
 
 import java.util.EventObject;
 
 import javax.sip.DialogTerminatedEvent;
+import javax.sip.DialogTimeoutEvent;
 import javax.sip.IOExceptionEvent;
 import javax.sip.RequestEvent;
 import javax.sip.ResponseEvent;

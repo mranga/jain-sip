@@ -1,8 +1,8 @@
-/**
+/*
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Unpublished - rights reserved under the Copyright Laws of the United States.
- * Copyright © 2003 Sun Microsystems, Inc. All rights reserved.
- * Copyright © 2005 BEA Systems, Inc. All rights reserved.
+ * Copyright  2003 Sun Microsystems, Inc. All rights reserved.
+ * Copyright  2005 Oracle inc., Inc. All rights reserved.
  *
  * Use is subject to license terms.
  *
@@ -21,8 +21,8 @@
  *    
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
-package javax.sip.header;
 
+package javax.sip.header;
 import javax.sip.InvalidArgumentException;
 import java.text.ParseException;
 
@@ -35,7 +35,7 @@ import java.text.ParseException;
  * sequence number and the request method are identical.
  * <ul>
  * <li>Method - The method part of CSeq is case-sensitive and MUST match that
- * of the request.
+ * of the request. </li>
  * <li>Sequence number - The sequence number is chosen by the requesting
  * client and is unique within a single value of Call-ID. The sequence number
  * MUST be expressible as a 32-bit unsigned integer and MUST be less than
@@ -53,7 +53,7 @@ import java.text.ParseException;
  * cancelling an invitation must have a higher sequence number. An user agent
  * server must remember the highest sequence number for any INVITE Request
  * with the same CallIdHeader. The server must respond to, and then discard,
- * any INVITE Request with a lower sequence number.
+ * any INVITE Request with a lower sequence number. </li>
  * </ul>
  * As long as a client follows the above guidelines, it may use any mechanism
  * it would like to select CSeq header field values.
@@ -66,10 +66,12 @@ import java.text.ParseException;
  * For Example:<br>
  * <code>CSeq: 4711 INVITE</code>
  *
- * @author BEA Systems, NIST
- * @version 1.2
+ *@author Oracle Inc., NIST
+ *@since 1.1
+ *@version 2.0
  *
  */
+
 
 public interface CSeqHeader extends Header {
 

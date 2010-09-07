@@ -1,8 +1,9 @@
 /**
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Unpublished - rights reserved under the Copyright Laws of the United States.
- * Copyright © 2003 Sun Microsystems, Inc. All rights reserved.
- * Copyright © 2005 BEA Systems, Inc. All rights reserved.
+ * Copyright  2003 Sun Microsystems, Inc. All rights reserved.
+ * Copyright  2005 BEA Systems Inc. All rights reserved.
+ * Copyright  2010 Oracle inc., Inc. All rights reserved.
  *
  * Use is subject to license terms.
  *
@@ -38,8 +39,9 @@ package javax.sip.header;
  * @see HeaderAddress
  * @see Parameters
  *
- * @author BEA Systems, NIST
- * @version 1.2
+ * @author Oracle inc., NIST
+ * @since 1.2
+ * @version 2.0
  *
  */
 public interface RouteHeader extends HeaderAddress, Parameters, Header {

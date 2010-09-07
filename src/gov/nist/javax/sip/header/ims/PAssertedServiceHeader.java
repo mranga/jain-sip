@@ -1,4 +1,3 @@
-package gov.nist.javax.sip.header.ims;
 /*
 * Conditions Of Use
 *
@@ -24,12 +23,13 @@ package gov.nist.javax.sip.header.ims;
 * .
 *
 */
+package gov.nist.javax.sip.header.ims;
+
 import javax.sip.header.Header;
+
 /**
  *
- * @author aayush.bhatnagar
- * Rancore Technologies Pvt Ltd, Mumbai India.
- *
+
  * The ABNF for this header is all follows:
  *
  *  PAssertedService = "P-Asserted-Service"
@@ -47,17 +47,44 @@ import javax.sip.header.Header;
  *
  * Egs: P-Asserted-Service: urn:urn-7:3gpp-service.exampletelephony.version1
  *      P-Asserted-Service: urn:urn-7:3gpp-application.exampletelephony.version1
+ *      
+ * @author aayush.bhatnagar
+ * Rancore Technologies Pvt Ltd, Mumbai India.
+ *
  *
  */
 public interface PAssertedServiceHeader extends Header{
 
     public static final String NAME = "P-Asserted-Service";
+    
+    /**
+     * set the subservice identifiers.
+     * 
+     * @param subservices
+     */
 
     public void setSubserviceIdentifiers(String subservices);
+    
+    /**
+     * get the subservice identifiers.
+     * 
+     * @return
+     */
 
     public String getSubserviceIdentifiers();
 
+    /**
+     * Set the application identifiers.
+     * 
+     * @param appids
+     */
     public void setApplicationIdentifiers(String appids);
+    
+    /**
+     * Get the application identifiers.
+     * 
+     * @return
+     */
 
     public String getApplicationIdentifiers();
 }

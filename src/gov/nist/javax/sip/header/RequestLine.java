@@ -29,6 +29,7 @@
 package gov.nist.javax.sip.header;
 
 import javax.sip.address.URI;
+import javax.sip.message.SipRequestLine;
 
 import gov.nist.javax.sip.address.*;
 

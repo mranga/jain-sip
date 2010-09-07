@@ -16,9 +16,10 @@
 package gov.nist.javax.sip.stack;
 
 
-import gov.nist.javax.sip.DialogTimeoutEvent;
 
 import java.util.EventObject;
+
+import javax.sip.DialogTimeoutEvent;
 
 /**
  * An event that indicates that a dialog has encountered an error.

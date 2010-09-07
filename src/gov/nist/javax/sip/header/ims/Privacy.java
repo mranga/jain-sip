@@ -36,6 +36,7 @@ import java.text.ParseException;
 
 import javax.sip.header.ExtensionHeader;
 import javax.sip.header.Parameters;
+import javax.sip.header.ims.PrivacyHeader;
 
 import gov.nist.core.NameValueList;
 import gov.nist.javax.sip.header.SIPHeader;

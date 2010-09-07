@@ -29,11 +29,16 @@ import java.util.Iterator;
 import java.util.ListIterator;
 import java.util.Timer;
 
+import javax.sip.AccountManager;
+import javax.sip.AuthenticationHelper;
 import javax.sip.ClientTransaction;
 import javax.sip.DialogState;
 import javax.sip.InvalidArgumentException;
+import javax.sip.SecureAccountManager;
 import javax.sip.SipException;
 import javax.sip.SipProvider;
+import javax.sip.UserCredentialHash;
+import javax.sip.UserCredentials;
 import javax.sip.address.Hop;
 import javax.sip.address.SipURI;
 import javax.sip.address.URI;

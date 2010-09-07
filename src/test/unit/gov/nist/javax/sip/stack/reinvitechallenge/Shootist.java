@@ -22,7 +22,6 @@ package test.unit.gov.nist.javax.sip.stack.reinvitechallenge;
 import gov.nist.javax.sip.DialogExt;
 import gov.nist.javax.sip.SipStackExt;
 import gov.nist.javax.sip.address.SipUri;
-import gov.nist.javax.sip.clientauthutils.AuthenticationHelper;
 import gov.nist.javax.sip.clientauthutils.DigestServerAuthenticationHelper;
 
 import javax.sip.*;

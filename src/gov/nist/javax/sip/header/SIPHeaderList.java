@@ -30,9 +30,10 @@ package gov.nist.javax.sip.header;
 
 import gov.nist.core.GenericObject;
 import gov.nist.core.Separators;
-import gov.nist.javax.sip.header.ims.PrivacyHeader;
 
 import javax.sip.header.Header;
+import javax.sip.header.ims.PrivacyHeader;
+
 import java.lang.reflect.Constructor;
 import java.util.*;
 

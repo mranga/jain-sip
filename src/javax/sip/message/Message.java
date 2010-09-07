@@ -1,8 +1,8 @@
 /**
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Unpublished - rights reserved under the Copyright Laws of the United States.
- * Copyright © 2003 Sun Microsystems, Inc. All rights reserved.
- * Copyright © 2005 BEA Systems, Inc. All rights reserved.
+ * Copyright  2003 Sun Microsystems, Inc. All rights reserved.
+ * Copyright  2005 Oracle inc., Inc. All rights reserved.
  *
  * Use is subject to license terms.
  *
@@ -24,8 +24,10 @@
  */
 package javax.sip.message;
 
+
 import javax.sip.SipException;
 import javax.sip.header.*;
+
 import java.util.*;
 import java.io.Serializable;
 import java.text.ParseException;
@@ -65,7 +67,7 @@ import java.text.ParseException;
  * @see Response
  * @see Header
  *
- * @author BEA Systems, NIST
+ * @author Oracle inc., NIST
  * @version 1.2
  *
  */
@@ -449,5 +451,99 @@ public interface Message extends Cloneable, Serializable {
      * @return string representation of Message
      */
     public String toString();
+    
+    /**
+     * This method allows applications to associate application context with
+     * the message. This specification does not define the format of this
+     * data, this the responsibility of the application and is dependent
+     * on the application.
+     * this application data is un-interpreted by the stack.
+     * Warning : when you clone a message, the deepcopy does not apply to the application data
+     * (instead, we would just make a copy of the pointer).
+     *
+     * @param applicationData - un-interpreted application data.
+     * @since v2.0
+     *
+     */
+
+    public void setApplicationData (Object applicationData);
+
+
+    /**
+     * Returns the application data associated with the message.This
+     * specification does not define the format of this application specific
+     * data. This is the responsibility of the application.
+     *
+     * @return application data associated with the message by the application.
+     * @since v2.0
+     *
+     */
+    public Object getApplicationData();
+    
+    /**
+     * Get the multipart mime content from a message. Builds a wrapper around the
+     * content and breaks it into multiple sections. Returns these sections as
+     * a multipart mime content list. If the content type is not multipart mime
+     * then the list will have a single element in it. 
+     * 
+     * @since v2.0
+     * @param Message message
+     * @throws ParseException if the content type is multipart mime but the content
+     *  is not properly encoded.
+     *  
+     */
+    public MultipartMimeContent getMultipartMimeContent() throws ParseException;
+    
+    /**
+     * Get the topmost Via header.
+     * 
+     * @since v2.0
+     */
+    public ViaHeader getTopmostViaHeader();
+    
+    /**
+     * Get the From header or null if none present.
+     * 
+     * @since v2.0
+     */
+    public FromHeader getFrom();
+    
+    /**
+     * Get the To header or null if none present.
+     * 
+     * @since v2.0
+     */
+    public ToHeader getTo();
+    
+    
+    /**
+     * Get the callId header or null if none present.
+     * 
+     * @since v2.0
+     */
+    public CallIdHeader getCallId();
+    
+    /**
+     * Get the CSeq header or null if none present.
+     * 
+     * @since v2.0
+     */
+    public  CSeqHeader getCSeq();
+    
+    /**
+     * Get the content type header or null if none present.
+     * 
+     * @since v2.0
+     */
+    public ContentTypeHeader getContentType();
+    
+   
+    /**
+     * Get the first line of the request or response.
+     * 
+     * @since v2.0
+     */
+    public String getFirstLine();
+
 
 }

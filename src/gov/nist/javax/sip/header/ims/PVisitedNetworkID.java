@@ -33,6 +33,7 @@ import java.text.ParseException;
 
 import javax.sip.header.ExtensionHeader;
 import javax.sip.header.Parameters;
+import javax.sip.header.ims.PVisitedNetworkIDHeader;
 
 import gov.nist.core.Token;
 

@@ -1,8 +1,8 @@
 /**
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Unpublished - rights reserved under the Copyright Laws of the United States.
- * Copyright © 2003 Sun Microsystems, Inc. All rights reserved.
- * Copyright © 2005 BEA Systems, Inc. All rights reserved.
+ * Copyright  2003 Sun Microsystems, Inc. All rights reserved.
+ * Copyright  2005 Oracle inc., Inc. All rights reserved.
  *
  * Use is subject to license terms.
  *
@@ -23,6 +23,7 @@
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 package javax.sip;
+
 
 import java.util.EventListener;
 
@@ -132,7 +133,7 @@ import java.util.EventListener;
  * @see TransactionTerminatedEvent
  * @see DialogTerminatedEvent
  *
- * @author BEA Systems, NIST
+ * @author Oracle inc., NIST
  * @version 1.2
  */
 public interface SipListener extends EventListener {
@@ -426,6 +427,31 @@ public interface SipListener extends EventListener {
      */
     public void processDialogTerminated(DialogTerminatedEvent
                                         dialogTerminatedEvent);
+    
+
+    /**
+     * Processes an expiration Timeout of an underlying {@link Dialog} handled by this
+     * SipListener. This Event notifies the application that a dialog Timer expired in the
+     * Dialog's state machine. Such a condition can occur when the application fails to send an
+     * ACK after receiving an OK response or if an ACK is not received after an OK is sent. The
+     * DialogTimeoutEvent encapsulates the specific timeout type and the dialog identifier. The
+     * type of Timeout can by determined by:
+     * <code>timeoutType = timeoutEvent.getTimeout().getValue();</code>
+     * This interface extends the {@link SipListener} interface and adds the following events to it :
+     * <ul>
+     * <li>{@link DialogTimeoutEvent}- these are timeout notifications emitted as events by the
+     * SipProvider. Timeout events represent timers expiring in the underlying SipProvider dialog
+     * state machine. These timeout's events notify the application that a dialog has timed out.</li>
+     * </ul>
+     * 
+     * Applications implementing this method should take care of sending the BYE or terminating
+     * the dialog to avoid any dialog leaks.
+     * 
+     * @since 2.0
+     * 
+     * @param timeoutEvent - the timeoutEvent received indicating the dialog timed out.
+     */
+    public void processDialogTimeout(DialogTimeoutEvent timeoutEvent);
 
 }
 

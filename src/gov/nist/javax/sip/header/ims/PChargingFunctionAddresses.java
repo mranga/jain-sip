@@ -38,8 +38,8 @@ import java.util.LinkedList;
 import java.util.ListIterator;
 
 import javax.sip.header.ExtensionHeader;
+import javax.sip.header.ims.PChargingFunctionAddressesHeader;
 
-import gov.nist.javax.sip.header.ims.PChargingFunctionAddressesHeader;
 import gov.nist.javax.sip.header.ims.ParameterNamesIms;
 
 

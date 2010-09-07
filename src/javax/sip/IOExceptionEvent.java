@@ -1,8 +1,8 @@
 /**
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Unpublished - rights reserved under the Copyright Laws of the United States.
- * Copyright © 2003 Sun Microsystems, Inc. All rights reserved.
- * Copyright © 2005 BEA Systems, Inc. All rights reserved.
+ * Copyright  2003 Sun Microsystems, Inc. All rights reserved.
+ * Copyright  2005 Oracle inc., Inc. All rights reserved.
  *
  * Use is subject to license terms.
  *
@@ -43,7 +43,7 @@ import java.util.EventObject;
  * attempts to resend a pending request. Note that synchronous IO Exceptions
  * are presented to the caller as SipException.
  *
- * @author BEA Systems, NIST
+ * @author Oracle inc., NIST
  * @since v1.2
  */
 public class IOExceptionEvent extends EventObject {

@@ -1,8 +1,8 @@
 /**
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Unpublished - rights reserved under the Copyright Laws of the United States.
- * Copyright © 2003 Sun Microsystems, Inc. All rights reserved.
- * Copyright © 2005 BEA Systems, Inc. All rights reserved.
+ * Copyright  2003 Sun Microsystems, Inc. All rights reserved.
+ * Copyright  2005 Oracle inc., Inc. All rights reserved.
  *
  * Use is subject to license terms.
  *
@@ -17,6 +17,7 @@
  *  HISTORY
  *  Version   Date      Author              Comments
  *  1.1     08/10/2002  Phelim O'Doherty    
+ *  2.0     06/09/2010  M. Ranganathan      2.0 Updates   
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 package javax.sip.header;
@@ -89,8 +90,9 @@ import java.io.Serializable;
  * Even though an arbitrary number of parameter pairs may be attached to a 
  * header object, any given parameter-name MUST NOT appear more than once.
  * 
- * @author BEA Systems, NIST
- * @version 1.2
+ * @author Oracle Inc., NIST
+ * @since 1.1
+ * @version 2.0
  */
 
 public interface Header extends Cloneable, Serializable {

@@ -11,6 +11,7 @@ import java.text.ParseException;
 
 import javax.sip.InvalidArgumentException;
 import javax.sip.header.ExtensionHeader;
+import javax.sip.header.SessionExpiresHeader;
 
 /**
  * ReferredBy SIP Header.

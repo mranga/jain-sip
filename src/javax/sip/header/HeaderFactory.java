@@ -1,8 +1,8 @@
 /**
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Unpublished - rights reserved under the Copyright Laws of the United States.
- * Copyright © 2003 Sun Microsystems, Inc. All rights reserved.
- * Copyright © 2005 BEA Systems, Inc. All rights reserved.
+ * Copyright  2003 Sun Microsystems, Inc. All rights reserved.
+ * Copyright  2005 Oracle inc., Inc. All rights reserved.
  *
  * Use is subject to license terms.
  *
@@ -21,11 +21,33 @@
  *                                          headers
  *  1.2     20/12/2006    Phelim O'Doherty  Added new createCseqHeader with long
  *                                          sequence number
+ *  2.0     09/06/2010    M. Ranganathan    Added 2.0 updates.
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 package javax.sip.header;
 
 import javax.sip.address.*;
+import javax.sip.header.ims.PAccessNetworkInfoHeader;
+import javax.sip.header.ims.PAssertedIdentityHeader;
+import javax.sip.header.ims.PAssociatedURIHeader;
+import javax.sip.header.ims.PCalledPartyIDHeader;
+import javax.sip.header.ims.PChargingFunctionAddressesHeader;
+import javax.sip.header.ims.PChargingVectorHeader;
+import javax.sip.header.ims.PMediaAuthorizationHeader;
+import javax.sip.header.ims.PPreferredIdentityHeader;
+import javax.sip.header.ims.PProfileKeyHeader;
+import javax.sip.header.ims.PServedUserHeader;
+import javax.sip.header.ims.PUserDatabaseHeader;
+import javax.sip.header.ims.PVisitedNetworkIDHeader;
+import javax.sip.header.ims.PathHeader;
+import javax.sip.header.ims.PrivacyHeader;
+import javax.sip.header.ims.SecurityClientHeader;
+import javax.sip.header.ims.SecurityServerHeader;
+import javax.sip.header.ims.SecurityVerifyHeader;
+import javax.sip.header.ims.ServiceRouteHeader;
+import javax.sip.message.SipRequestLine;
+import javax.sip.message.SipStatusLine;
+
 import java.text.ParseException;
 import javax.sip.InvalidArgumentException;
 import java.util.*;
@@ -36,8 +58,9 @@ import java.util.*;
  * singleton and can be retrieved from the
  * {@link javax.sip.SipFactory#createHeaderFactory()}.
  *
- * @author BEA Systems, NIST
- * @version 1.2
+ * @author Oracle Inc., NIST
+ * @since 1.1
+ * @version 2.0
  */
 public interface HeaderFactory {
 
@@ -721,5 +744,254 @@ public interface HeaderFactory {
      * @since 1.2
      */
     public SIPIfMatchHeader createSIPIfMatchHeader( String etag ) throws ParseException;
+    
+
+
+    
+    /**
+     * Create a RequestLine from a String
+     * @throws ParseException 
+     * @since 2.0
+     */
+    public SipRequestLine createRequestLine(String requestLine) throws ParseException;
+    
+    
+    /**
+     * Create a StatusLine from a String.
+     * 
+     * @since 2.0
+     */
+    public SipStatusLine createStatusLine(String statusLine) throws ParseException;
+    
+    
+    /**
+     * Create a ReferredBy Header.
+     *
+     * @param address --
+     *            address for the header.
+     * @since 2.0
+     *
+     */
+    public ReferredByHeader createReferredByHeader(Address address);
+
+    /**
+     *
+     * Create a Replaces header with a call Id, to and from tag.
+     *
+     * @param callId -
+     *            the call id to use.
+     * @param toTag -
+     *            the to tag to use.
+     * @param fromTag -
+     *            the fromTag to use.
+     * @since 2.0
+     *
+     */
+    public ReplacesHeader createReplacesHeader(String callId, String toTag,
+            String fromTag) throws ParseException;
+
+    /**
+     * creates a P-Access-Network-Info header.
+     *
+     * @return newly created P-Access-Network-Info header
+     * @since 2.0
+     */
+    public PAccessNetworkInfoHeader createPAccessNetworkInfoHeader();
+
+    /**
+     * P-Asserted-Identity header
+     *
+     * @param address -
+     *            Address
+     * @return newly created P-Asserted-Identity header
+     * @throws ParseException
+     * @throws NullPointerException
+     * @since 2.0
+     */
+    public PAssertedIdentityHeader createPAssertedIdentityHeader(Address address)
+            throws NullPointerException, ParseException;
+
+    /**
+     * Creates a new P-Associated-URI header based on the supplied address
+     *
+     * @param assocURI -
+     *            Address
+     * @return newly created P-Associated-URI header
+     * @throws NullPointerException
+     *             if the supplied address is null
+     * @throws ParseException
+     * @since 2.0
+     */
+    public PAssociatedURIHeader createPAssociatedURIHeader(Address assocURI);
+
+    /**
+     * P-Called-Party-ID header
+     *
+     * @param address -
+     *            Address
+     * @return newly created P-Called-Party-ID header
+     * @since 2.0
+     */
+    public PCalledPartyIDHeader createPCalledPartyIDHeader(Address address);
+
+    /**
+     * P-Charging-Function-Addresses header
+     *
+     * @return newly created P-Charging-Function-Addresses header
+     * @since 2.0
+     */
+    public PChargingFunctionAddressesHeader createPChargingFunctionAddressesHeader();
+
+    /**
+     * P-Charging-Vector header
+     *
+     * @param icid -
+     *            icid string
+     * @return newly created P-Charging-Vector header
+     * @throws ParseException
+     * @since 2.0
+     */
+    public PChargingVectorHeader createChargingVectorHeader(String icid) throws ParseException;
+
+     /**
+     * P-Media-Authorization header
+     * @param token - token string
+     * @return newly created P-Media-Authorizarion header
+     * @throws InvalidArgumentException
+     * @throws ParseException
+     * @since 2.0
+     */
+    public PMediaAuthorizationHeader createPMediaAuthorizationHeader(String token)
+        throws InvalidArgumentException, ParseException;
+
+    /**
+     * P-Preferred-Identity header
+     * @param address - Address
+     * @since 2.0
+     */
+    public PPreferredIdentityHeader createPPreferredIdentityHeader(Address address);
+
+    /**
+     * P-Visited-Network-ID header
+     * @return newly created P-Visited-Network-ID header
+     * @since 2.0
+     * 
+     */
+    public PVisitedNetworkIDHeader createPVisitedNetworkIDHeader();
+
+    /**
+     * PATH header
+     * @param address - Address
+     * @return newly created Path header
+     * @since 2.0
+     */
+    public PathHeader createPathHeader(Address address);
+
+    /**
+     * Privacy header
+     * @param privacyType - privacy type string
+     * @return newly created Privacy header
+     */
+    public PrivacyHeader createPrivacyHeader(String privacyType);
+
+
+    /**
+     * create a Service-Route header
+     * @param address - Address
+     * @return newly created Service-Route header
+     * @since 2.0
+     */
+    public ServiceRouteHeader createServiceRouteHeader(Address address);
+
+    /**
+     * create a Security-Server header
+     * @return newly created Security-Server header
+     * @since 2.0
+     */
+    public SecurityServerHeader createSecurityServerHeader();
+
+    /**
+     * Security-Client header
+     * @return newly created Security-Client header
+     * @since 2.0
+     */
+    public SecurityClientHeader createSecurityClientHeader();
+
+
+    /**
+     * Create a Security-Verify header
+     * @return newly created Security-Verify header
+     * @since 2.0
+     */
+    public SecurityVerifyHeader createSecurityVerifyHeader();
+
+
+    /**
+     * Creates a new SessionExpiresHeader based on the newly supplied expires value.
+     *
+     * @param expires - the new integer value of the expires.
+     * @throws InvalidArgumentException if supplied expires is less
+     * than zero.
+     * @return the newly created SessionExpiresHeader object.
+     * 
+     * @since 2.0
+     *
+     */
+    public SessionExpiresHeader createSessionExpiresHeader(int expires) throws InvalidArgumentException ;
+
+    /**
+     *
+     * Create a Join header with a call Id, to and from tag.
+     * @since 2.0
+     *
+     * @param callId -
+     *            the call id to use.
+     * @param toTag -
+     *            the to tag to use.
+     * @param fromTag -
+     *            the fromTag to use.
+     *
+     */
+    public JoinHeader createJoinHeader(String callId, String toTag,
+            String fromTag) throws ParseException;
+
+    /**
+     * Create a P-User-Database header.
+     * @since 2.0
+     * 
+     * @return the newly created P-User-Database header
+     * @param the database name, that may be an IP:port or a domain name.
+     */
+    public PUserDatabaseHeader createPUserDatabaseHeader(String databaseName);
+
+
+    /**
+     * Create a P-Profile-Key header.
+     * 
+     * @param address
+     * @return The newly created P-Profile-Key header
+     */
+    public PProfileKeyHeader createPProfileKeyHeader(Address address);
+
+    /**
+     * Create a P-Served-User header.
+     * 
+     * @param address of the served user.
+     * @return The newly created P-Served-User Header.
+     */
+    public PServedUserHeader createPServedUserHeader(Address address);
+
+     
+    
+    
+    /**
+     * Create a header from a string. The string is assumed to be in the 
+     * name:value format. The trailing CRLF (if any ) will be stripped
+     * before parsing this. The header should be a singleton.
+     * 
+     * @since 2.0
+     */
+    public Header createHeader(String header) throws ParseException;
+
 }
 

@@ -40,6 +40,7 @@ import javax.sip.InvalidArgumentException;
 import javax.sip.header.ExtensionHeader;
 import javax.sip.header.HeaderAddress;
 import javax.sip.header.Parameters;
+import javax.sip.header.ims.PMediaAuthorizationHeader;
 
 
 /**
