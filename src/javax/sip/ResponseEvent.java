@@ -54,10 +54,13 @@ import javax.sip.message.Response;
  * that needs passed to the application encapsulated in a ResponseEvent.
  * </ul>
  *
- * @author Oracle inc., NIST
- * @version 1.2
+ * @author Oracle Inc., NIST
+ * @since 1.1
+ * @version 2.0
  */
 public class ResponseEvent extends EventObject {
+
+    private boolean isForked;
 
     /**
     * Constructs a ResponseEvent encapsulating the Response that has been received
@@ -118,15 +121,30 @@ public class ResponseEvent extends EventObject {
     public Dialog getDialog() {
         return m_dialog;
     }
+
     /**
-     * Return true if this is a forked response.
+    * Set true if this is a forked response. This field is only 
+    * to be set by the implementation (not the application).
+    * 
+    * @return true if the response event is for a forked response.
+    *
+    * @since 2.0
+    */
+    public void setForkedResponse(boolean forked) {
+        this.isForked= forked;
+    }
+
+    /**
+     * Return true if this is a forked response. This query function
+     * is used by applications to test if a received response
+     * is a forked response.
      * 
      * @since 2.0
      * 
      * @return true if the response event is for a forked response.
      */
     public boolean isForkedResponse() {
-        return this.getClientTransaction() == null && m_originalTransaction != null;
+        return  isForked;
     }
 
     /**
@@ -145,7 +163,13 @@ public class ResponseEvent extends EventObject {
     /**
      * Get the original transaction for which this is a forked response.
      * Note that this transaction can be in a TERMINATED state.
-     * 
+     * The Original transaction contains the context corresponding
+     * to the forked response. This is useful for applications during
+     * response processing. If a forked response is recieved by the
+     * stack after the MAX_FORK_TIME setting for the SIP Stack,
+     * this field can be set to null when the response is delivered
+     * to the application.
+     *
      * @since 2.0
      * 
      * @return the original clientTx for which this is a forked response.

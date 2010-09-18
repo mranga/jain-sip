@@ -520,7 +520,7 @@ import javax.sip.message.Request;
  * should only use the extensions that are defined in this class. </b>
  * 
  * 
- * @version 1.2 $Revision: 1.136 $ $Date: 2010/08/18 08:17:59 $
+ * @version 1.2 $Revision: 1.138 $ $Date: 2010/09/13 14:58:01 $
  * 
  * @author M. Ranganathan <br/>
  * 
@@ -533,9 +533,9 @@ public class SipStackImpl extends SIPTransactionStack implements
 
 	private EventScanner eventScanner;
 
-	private Hashtable<String, ListeningPointImpl> listeningPoints;
+	protected Hashtable<String, ListeningPointImpl> listeningPoints;
 
-	private List<SipProviderImpl> sipProviders;
+	protected List<SipProviderImpl> sipProviders;
 
 	/**
 	 * Max datagram size.
@@ -1243,6 +1243,15 @@ public class SipStackImpl extends SIPTransactionStack implements
 		if(valveClassName != null && !valveClassName.equals("")) {
 			try {
 				super.sipMessageValve = (SIPMessageValve) Class.forName(valveClassName).newInstance();
+				final SipStack thisStack = this;
+				new Thread() {
+					public void run() {
+						try {
+							Thread.sleep(100);
+						} catch (Exception e) {}
+						sipMessageValve.init(thisStack);
+					}
+				}.start();
 			} catch (Exception e) {
 				getStackLogger()
 					.logError(
@@ -1475,6 +1484,8 @@ public class SipStackImpl extends SIPTransactionStack implements
 			getStackLogger().logStackTrace();
 		}
 		this.stopStack();
+		if(super.sipMessageValve != null) 
+			super.sipMessageValve.destroy();
 		this.sipProviders = Collections.synchronizedList(new LinkedList<SipProviderImpl>());
 		this.listeningPoints = new Hashtable<String, ListeningPointImpl>();
 		/*

@@ -1,4 +1,3 @@
-package javax.sip.message;
 /*
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Unpublished - rights reserved under the Copyright Laws of the United States.
@@ -21,7 +20,7 @@ package javax.sip.message;
  *  2.0     09/06/2010   M. Ranganathan     Initial version
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
-
+package javax.sip.message;
 import javax.sip.address.URI;
 
 /**
@@ -36,49 +35,49 @@ public interface SipRequestLine {
      *
      * @return the request URI
      */
-    public abstract URI getUri();
+    public  URI getUri();
 
     /**
      * Get the Method
      *
      * @return method string.
      */
-    public abstract String getMethod();
+    public  String getMethod();
 
     /**
      * Get the SIP version.
      *
      * @return String
      */
-    public abstract String getSipVersion();
+    public  String getSipVersion();
 
     /**
      * Set the URI.
      * 
      * @param uri URI to set.
      */
-    public abstract void setUri(URI uri);
+    public  void setUri(URI uri);
 
     /**
      * Set the method member
      *
      * @param method String to set
      */
-    public abstract void setMethod(String method);
+    public  void setMethod(String method);
 
     /**
      * Set the sipVersion member
      *
      * @param s String to set
      */
-    public abstract void setSipVersion(String version);
+    public  void setSipVersion(String version);
 
     /**
      * Get the major verrsion number.
      *
      *@return String major version number
      */
-    public abstract String getVersionMajor();
+    public  String getVersionMajor();
 
     /**
      * Get the minor version number.
@@ -86,6 +85,6 @@ public interface SipRequestLine {
      *@return String minor version number
      *
      */
-    public abstract String getVersionMinor();
+    public  String getVersionMinor();
 
 }

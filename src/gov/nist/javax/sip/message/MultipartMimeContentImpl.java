@@ -13,9 +13,9 @@ import javax.sip.header.ContentDispositionHeader;
 import javax.sip.header.ContentTypeHeader;
 import javax.sip.header.Header;
 import javax.sip.header.HeaderFactory;
-import javax.sip.header.MultipartMimeContent;
 import javax.sip.message.Content;
 import javax.sip.message.Message;
+import javax.sip.message.MultipartMimeContent;
 
 
 

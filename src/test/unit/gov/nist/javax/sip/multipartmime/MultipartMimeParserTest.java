@@ -3,8 +3,8 @@ package test.unit.gov.nist.javax.sip.multipartmime;
 import java.util.Iterator;
 
 import javax.sip.header.ContentTypeHeader;
-import javax.sip.header.MultipartMimeContent;
 import javax.sip.message.Content;
+import javax.sip.message.MultipartMimeContent;
 import javax.sip.message.Request;
 
 import gov.nist.javax.sip.header.HeaderFactoryExt;

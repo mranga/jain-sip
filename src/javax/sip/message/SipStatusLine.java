@@ -1,4 +1,4 @@
-package javax.sip.message;
+
 /*
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Unpublished - rights reserved under the Copyright Laws of the United States.
@@ -21,6 +21,7 @@ package javax.sip.message;
  *  2.0     09/06/2010   M. Ranganathan     Initial version
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
+package javax.sip.message;
 import java.text.ParseException;
 import javax.sip.InvalidArgumentException;
 
