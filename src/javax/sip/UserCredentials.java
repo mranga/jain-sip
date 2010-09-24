@@ -1,11 +1,31 @@
+/*
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Unpublished - rights reserved under the Copyright Laws of the United States.
+ * Copyright  2003 Sun Microsystems, Inc. All rights reserved.
+ * Copyright  210 Oracle inc., Inc. All rights reserved.
+ *
+ * Use is subject to license terms.
+ *
+ * This distribution may include materials developed by third parties. 
+ *
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *
+ * Module Name   : JSIP Specification
+ * Author        : Emil Ivov
+ *
+ *  HISTORY
+ *  Version   Date      Author              Comments
+ *  2.0      09/24/2010  Emil Ivov   Initial version
+ *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
 package javax.sip;
 
 /**
 * The class is used whenever user credentials for a particular realm (site
 * server or service) are necessary
-* @author Emil Ivov <emcho@dev.java.net>
-* @author M. Ranganathan <mranga@dev.java.net>
-* @version 1.0
+* @version 2.0
+* @since 2.0
+* @author Oracle, NIST
 */
 
 public interface UserCredentials

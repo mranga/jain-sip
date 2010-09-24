@@ -44,7 +44,8 @@ import java.util.EventObject;
  * are presented to the caller as SipException.
  *
  * @author Oracle inc., NIST
- * @since v1.2
+ * @since 1.2
+ * @version 2.0
  */
 public class IOExceptionEvent extends EventObject {
 

@@ -50,7 +50,8 @@ import java.util.*;
  * @see Timeout
  *
  * @author Oracle inc., NIST
- * @version 1.2
+ * @since 1.1
+ * @version 2.0
  */
 public class TimeoutEvent extends EventObject {
 

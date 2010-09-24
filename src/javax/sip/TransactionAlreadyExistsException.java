@@ -26,7 +26,8 @@ package javax.sip;
  * a message when infact a transaction is already handling this message. 
  *
  * @author Oracle inc., NIST
- * @version 1.2
+ * @version 2.0
+ * @since 1.1
  */
 public class TransactionAlreadyExistsException extends SipException {
 

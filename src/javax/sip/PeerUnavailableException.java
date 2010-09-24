@@ -27,7 +27,8 @@ package javax.sip;
  * JAIN SIP interface could not be created for some reason.
  *
  * @author Oracle inc., NIST
- * @version 1.2
+ * @version 2.0
+ * @since 1.1
  */
 public class PeerUnavailableException extends SipException {
 

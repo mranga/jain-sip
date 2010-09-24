@@ -26,6 +26,7 @@ package javax.sip;
  *
  * @author Oracle inc., NIST
  * @since 1.2
+ * @version 2.0
  */
 
 public class TransportAlreadySupportedException extends SipException {

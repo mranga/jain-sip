@@ -29,7 +29,8 @@ package javax.sip;
  * Object because the Object is still in use by the underlying implementation.
  *
  * @author Oracle inc., NIST
- * @version 1.2
+ * @version 2.0
+ * @since 1.1
  */
 
 

@@ -40,7 +40,8 @@ import java.io.*;
  * </ul>
  *
  * @author Oracle inc., NIST 
- * @version 1.2
+ * @since  1.1
+ * @version 2.0
  */
 public final class DialogState implements Serializable{
 

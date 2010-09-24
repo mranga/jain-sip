@@ -1,6 +1,5 @@
 package test.unit.gov.nist.javax.sip.stack;
 
-import gov.nist.javax.sip.ResponseEventExt;
 import gov.nist.javax.sip.TransactionExt;
 import junit.framework.TestCase;
 
@@ -138,7 +137,7 @@ public class SetRetransmissionTimerTest extends TestCase {
                     + response.getStatusCode() + " " + cseq);
 
             if (tid == null) {
-                TestCase.assertTrue("retrans flag should be true", ((ResponseEventExt)responseReceivedEvent).isRetransmission());
+                TestCase.assertTrue("retrans flag should be true", ((ResponseEvent)responseReceivedEvent).isRetransmission());
                 // RFC3261: MUST respond to every 2xx
                 if (ackRequest != null && dialog != null) {
                     logger.info("re-sending ACK");
@@ -163,7 +162,7 @@ public class SetRetransmissionTimerTest extends TestCase {
             try {
                 if (response.getStatusCode() == Response.OK) {
                     if (cseq.getMethod().equals(Request.INVITE)) {
-                        TestCase.assertFalse("retrans flag should be false", ((ResponseEventExt)responseReceivedEvent).isRetransmission());
+                        TestCase.assertFalse("retrans flag should be false", ((ResponseEvent)responseReceivedEvent).isRetransmission());
                         logger.info("Sending ACK after 15s ...");
                         new Timer().schedule(new AckTimerTask(dialog,cseq.getSeqNumber()), 15000);
                     } else if (cseq.getMethod().equals(Request.CANCEL)) {

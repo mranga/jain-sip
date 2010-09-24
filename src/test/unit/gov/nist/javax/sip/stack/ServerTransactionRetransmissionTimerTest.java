@@ -1,6 +1,5 @@
 package test.unit.gov.nist.javax.sip.stack;
 
-import gov.nist.javax.sip.ResponseEventExt;
 
 import javax.sip.*;
 import javax.sip.address.*;
@@ -138,7 +137,7 @@ public class ServerTransactionRetransmissionTimerTest extends TestCase {
                     + response.getStatusCode() + " " + cseq);
 
             if (tid == null) {
-                TestCase.assertTrue("retrans flag should be true", ((ResponseEventExt)responseReceivedEvent).isRetransmission());
+                TestCase.assertTrue("retrans flag should be true", ((ResponseEvent)responseReceivedEvent).isRetransmission());
                 // RFC3261: MUST respond to every 2xx
                 if (ackRequest != null && dialog != null) {
                     logger.info("re-sending ACK");
@@ -172,7 +171,7 @@ public class ServerTransactionRetransmissionTimerTest extends TestCase {
                     if (cseq.getMethod().equals(Request.INVITE)) {
 
                         if (sendAck) {
-                            TestCase.assertFalse("retrans flag should be false", ((ResponseEventExt)responseReceivedEvent).isRetransmission());
+                            TestCase.assertFalse("retrans flag should be false", ((ResponseEvent)responseReceivedEvent).isRetransmission());
                             // *****************************************************************
                             // BEGIN
                             // Frank Reif: delayed-ack after 6s

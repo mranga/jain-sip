@@ -27,7 +27,8 @@ package javax.sip;
  * any SipProviders created to service requests and responses.
  *
  * @author Oracle inc., NIST
- * @since 1.2
+ * @version 2.0
+ * @since 1.1
  */
 
 

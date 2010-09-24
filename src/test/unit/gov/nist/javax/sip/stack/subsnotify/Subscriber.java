@@ -1,6 +1,5 @@
 package test.unit.gov.nist.javax.sip.stack.subsnotify;
 
-import gov.nist.javax.sip.ResponseEventExt;
 import gov.nist.javax.sip.stack.SIPTransactionStack;
 
 import javax.sip.*;
@@ -155,11 +154,11 @@ public class Subscriber implements SipListener {
         logger.info("Response received with client transaction id " + tid
                 + ":\n" + response.getStatusCode()  );
         if (tid == null) {
-            TestCase.assertTrue("retrans flag should be true", ((ResponseEventExt)responseReceivedEvent).isRetransmission());
+            TestCase.assertTrue("retrans flag should be true", ((ResponseEvent)responseReceivedEvent).isRetransmission());
             logger.info("Stray response -- dropping ");
             return;
         }
-        TestCase.assertFalse("retrans flag should be false", ((ResponseEventExt)responseReceivedEvent).isRetransmission());
+        TestCase.assertFalse("retrans flag should be false", ((ResponseEvent)responseReceivedEvent).isRetransmission());
         logger.info("transaction state is " + tid.getState());
         logger.info("Dialog = " + tid.getDialog());
         if ( tid.getDialog () != null )

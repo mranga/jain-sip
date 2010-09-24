@@ -21,6 +21,15 @@ package javax.sip;
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 
+
+/**
+ * Interface that implements the hashed password account manager.
+ *
+ * @version 2.0
+ * @since  2.0
+ *
+ *
+ */
 public interface SecureAccountManager  {
     /**
      * Return the user Credentials for a given SIP Domain.

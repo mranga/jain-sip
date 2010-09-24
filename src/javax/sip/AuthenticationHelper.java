@@ -27,11 +27,9 @@ import javax.sip.message.Response;
  * A helper interface that provides useful functionality for clients that need to authenticate
  * with servers.
  *
- * @author Emil Ivov
- * @author Jeroen van Bemmel
- * @author M. Ranganathan
- *
+ * @author Oracle Inc., NIST
  * @since 2.0
+ * @version 2.0
  *
  *
  */

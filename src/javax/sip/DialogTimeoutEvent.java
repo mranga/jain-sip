@@ -32,9 +32,9 @@ import java.util.EventObject;
  * dialog does not receive or send an ACK. 
  *
  * 
- * @author Jean Deruelle (RedHat)
- * 
- * @since v2.0
+ * @author Oracle Inc., NIST
+ * @version 2.0
+ * @since 2.0
  *
  */
 public class DialogTimeoutEvent extends EventObject {

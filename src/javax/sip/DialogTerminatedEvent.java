@@ -2,7 +2,7 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Unpublished - rights reserved under the Copyright Laws of the United States.
  * Copyright  2003 Sun Microsystems, Inc. All rights reserved.
- * Copyright  2005 Oracle inc., Inc. All rights reserved.
+ * Copyright  2005 Oracle Inc., All rights reserved.
  *
  * Use is subject to license terms.
  *
@@ -34,7 +34,8 @@ import java.util.EventObject;
  * Listener to unmap its own data structures.
  * 
  * @author Oracle inc., NIST
- * @since v1.2
+ * @since 1.2
+ * @version 2.0
  *
  */
 public class DialogTerminatedEvent extends EventObject {

@@ -20,6 +20,7 @@
  *  1.2     02/15/2005  M. Ranganathan  Added method for IO Exception
  *  1.2     02/15/2005  M. Ranganathan  Added method for TransactionTerminated
  *                      propagation.
+ *  2.0     09/24/2010  M. Ranganathan  2.0 additions
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 package javax.sip;

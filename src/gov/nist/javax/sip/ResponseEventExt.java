@@ -1,6 +1,5 @@
 package gov.nist.javax.sip;
 
-import gov.nist.javax.sip.message.SIPResponse;
 
 import javax.sip.Dialog;
 import javax.sip.ResponseEvent;
@@ -25,14 +24,5 @@ public class ResponseEventExt extends ResponseEvent {
             Dialog dialog,  Response response) {
         super(source,clientTransaction,dialog,response);
       
-    }
-    
-    /**
-     * Return true if this is a forked response.
-     * 
-     * @return true if the response event is for a forked response.
-     */
-    public boolean isRetransmission() {
-        return ((SIPResponse)getResponse()).isRetransmission();
     }
 }

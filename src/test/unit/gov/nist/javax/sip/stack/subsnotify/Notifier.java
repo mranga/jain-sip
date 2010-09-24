@@ -1,6 +1,5 @@
 package test.unit.gov.nist.javax.sip.stack.subsnotify;
 
-import gov.nist.javax.sip.ResponseEventExt;
 import gov.nist.javax.sip.message.ResponseExt;
 
 import javax.sip.*;
@@ -202,9 +201,9 @@ public class Notifier implements SipListener {
         Transaction tid = responseReceivedEvent.getClientTransaction();
 
         if(tid == null) {
-            TestCase.assertTrue("retrans flag should be true", ((ResponseEventExt)responseReceivedEvent).isRetransmission());
+            TestCase.assertTrue("retrans flag should be true", ((ResponseEvent)responseReceivedEvent).isRetransmission());
         } else {
-            TestCase.assertFalse("retrans flag should be false", ((ResponseEventExt)responseReceivedEvent).isRetransmission());
+            TestCase.assertFalse("retrans flag should be false", ((ResponseEvent)responseReceivedEvent).isRetransmission());
         }
         
         if ( response.getStatusCode() !=  200 ) {

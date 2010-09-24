@@ -34,7 +34,8 @@ import java.util.EventObject;
  * allowing the Listener to unmap its own data structures.
  * 
  * @author Oracle inc., NIST
- * @since v1.2
+ * @since 1.1
+ * @version 2.0
  *
  */
 public class TransactionTerminatedEvent extends EventObject {

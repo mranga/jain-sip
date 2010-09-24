@@ -23,6 +23,8 @@
  */
 package javax.sip;
 
+import gov.nist.javax.sip.message.SIPResponse;
+
 import java.util.*;
 import javax.sip.message.Response;
 
@@ -177,7 +179,15 @@ public class ResponseEvent extends EventObject {
     public ClientTransaction getOriginalTransaction() {
         return this.m_originalTransaction;
     }
-     // internal variables
+     /**
+     * Return true if this is a forked response.
+     * 
+     * @return true if the response event is for a forked response.
+     */
+    public boolean isRetransmission() {
+        return ((SIPResponse)getResponse()).isRetransmission();
+    }
+    // internal variables
     private Response m_response;
     private ClientTransaction m_transaction;
     private Dialog m_dialog;

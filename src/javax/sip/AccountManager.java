@@ -23,7 +23,9 @@ package javax.sip;
 /**
  * Account Manager helper class for the AuthenticationHelper.
  * 
+ * @author Oracle Inc., NIST
  * @since 2.0
+ * @version 2.0
  *
  */
 

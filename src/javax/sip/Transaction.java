@@ -46,7 +46,8 @@ import java.util.List;
  *
  * @see TransactionState
  * @author Oracle inc., NIST
- * @version 1.2
+ * @version 2.0
+ * @since 1.1
  */
 
 public interface Transaction extends Serializable{
@@ -238,14 +239,16 @@ public interface Transaction extends Serializable{
      * Return the Cipher Suite that was used for the SSL handshake. 
      * 
      * @return     Returns the cipher suite in use by the session which was produced by the handshake.
-     * @throw UnsupportedOperationException if this is not a secure client transaction.
+     * @throw UnsupportedOperationException if this is not a secure transaction.
+     * @since 2.0
      */
     public String getCipherSuite() throws UnsupportedOperationException;
     
     /**
      * Get the certificate(s) that were sent to the peer during handshaking.
      *@return the certificate(s) that were sent to the peer during handshaking.
-     *@throw UnsupportedOperationException if this is not a secure client transaction.
+     *@throw UnsupportedOperationException if this is not a secure transaction.
+     *@since 2.0
      * 
      */
    Certificate[] getLocalCertificates() throws UnsupportedOperationException;
@@ -253,7 +256,8 @@ public interface Transaction extends Serializable{
     /**
      * @return the identity of the peer which was identified as part of defining the session.
      * @throws SSLPeerUnverifiedException 
-     * @throw UnsupportedOperationException if this is not a secure client transaction.
+     * @throw UnsupportedOperationException if this is not a secure transaction.
+     * @since 2.0
      */
    Certificate[]  getPeerCertificates() throws SSLPeerUnverifiedException;
    

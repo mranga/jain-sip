@@ -1,5 +1,4 @@
 package test.unit.gov.nist.javax.sip.stack.forkedinvite;
-import gov.nist.javax.sip.ResponseEventExt;
 import gov.nist.javax.sip.SipStackImpl;
 import gov.nist.javax.sip.message.ResponseExt;
 
@@ -209,7 +208,7 @@ public class Shootist implements SipListener {
 
     public synchronized void processResponse(ResponseEvent responseReceived) {
         try {            
-            ResponseEventExt responseReceivedEvent = (ResponseEventExt) responseReceived;
+            ResponseEvent responseReceivedEvent = (ResponseEvent) responseReceived;
             Response response = (Response) responseReceivedEvent.getResponse();
             ClientTransaction tid = responseReceivedEvent.getClientTransaction();
             CSeqHeader cseq = (CSeqHeader) response.getHeader(CSeqHeader.NAME);
@@ -326,14 +325,14 @@ public class Shootist implements SipListener {
                 // Proxy will fork. This make sure the forked early dialog is not the same as the first one.
                 if(isFromFork) {
                     logger.info("forked early dialog= " + dialog + " for response " + response);
-                    ResponseEventExt responseEventExt  = (ResponseEventExt) responseReceivedEvent;
+                    ResponseEvent responseEventExt  = (ResponseEvent) responseReceivedEvent;
                     TestCase.assertTrue("forked event must set flag",responseEventExt.isForkedResponse());
                     TestCase.assertNotSame(dialog, earlyDialog);                        
                     TestCase.assertSame(earlyDialog, responseEventExt.getOriginalTransaction().getDefaultDialog());
                 } else {
                     earlyDialog = dialog;
                     logger.info("original early dialog= " + dialog + " for response " + response);
-                    ResponseEventExt responseEventExt  = (ResponseEventExt) responseReceivedEvent;
+                    ResponseEvent responseEventExt  = (ResponseEvent) responseReceivedEvent;
                     TestCase.assertFalse("non forked event must not set flag",responseEventExt.isForkedResponse());
                 }
             }

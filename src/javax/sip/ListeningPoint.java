@@ -17,6 +17,7 @@
  *  HISTORY
  *  Version   Date      Author              Comments
  *  1.1     08/10/2002  Phelim O'Doherty
+ *  2.0     09/10/2010  M. Ranganathan      2.0 additions
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 package javax.sip;
@@ -38,7 +39,9 @@ import javax.sip.header.ViaHeader;
  * top most Via header of outgoing requests.
  *
  * @author Oracle inc., NIST
- * @version 1.2
+ * @since 1.2
+ * @version 2.0
+ *
  */
 
 public interface ListeningPoint extends Cloneable, Serializable {

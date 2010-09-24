@@ -19,6 +19,7 @@
  *  1.1     08/10/2002  Phelim O'Doherty    Initial version
  *  1.2     02/15/2005  M. Ranganathan      getDialog get the current
  *                                          dialog.
+ *  1.2     09/15/2010  M. Ranganathan      Version 2.0 additions.
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 package javax.sip;
@@ -54,7 +55,8 @@ import javax.sip.message.Request;
  * </ul>
  *
  * @author Oracle inc., NIST
- * @version 1.2
+ * @version 2.0
+ * @since 1.1
  */
 public class RequestEvent extends EventObject {
 

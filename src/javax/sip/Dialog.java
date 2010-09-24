@@ -2,7 +2,7 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Unpublished - rights reserved under the Copyright Laws of the United States.
  * Copyright  2003 Sun Microsystems, Inc. All rights reserved.
- * Copyright  2005 Oracle inc., Inc. All rights reserved.
+ * Copyright  2005 Oracle Inc., All rights reserved.
  *
  * Use is subject to license terms.
  *
@@ -20,6 +20,7 @@
  *  1.2     05/04/2005  M. Rangnathan       Added Prack Support
  *                      Phelim O'Doherty    Added createAck method
  *                      M. Ranganathan      Clarified retransmission behavior.
+ * 2.0      8/20/2010   M. Ranganathan	    2.0 additions.
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 package javax.sip;
@@ -173,7 +174,8 @@ import java.io.Serializable;
  * via a SipProvider.
  *
  * @author Oracle inc., NIST
- * @version 1.2
+ * @since 1.1
+ * @version 2.0
  */
 
 public interface Dialog extends Serializable {
@@ -765,7 +767,9 @@ public interface Dialog extends Serializable {
     /**
      * If set to true it will release all references that it no longer needs. This will include the reference to the
      * Request, Transactions, Any unused timers etc. This will significantly reduce memory
-     * consumption under high load
+     * consumption under high load. This is an optional interface. It is a hint from the application 
+     * to the JAIN-SIP implementation that allows the implementation to release references safely. An implementation
+     * is free to do nothing.
      * @param releaseReferences 
      * 
      * @since 2.0

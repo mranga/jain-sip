@@ -26,7 +26,8 @@ package javax.sip;
  * not supported by a vendor's implementation of this specification.
  *
  * @author Oracle inc., NIST
- * @version 1.2
+ * @since 1.2
+ * @version 2.0
  */
 
 public class TransportNotSupportedException extends SipException {

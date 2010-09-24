@@ -1448,7 +1448,7 @@ class DialogFilter implements ServerRequestInterface, ServerResponseInterface {
         }
 
         // Here if there is an assigned dialog
-        ResponseEventExt responseEvent = new ResponseEventExt(sipProvider,
+        ResponseEvent responseEvent = new ResponseEventExt(sipProvider,
                 (ClientTransactionExt) transaction, dialog, (Response) response);
         if (sipStack.getMaxForkTime() != 0
                 && SIPTransactionStack.isDialogCreated(response.getCSeqHeader().getMethod())) {
