@@ -4,6 +4,8 @@ package gov.nist.javax.sip;
 import javax.sip.Dialog;
 import javax.sip.ResponseEvent;
 import javax.sip.message.Response;
+import gov.nist.javax.sip.SIPResponse;
+
 
 /**
  * Extension for ResponseEvent. 
