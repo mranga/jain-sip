@@ -750,14 +750,20 @@ public interface HeaderFactory {
     
     /**
      * Create a RequestLine from a String
-     * @throws ParseException 
+     *
+     * @param requestLine 
+     * 	     - request string to use
+     * @throws ParseException  
      * @since 2.0
      */
     public SipRequestLine createRequestLine(String requestLine) throws ParseException;
     
     
     /**
-     * Create a StatusLine from a String.
+     * Create a StatusLine from a String
+     *
+     * @param statusLine 
+     *  - string representation of the Status Line.
      * 
      * @since 2.0
      */
@@ -765,7 +771,7 @@ public interface HeaderFactory {
     
     
     /**
-     * Create a ReferredBy Header.
+     * Create a ReferredBy Header
      *
      * @param address --
      *            address for the header.
@@ -776,7 +782,7 @@ public interface HeaderFactory {
 
     /**
      *
-     * Create a Replaces header with a call Id, to and from tag.
+     * Create a Replaces header with a call Id, to and from tag
      *
      * @param callId -
      *            the call id to use.
@@ -791,7 +797,7 @@ public interface HeaderFactory {
             String fromTag) throws ParseException;
 
     /**
-     * creates a P-Access-Network-Info header.
+     * creates a P-Access-Network-Info header
      *
      * @return newly created P-Access-Network-Info header
      * @since 2.0
@@ -799,7 +805,7 @@ public interface HeaderFactory {
     public PAccessNetworkInfoHeader createPAccessNetworkInfoHeader();
 
     /**
-     * P-Asserted-Identity header
+     * Create a P-Asserted-Identity header
      *
      * @param address -
      *            Address
@@ -812,7 +818,7 @@ public interface HeaderFactory {
             throws NullPointerException, ParseException;
 
     /**
-     * Creates a new P-Associated-URI header based on the supplied address
+     * Create a P-Associated-URI header based on the supplied address
      *
      * @param assocURI -
      *            Address
@@ -825,7 +831,7 @@ public interface HeaderFactory {
     public PAssociatedURIHeader createPAssociatedURIHeader(Address assocURI);
 
     /**
-     * P-Called-Party-ID header
+     * Create a P-Called-Party-ID header.
      *
      * @param address -
      *            Address
@@ -835,7 +841,7 @@ public interface HeaderFactory {
     public PCalledPartyIDHeader createPCalledPartyIDHeader(Address address);
 
     /**
-     * P-Charging-Function-Addresses header
+     * Create empty P-Charging-Function-Addresses header.
      *
      * @return newly created P-Charging-Function-Addresses header
      * @since 2.0
@@ -854,7 +860,8 @@ public interface HeaderFactory {
     public PChargingVectorHeader createChargingVectorHeader(String icid) throws ParseException;
 
      /**
-     * P-Media-Authorization header
+     * Create P-Media-Authorization header
+     *
      * @param token - token string
      * @return newly created P-Media-Authorizarion header
      * @throws InvalidArgumentException
@@ -865,14 +872,16 @@ public interface HeaderFactory {
         throws InvalidArgumentException, ParseException;
 
     /**
-     * P-Preferred-Identity header
+     * Create P-Preferred-Identity header.
+     *
      * @param address - Address
      * @since 2.0
      */
     public PPreferredIdentityHeader createPPreferredIdentityHeader(Address address);
 
     /**
-     * P-Visited-Network-ID header
+     * Create empty P-Visited-Network-ID header.
+     *
      * @return newly created P-Visited-Network-ID header
      * @since 2.0
      * 
@@ -880,7 +889,8 @@ public interface HeaderFactory {
     public PVisitedNetworkIDHeader createPVisitedNetworkIDHeader();
 
     /**
-     * PATH header
+     * Create Path header.
+     *
      * @param address - Address
      * @return newly created Path header
      * @since 2.0
@@ -888,7 +898,9 @@ public interface HeaderFactory {
     public PathHeader createPathHeader(Address address);
 
     /**
-     * Privacy header
+     * Create Privacy header.
+     *
+     * @since 2.0
      * @param privacyType - privacy type string
      * @return newly created Privacy header
      */
@@ -896,7 +908,8 @@ public interface HeaderFactory {
 
 
     /**
-     * create a Service-Route header
+     * Create Service-Route header.
+     *
      * @param address - Address
      * @return newly created Service-Route header
      * @since 2.0
@@ -904,15 +917,17 @@ public interface HeaderFactory {
     public ServiceRouteHeader createServiceRouteHeader(Address address);
 
     /**
-     * create a Security-Server header
+     * Create a Security-Server header
+     *
      * @return newly created Security-Server header
      * @since 2.0
      */
     public SecurityServerHeader createSecurityServerHeader();
 
     /**
-     * Security-Client header
+     * Security-Client IMS header
      * @return newly created Security-Client header
+     *
      * @since 2.0
      */
     public SecurityClientHeader createSecurityClientHeader();
@@ -921,6 +936,7 @@ public interface HeaderFactory {
     /**
      * Create a Security-Verify header
      * @return newly created Security-Verify header
+     *
      * @since 2.0
      */
     public SecurityVerifyHeader createSecurityVerifyHeader();
@@ -942,8 +958,8 @@ public interface HeaderFactory {
     /**
      *
      * Create a Join header with a call Id, to and from tag.
+     * 
      * @since 2.0
-     *
      * @param callId -
      *            the call id to use.
      * @param toTag -
@@ -956,9 +972,9 @@ public interface HeaderFactory {
             String fromTag) throws ParseException;
 
     /**
-     * Create a P-User-Database header.
+     * Create a P-User-Database IMS header.
+     *
      * @since 2.0
-     * 
      * @return the newly created P-User-Database header
      * @param the database name, that may be an IP:port or a domain name.
      */
@@ -968,7 +984,7 @@ public interface HeaderFactory {
     /**
      * Create a P-Profile-Key header.
      * 
-     * @param address
+     * @param address 
      * @return The newly created P-Profile-Key header
      */
     public PProfileKeyHeader createPProfileKeyHeader(Address address);
@@ -976,6 +992,7 @@ public interface HeaderFactory {
     /**
      * Create a P-Served-User header.
      * 
+     * @since 2.0
      * @param address of the served user.
      * @return The newly created P-Served-User Header.
      */

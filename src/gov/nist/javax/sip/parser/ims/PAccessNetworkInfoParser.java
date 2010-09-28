@@ -49,7 +49,7 @@ import gov.nist.javax.sip.parser.TokenTypes;
  * <p>RFC 3455 - Private Header (P-Header) Extensions to the Session Initiation
  *   Protocol (SIP) for the 3rd-Generation Partnership Project (3GPP) </p>
  *
- * <p>Sintax (RFC 3455):</p>
+ * <p>syntax (RFC 3455):</p>
  * <pre>
  * P-Access-Network-Info  = "P-Access-Network-Info" HCOLON access-net-spec
  * access-net-spec        = access-type *(SEMI access-info)

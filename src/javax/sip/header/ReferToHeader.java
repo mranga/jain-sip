@@ -34,6 +34,7 @@ package javax.sip.header;
  * the normal mechanisms for that URI type. 
  *
  * @author Oracle Inc., NIST
+ * @since 1.1
  * @version 1.2
  */
 public interface ReferToHeader extends HeaderAddress, Parameters, Header {

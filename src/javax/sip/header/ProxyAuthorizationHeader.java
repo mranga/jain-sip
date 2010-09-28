@@ -94,6 +94,7 @@ package javax.sip.header;
 
  * @see ProxyAuthenticateHeader
  * @author Oracle Inc., NIST
+ * @since 1.1
  * @version 2.0
 
  */

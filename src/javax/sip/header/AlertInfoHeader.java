@@ -43,8 +43,8 @@ import javax.sip.address.URI;
  *
 * @author Oracle Inc., NIST
 * @since 1.1
- * @version 2.0
- */
+* @version 2.0
+*/
 
 public interface AlertInfoHeader extends Parameters, Header {
 

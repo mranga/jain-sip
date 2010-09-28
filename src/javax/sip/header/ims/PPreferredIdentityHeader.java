@@ -43,7 +43,7 @@ import javax.sip.header.HeaderAddress;
  * MUST be a tel URI.
  * </ul>
  *
- * <p>Sintax: </p>
+ * <p>syntax: </p>
  * <pre>
  * PPreferredID = "P-Preferred-Identity" HCOLON PPreferredID-value
  *                 *(COMMA PPreferredID-value)

@@ -31,7 +31,8 @@ package javax.sip.header.ims;
  * <p>An associated URI is a URI that the service provider
  * has allocated to a user for his own usage (address-of-record). </p>
  *
- * <p>sintax (RFC 3455): </p>
+ * See <a href="http://tools.ietf.org/html/rfc3455">RFC 3455 </a>
+ * <p>syntax (RFC 3455): </p>
  * <pre>
  * P-Associated-URI  = "P-Associated-URI" HCOLON
  *                    (p-aso-uri-spec) *(COMMA p-aso-uri-spec)

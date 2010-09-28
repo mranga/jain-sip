@@ -2,6 +2,7 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Unpublished - rights reserved under the Copyright Laws of the United States.
  * Copyright  2003 Sun Microsystems, Inc. All rights reserved.
+ * Copyright  2005 BEA Inc. All rights reserved.
  * Copyright  2005 Oracle inc., Inc. All rights reserved.
  *
  * Use is subject to license terms.
@@ -38,7 +39,7 @@ import javax.sip.header.ViaHeader;
  * If set, this string will be placed in the sent-by parameter of the
  * top most Via header of outgoing requests.
  *
- * @author Oracle inc., NIST
+ * @author Oracle Inc., NIST
  * @since 1.2
  * @version 2.0
  *

@@ -55,6 +55,7 @@ package javax.sip.header;
  * @see Parameters
  *
  * @author Oracle Inc., NIST
+ * @since 1.1
  * @version 2.0
  */
 public interface RecordRouteHeader extends HeaderAddress, Parameters, Header {

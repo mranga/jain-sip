@@ -33,7 +33,7 @@ import javax.sip.header.Header;
 /**
  * The P-Media-Authorization SIP Private Header - RFC 3313.
  *
- * <p>Sintax:</p>
+ * <p>syntax:</p>
  * <pre>
  * P-Media-Authorization   = "P-Media-Authorization" HCOLON
  *                            P-Media-Authorization-Token

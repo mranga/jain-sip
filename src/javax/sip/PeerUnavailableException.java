@@ -2,7 +2,8 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Unpublished - rights reserved under the Copyright Laws of the United States.
  * Copyright  2003 Sun Microsystems, Inc. All rights reserved.
- * Copyright  2005 Oracle inc., Inc. All rights reserved.
+ * Copyright  2005 BEA Inc. All rights reserved.
+ * Copyright  2005 Oracle Inc. All rights reserved.
  *
  * Use is subject to license terms.
  *
@@ -26,7 +27,7 @@ package javax.sip;
  * The PeerUnavailableException indicates that a vendor's implementation of a 
  * JAIN SIP interface could not be created for some reason.
  *
- * @author Oracle inc., NIST
+ * @author Oracle Inc., NIST
  * @version 2.0
  * @since 1.1
  */

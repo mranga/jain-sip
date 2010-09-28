@@ -23,7 +23,7 @@
  *
  *  HISTORY
  *  Version   Date      Author              Comments
- *  1.0     24/08/05  Peter Musgrave    Initial version, 
+ *  2.0     24/08/05  Peter Musgrave    Initial version, 
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 package javax.sip.header;
@@ -41,6 +41,7 @@ import javax.sip.header.*;
  * the normal mechanisms for that URI type. 
  *
  * @version 2.0
+ * @since 2.0
  * @author Oracle Inc., NIST
  */
 public interface ReferredByHeader extends HeaderAddress, Parameters, Header {

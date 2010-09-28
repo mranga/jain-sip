@@ -1,7 +1,6 @@
 /**
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Unpublished - rights reserved under the Copyright Laws of the United States.
- * Copyright  2003 Sun Microsystems, Inc. All rights reserved.
  * Copyright  2010 Oracle Inc. All rights reserved.
  *
  * U.S. Government Rights - Commercial software. Government users are subject 

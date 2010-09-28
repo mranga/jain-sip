@@ -36,8 +36,9 @@ import javax.sip.header.Parameters;
 
 /**
  * <p>P-Charging-Vector header SIP Private Header. </p>
- *
- *  <p> Sintax (RFC 3455): </p>
+ * 
+ *See <a href="http://tools.ietf.org/html/rfc3455">RFC 3455 </a>
+ * <p> Syntax (RFC 3455): </p>
  * <pre>
  * P-Charging-Vector   = "P-Charging-Vector" HCOLON icid-value (SEMI charge-params)
  * charge-params        = icid-gen-addr / orig-ioi / term-ioi / generic-param
@@ -47,7 +48,7 @@ import javax.sip.header.Parameters;
  * term-ioi             = "term-ioi" EQUAL gen-value
  * </pre>
  *
- * <p>Sintax from RFC3261: </p>
+ * <p>syntax from RFC3261: </p>
  * <pre>
  * generic-param       = token [ EQUAL gen-value ]
  * gen-value           = token / host / quoted-string

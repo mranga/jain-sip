@@ -46,7 +46,7 @@ import gov.nist.javax.sip.header.ims.ParameterNamesIms;
 /**
  * <p>P-Charging-Function-Addresses SIP Private Header. </p>
  *
- * <p>Sintax (RFC 3455):</p>
+ * <p>syntax (RFC 3455):</p>
  * <pre>
  * P-Charging-Addr        = "P-Charging-Function-Addresses" HCOLON
  *                           charge-addr-params

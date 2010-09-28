@@ -1,4 +1,4 @@
-/**
+/*
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Unpublished - rights reserved under the Copyright Laws of the United States.
  * Copyright  2003 Sun Microsystems, Inc. All rights reserved.
@@ -66,6 +66,7 @@ import javax.sip.InvalidArgumentException;
  * remove or modify Headers that it does not understand.
  *
  * @author Oracle Inc., NIST
+ * @since 1.1
  * @version 2.0
  */
 

@@ -2,7 +2,8 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Unpublished - rights reserved under the Copyright Laws of the United States.
  * Copyright  2003 Sun Microsystems, Inc. All rights reserved.
- * Copyright  2005 Oracle inc., Inc. All rights reserved.
+ * Copyright  2005 BEA Inc. All rights reserved.
+ * Copyright  2010 Oracle  Inc. All rights reserved.
  *
  * Use is subject to license terms.
  *
@@ -18,6 +19,7 @@
  *  Version   Date      Author              Comments
  *  1.1     08/10/2002  Phelim O'Doherty    Initial version
  *  1.2     12/15/2004  M. Ranganathan      Added getDialog method
+ *  2.0     10/24/2010  Jean Deruelle       2.0 methods.
  *  2.0     10/24/2010  M. Ranganathan      2.0 methods.
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */

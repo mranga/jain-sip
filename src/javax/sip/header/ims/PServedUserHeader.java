@@ -2,8 +2,6 @@ package javax.sip.header.ims;
 /*
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Unpublished - rights reserved under the Copyright Laws of the United States.
- * Copyright  2003 Sun Microsystems, Inc. All rights reserved.
- * Copyright  2005 BEA Systems.,  All rights reserved.
  * Copyright  2010 Oracle Inc., All rights reserved.
  *
  * Use is subject to license terms.
@@ -28,7 +26,7 @@ package javax.sip.header.ims;
  * P-Served-User 3-GPP Header definition See <a href="http://www.faqs.org/rfcs/rfc5502.html"> RFC 5502 </a>.
  *
  * The ABNF of the P-Served-User Header is as follows:
- *
+ * <pre>
  * P-Served-User              = "P-Served-User" HCOLON PServedUser-value
  *                              *(SEMI served-user-param)
  * served-user-param          = sessioncase-param
@@ -37,11 +35,13 @@ package javax.sip.header.ims;
  * PServedUser-value          = name-addr / addr-spec
  * sessioncase-param          = "sescase" EQUAL "orig" / "term"
  * registration-state-param   = "regstate" EQUAL "unreg" / "reg"
+ * </pre>
  *
  * Eg: P-Served-User: <sip:foo@bar.com>; sescase=orig; regstate=reg
  * 
  * @author  Oracle Inc, NIST
  *
+ * @since 2.0
  * @version 2.0
  *
  */

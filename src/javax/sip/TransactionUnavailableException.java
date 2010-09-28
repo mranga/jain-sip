@@ -26,7 +26,7 @@ package javax.sip;
  * The TransactionUnavailableException indicates that a vendor's implementation 
  * could not create a Transaction for some reason.
  *
- * @author Oracle inc., NIST
+ * @author Oracle Inc., NIST
  * @since 1.1
  * @version 2.0
  */

@@ -42,7 +42,7 @@ import java.text.ParseException;
 /**
  * P-Charging-Function-Addresses header parser.
  *
- * <p>Sintax (RFC 3455):</p>
+ * <p>syntax (RFC 3455):</p>
  * <pre>
  * P-Charging-Addr    = "P-Charging-Function-Addresses" HCOLON
  *                      charge-addr-params

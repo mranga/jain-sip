@@ -2,7 +2,8 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Unpublished - rights reserved under the Copyright Laws of the United States.
  * Copyright  2003 Sun Microsystems, Inc. All rights reserved.
- * Copyright  2005 Oracle inc., Inc. All rights reserved.
+ * Copyright  2005 BEA  Inc. All rights reserved.
+ * Copyright  2010 Oracle Inc. All rights reserved.
  *
  * Use is subject to license terms.
  *
@@ -105,6 +106,14 @@ public interface Header extends Cloneable, Serializable {
      * @return the name of this specific Header
      */
     public String getName();
+
+    /**
+     * Gets the header value (i.e. what follows the name:) as a string
+     * @return the header value (i.e. what follows the name:)
+     * 
+     * @since 2.0
+     */
+    public String getValue();
 
     /**
      * Compare this SIP Header for equality with another. This method overrides

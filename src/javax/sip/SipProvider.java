@@ -2,7 +2,8 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Unpublished - rights reserved under the Copyright Laws of the United States.
  * Copyright  2003 Sun Microsystems, Inc. All rights reserved.
- * Copyright  2005 Oracle inc., Inc. All rights reserved.
+ * Copyright  2005 BEA Inc. All rights reserved.
+ * Copyright  2010 Oracle Inc. All rights reserved.
  *
  * Use is subject to license terms.
  *
@@ -22,7 +23,8 @@
  *                                          Added getListeningPoints method
  *                                          Removed restriction that a SipProvider
  *                                          can only have a single ListeningPoint
- * 1.2     09/07/2005   M. Ranganathan      Added getListeningPoint( String transport)
+ *  1.2     09/07/2005   M. Ranganathan      Added getListeningPoint( String transport)
+ *  2.0     09/20/2010   M. Ranganathan     Added 2.0 methods ( setDialogErrorsAutomaticallyHandled )
  *
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */

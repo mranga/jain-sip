@@ -44,7 +44,7 @@ import javax.sip.InvalidArgumentException;
  * remove or modify Headers that it does not understand.
  *
  * @author Oracle inc., NIST
- * @since 1.2
+ * @since 1.1
  * @version 2.0
  */
 

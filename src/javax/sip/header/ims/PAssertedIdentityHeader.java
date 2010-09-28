@@ -32,8 +32,8 @@ import javax.sip.header.HeaderAddress;
 
 
 /**
- * P-Asserted-Identity header
- * Private Header: See RFC 3455.
+ * P-Asserted-Identity header.
+ * See <a href="http://tools.ietf.org/html/rfc3455">RFC 3455 </a>
  * Contains a URI (commonly a SIP URI) and an optional display-name
  * enable a network of trusted SIP servers to assert
  * the identity of authenticated users, and the application of existing

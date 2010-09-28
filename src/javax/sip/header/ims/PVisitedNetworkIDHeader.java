@@ -2,8 +2,6 @@ package javax.sip.header.ims;
 /*
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Unpublished - rights reserved under the Copyright Laws of the United States.
- * Copyright  2003 Sun Microsystems, Inc. All rights reserved.
- * Copyright  2005 BEA Systems.,  All rights reserved.
  * Copyright  2010 Oracle Inc., All rights reserved.
  *
  * Use is subject to license terms.
@@ -52,7 +50,7 @@ import javax.sip.header.Parameters;
  * identifier as its own network identifier
  * </ul>
  *
- * <p>Sintax: </p>
+ * <p>syntax: </p>
  *
  * <pre>
  * P-Visited-Network-ID = "P-Visited-Network-ID" HCOLON
@@ -68,6 +66,7 @@ import javax.sip.header.Parameters;
  *
  * @author Oracle Inc., NIST
  * @version 2.0
+ * @since 2.0
  */
 
 

@@ -32,8 +32,7 @@ import javax.sip.header.AuthorizationHeader;
 
 /**
  *
- * Extension to Authorization header (3GPP TS 24299-5d0)
- *
+ * Extension to Authorization header (3GPP TS 24299-5d0).
  * This extension defines a new auth-param for the Authorization header used
  * in REGISTER requests.
  * For more information, see RFC 2617 [21] subclause 3.2.2.

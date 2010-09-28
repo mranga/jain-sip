@@ -34,9 +34,9 @@ import javax.sip.header.Parameters;
 
 
 /**
- * P-Charging-Function-Addresses header -
- * Private Header: RFC 3455.
+ * P-Charging-Function-Addresses header.
  *
+ * See <a href="http://tools.ietf.org/html/rfc3455">RFC 3455 </a>
  * There is a need to inform each SIP proxy involved in a transaction about the common
  * charging functional entities to receive the generated charging records or charging events.
  * <ul>

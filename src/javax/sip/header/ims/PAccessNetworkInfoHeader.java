@@ -28,12 +28,13 @@ package javax.sip.header.ims;
 
 
 /**
- * <p>P-Access-Network-Info SIP P-Header </p>
+ * <p>P-Access-Network-Info P-Header. </p>
  * <p>This header carries information relating to the access network between
  * the UAC and its serving proxy in the home network.</p>
  *
+ * See <a href="http://tools.ietf.org/html/rfc3455">RFC 3455 </a>
  * <p>IETF RFC3455 + 3GPP TS 24.229-720 (2005-12)</p>
- * <p>Sintax: </p>
+ * <p>syntax: </p>
  * <pre>
  * P-Access-Network-Info  = "P-Access-Network-Info": access-type *(; access-info)
  *

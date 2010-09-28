@@ -50,6 +50,7 @@ package javax.sip.header;
 
  * @see RequireHeader
  * @author Oracle Inc., NIST
+ * @since 1.1
  * @version 2.0
 
  */

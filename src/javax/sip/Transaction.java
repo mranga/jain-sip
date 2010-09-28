@@ -33,6 +33,7 @@ import java.security.cert.Certificate;
 import java.util.List;
 
 /**
+ * This interface represents an abstraction for a SIP transaction.
  * Transactions are a fundamental component of SIP. A transaction is a request 
  * sent by a client transaction to a server transaction, along with all 
  * responses to that request sent from the server transaction back to the client
@@ -45,7 +46,7 @@ import java.util.List;
  * common between client and server transactions.
  *
  * @see TransactionState
- * @author Oracle inc., NIST
+ * @author Oracle Inc., NIST
  * @version 2.0
  * @since 1.1
  */

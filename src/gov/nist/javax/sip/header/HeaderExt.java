@@ -27,10 +27,4 @@ import javax.sip.header.Header;
  */
 public interface HeaderExt extends  Header {
 
-    /**
-     * Gets the header value (i.e. what follows the name:) as a string
-     * @return the header value (i.e. what follows the name:)
-     * @since 2.0
-     */
-    public String getValue();
 }

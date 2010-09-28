@@ -2,7 +2,8 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Unpublished - rights reserved under the Copyright Laws of the United States.
  * Copyright  2003 Sun Microsystems, Inc. All rights reserved.
- * Copyright  2005 Oracle inc., Inc. All rights reserved.
+ * Copyright  2005 BEA Inc., All rights reserved.
+ * Copyright  2010 Oracle Inc., Inc. All rights reserved.
  *
  * Use is subject to license terms.
  *
@@ -27,7 +28,7 @@ import java.util.EventObject;
 
 /**
  * This object is used to signal to the application that an IO Exception has
- * occured. The transaction state machine requires to report asynchronous IO Exceptions to
+ * occured asynchronously. The transaction state machine requires to report asynchronous IO Exceptions to
  * the application immediately (according to RFC 3261).
  * This class represents an IOExceptionEvent that is passed from a SipProvider to its SipListener.
  * This event enables an implementation to propagate the asynchronous handling

@@ -12,7 +12,7 @@
  *
  * Module Name   : JSIP Specification
  * File Name     : TransactionTerminatedEvent.java
- * Author        : Phelim O'Doherty
+ * Author        : M. Ranganathan
  *
  *  HISTORY
  *  Version   Date      Author              Comments

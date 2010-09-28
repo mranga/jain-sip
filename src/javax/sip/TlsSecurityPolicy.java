@@ -2,7 +2,8 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Unpublished - rights reserved under the Copyright Laws of the United States.
  * Copyright  2003 Sun Microsystems, Inc. All rights reserved.
- * Copyright  2005 Oracle inc., Inc. All rights reserved.
+ * Copyright  2005 BEA  Inc. All rights reserved.
+ * Copyright  2010 Oracle Inc. All rights reserved.
  *
  * Use is subject to license terms.
  *
@@ -29,6 +30,10 @@ import javax.sip.ClientTransaction;
  * This intervenes in the TLS handshake and is responsible for certificate checking.
  * An implementation shall provide a trivial policy which always accepts the 
  * certificate.
+ *
+ * @author Oracle Inc., NIST
+ * @version 2.0
+ * @since 2.0
  */
 public interface TlsSecurityPolicy {
 
