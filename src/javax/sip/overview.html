@@ -129,7 +129,7 @@ div.Section1
 
 <div class=Section1>
 
-<h2>This document specifies the JSIP API Specification v1.2.</h2>
+<h2>This document specifies the JSIP API Specification v2.0</h2>
 
 <h2>Objective</h2>
 
@@ -144,12 +144,29 @@ rich both semantically and in definition to the SIP protocol. </p>
 <h2>Design approach </h2>
 
 <p>This specification explicitly supports RFC 3261 functionality and the
-following SIP extensions; the INFO method (RFC 2976), Reliability of
-provisional responses (RFC 3262), Event Notification Framework (RFC 3265), the
-UPDATE method (RFC 3311), the Reason Header (RFC 3326), the Message method (RFC
-3428) defined for instant messaging and the REFER method (RFC 3515), Distributing
-Authoritative Name Servers via Shared Unicast Addresses (RFC 3581), the PUBLISH
-method (RFC3903). </p>
+following SIP extensions:
+<ul>
+<li>RFC 2976: the INFO method </li>
+<li>RFC 3262: Reliability of provisional responses.  </li>
+<li>RFC 3265: Event Notification Framework.  </li>
+<li>RFC 3311: UPDATE method. </li>
+<li>RFC 2236: Reason Header.  </li>
+<li>RFC 3911: The SIP Join Header </li>
+<li>RFC 3891: The SIP Replaces Header </li>
+<li>RFC 3428: MESSAGE method defined for instant messaging  </li>
+<li>RFC 3515: The REFER method </li>
+<li>RFC 3581: An Extension to the Session Initiation Protocol (SIP) for Symmetric Response Routing </li>
+<li>RFC 3903: PUBLISH method </li>
+<li>RFC 3455  Private Header (P-Header) Extensions to the Session Initiation </li>
+Protocol (SIP) for the 3rd-Generation Partnership Project (3GPP) </li>
+<li>RFC 5002 : The Session Initiation Protocol (SIP) P-Profile-Key Private Header </li>
+<li>RFC 3325 : Private Extensions to the Session Initiation Protocol (SIP) for Asserted Identity within Trusted Networks, </li>
+<li>RFC 3327 : Session Initiation Protocol (SIP) Extension Header Field for Registering Non-Adjacent Contacts  </li>
+<li>RFC 3329 : Security Mechanism Agreement for the  Session Initiation Protocol (SIP) </li>
+<li>RFC 3608 : Session Initiation Protocol (SIP) Extension Header Field
+            for Service Route Discovery During Registration</li>
+</ul>
+
 
 <p>This specificaiton standardizes the interface to the generic transactional
 model defined by the SIP protocol, providing access to dialog functionality
