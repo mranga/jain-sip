@@ -35,23 +35,28 @@ import javax.sip.header.ContentTypeHeader;
 
 public interface MultipartMimeContent {
 
-    public abstract boolean add(Content content);
+    public  boolean add(Content content);
 
     /**
      * Return the Content type header to assign to the outgoing sip meassage.
      * 
-     * @return
+     * @return - the content type header for this MltipartMime content.
      */
-    public abstract ContentTypeHeader getContentTypeHeader();
+    public ContentTypeHeader getContentTypeHeader();
 
-    public abstract String toString();
+    /**
+    * Convert to String.
+    *
+    * @return the string representation of this multipart mime body
+    */
+    public  String toString();
 
     /**
      * Set the content by its type.
      * 
-     * @param content
+     * @param content - content fragment.
      */
-    public abstract void addContent( Content content);
+    public  void addContent( Content content);
     
     /**
      * Retrieve the list of Content that is part of this MultitypeMime content.

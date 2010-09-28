@@ -240,7 +240,7 @@ public interface Transaction extends Serializable{
      * Return the Cipher Suite that was used for the SSL handshake. 
      * 
      * @return     Returns the cipher suite in use by the session which was produced by the handshake.
-     * @throw UnsupportedOperationException if this is not a secure transaction.
+     * @throws UnsupportedOperationException if this is not a secure transaction.
      * @since 2.0
      */
     public String getCipherSuite() throws UnsupportedOperationException;
@@ -248,7 +248,7 @@ public interface Transaction extends Serializable{
     /**
      * Get the certificate(s) that were sent to the peer during handshaking.
      *@return the certificate(s) that were sent to the peer during handshaking.
-     *@throw UnsupportedOperationException if this is not a secure transaction.
+     *@throws UnsupportedOperationException if this is not a secure transaction.
      *@since 2.0
      * 
      */
@@ -257,7 +257,7 @@ public interface Transaction extends Serializable{
     /**
      * @return the identity of the peer which was identified as part of defining the session.
      * @throws SSLPeerUnverifiedException 
-     * @throw UnsupportedOperationException if this is not a secure transaction.
+     * @throws UnsupportedOperationException if this is not a secure transaction.
      * @since 2.0
      */
    Certificate[]  getPeerCertificates() throws SSLPeerUnverifiedException;
@@ -280,7 +280,9 @@ public interface Transaction extends Serializable{
    /**
     * If set to true it will release all references that it no longer needs. This will include the reference to the
     * Request, Response, Dialogs, Any unused timers etc. This will significantly reduce memory
-    * consumption under high load
+    * consumption under high load. An implementation of this specification is free to not do nothing meaningful
+    * whent this method is called.
+    *
     * @param releaseReferences 
     * 
     * @since 2.0
@@ -317,12 +319,12 @@ public interface Transaction extends Serializable{
    public void setTimerT4(int interval);
    
    /**
-    * Sets the value of Timer D (in ms)
-    * @param interval value of Timer D (in ms)
+    * gets the value of Timer D (in ms)
     * 
     * @since 2.0
     */
    public int getTimerD();
+
    /**
     * Sets the value of Timer D (in ms)
     * @param interval value of Timer D (in ms)
@@ -331,7 +333,6 @@ public interface Transaction extends Serializable{
     */
    public void setTimerD(int interval);
 
- 
     
 }
 

@@ -104,7 +104,8 @@ public interface PAccessNetworkInfoHeader extends Parameters, Header
     
     /**
      * Get the access type.
-     * @return
+     *
+     * @return the accessType
      */
     public String getAccessType();
 

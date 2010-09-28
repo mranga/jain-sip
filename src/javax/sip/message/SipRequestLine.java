@@ -68,7 +68,7 @@ public interface SipRequestLine {
     /**
      * Set the sipVersion member
      *
-     * @param s String to set
+     * @param version version String to set
      */
     public  void setSipVersion(String version);
 

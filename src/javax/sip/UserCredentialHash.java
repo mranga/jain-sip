@@ -21,22 +21,24 @@
 package javax.sip;
 
 /**
- * Interface for those clients that only supply 
+ * Interface for those accounts that only supply 
  * hash(user:domain:password). This is more secure than simply supplying
- * password because the password cannot be extracted. Implementations
- * tend to prefer to store information in user accounts using such a
- * hash rather than plain text passwords because it offers better security.
- * The SecureAccountManager if implemented, return instances of this class.
+ * password because the password cannot be extracted from MD5Hash(user:domain:password). 
+ * In general, passwords should never be stored in the clear.
+ * Applications prefer to store information in user accounts using such a
+ * password hash rather than plain text passwords because it offers better security.
  * This class is implemented by the application and is used by the sip stack when 
  * dealing with challenge responses. The JAIN-SIP implementation provides
  * the SecureAuthenticationHelper implementation. The application provides
- * the implementation of SecureAccountManager. 
+ * the implementation of SecureAccountManager. The secure AccountManager is called
+ * back when dealing with authentication challenges and is expected to provide
+ * UserCredentialHash corresponding to the user account for the challenged transaction.
  * 
  * @since 2.0
  * @version 2.0
  * @see javax.sip.SipStack#getSecureAuthenticationHelper(SecureAccountManager, javax.sip.header.HeaderFactory)
  * @see javax.sip.SecureAccountManager
- * @see javax.sip.SecureAuthenticationHelper
+ * @see javax.sip.AuthenticationHelper
  * 
  */
 public interface UserCredentialHash {

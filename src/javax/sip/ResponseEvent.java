@@ -130,7 +130,8 @@ public class ResponseEvent extends EventObject {
     * Set true if this is a forked response. This field is only 
     * to be set by the implementation (not the application).
     * 
-    * @return true if the response event is for a forked response.
+    * @param forked - a boolean that is set in the response event indicating
+    * that the response is a forked response.
     *
     * @since 2.0
     */

@@ -976,7 +976,7 @@ public interface HeaderFactory {
      *
      * @since 2.0
      * @return the newly created P-User-Database header
-     * @param the database name, that may be an IP:port or a domain name.
+     * @param databaseName - the database name, that may be an IP:port or a domain name.
      */
     public PUserDatabaseHeader createPUserDatabaseHeader(String databaseName);
 
@@ -984,7 +984,7 @@ public interface HeaderFactory {
     /**
      * Create a P-Profile-Key header.
      * 
-     * @param address 
+     * @param address  - the address to create the header.
      * @return The newly created P-Profile-Key header
      */
     public PProfileKeyHeader createPProfileKeyHeader(Address address);
@@ -1005,7 +1005,8 @@ public interface HeaderFactory {
      * Create a header from a string. The string is assumed to be in the 
      * name:value format. The trailing CRLF (if any ) will be stripped
      * before parsing this. The header should be a singleton.
-     * 
+     *
+     * @param header - the string representation of the header.
      * @since 2.0
      */
     public Header createHeader(String header) throws ParseException;
