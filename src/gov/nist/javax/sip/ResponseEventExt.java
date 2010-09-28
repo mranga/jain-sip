@@ -25,4 +25,13 @@ public class ResponseEventExt extends ResponseEvent {
         super(source,clientTransaction,dialog,response);
       
     }
+
+     /**
+     * Return true if this is a forked response.
+     * 
+     * @return true if the response event is for a forked response.
+     */
+    public boolean isRetransmission() {
+        return ((SIPResponse)getResponse()).isRetransmission();
+    }
 }

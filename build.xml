@@ -167,7 +167,7 @@ c:/jakarta-ant/bin/ant all
             <fileset dir="src/javax/sip" includes="**/*.html" />
         </copy>
 
-        <javadoc packagenames="javax.sip.*,javax.sip.header.*,javax.sip.message.*,javax.sip.address.*,gov.nist.javax.sip.*,gov.nist.javax.sip.address.*,gov.nist.javax.sip.message.*,gov.nist.javax.sip.header.*,gov.nist.javas.sip.header.ims.*,gov.nist.javax.sip.stack.*,gov.nist.core.net.*,gov.nist.javax.sip.parser.*,javax.sdp.*,gov.nist.javax.sdp.*,gov.nist.javax.sdp.fields.*" sourcepath="${srcroot}" overview="${docdir}/overview.html" destdir="javadoc" use="true" splitindex="true" windowtitle="The JAIN-SIP-2.0 RI For the People !" doctitle="NIST-SIP: The Reference Implementation for JAIN-SIP 2.0" public="true" author="true" version="true" defaultexcludes="yes" additionalparam="-breakiterator">
+        <javadoc packagenames="javax.sip.*,javax.sip.header.*,javax.sip.message.*,javax.sip.address.*,gov.nist.javax.sip.*,gov.nist.javax.sip.address.*,gov.nist.javax.sip.message.*,gov.nist.javax.sip.header.*,gov.nist.javas.sip.header.ims.*,gov.nist.javax.sip.stack.*,gov.nist.core.net.*,gov.nist.javax.sip.parser.*,javax.sdp.*,gov.nist.javax.sdp.*,gov.nist.javax.sdp.fields.*" sourcepath="${srcroot}" overview="src/javax/sip/overview.html" destdir="javadoc" use="true" splitindex="true" windowtitle="The JAIN-SIP-2.0 RI For the People !" doctitle="NIST-SIP: The Reference Implementation for JAIN-SIP 2.0" public="true" author="true" version="true" defaultexcludes="yes" additionalparam="-breakiterator">
             <classpath>
                 <pathelement location="${log4j_jar}" />
                 <pathelement location="${jain-sip-api-jar}" />
@@ -197,7 +197,7 @@ c:/jakarta-ant/bin/ant all
 
             <mkdir dir='javadoc-jain' />
 
-            <javadoc packagenames="javax.sip.*,javax.sip.header.*,javax.sip.message.*,javax.sip.address.*,javax.sip.header.ims.*" sourcepath="${srcroot}" overview="${docdir}/overview.html" destdir="javadoc-jain" use="true" splitindex="true" windowtitle="JAIN-SIP-2.0 Specification" doctitle="JAIN-SIP-2.0 Specification" public="true" author="true" version="true" defaultexcludes="yes" additionalparam="-breakiterator">
+            <javadoc packagenames="javax.sip.*,javax.sip.header.*,javax.sip.message.*,javax.sip.address.*,javax.sip.header.ims.*" sourcepath="${srcroot}" overview="src/javax/sip/overview.html" destdir="javadoc-jain" use="true" splitindex="true" windowtitle="JAIN-SIP-2.0 Specification" doctitle="JAIN-SIP-2.0 Specification" public="true" author="true" version="true" defaultexcludes="yes" additionalparam="-breakiterator">
                 <classpath>
                     <pathelement location="${jain-sip-api-jar}" />
                 </classpath>
@@ -210,7 +210,7 @@ c:/jakarta-ant/bin/ant all
             <bottom>
                 <![CDATA[
                     <font size="-1">
-                <a href="Oracle, NIST, BEA Systems, Sun Microsystems and others" </a>
+                <a href="Oracle, NIST and others" </a>
                     <br>
                         <a href="${href.copyright}"> See conditions of use. </a>
                         <br>
