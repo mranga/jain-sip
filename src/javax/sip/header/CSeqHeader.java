@@ -100,7 +100,7 @@ public interface CSeqHeader extends Header {
      * @throws InvalidArgumentException if supplied value is less than zero.
      * @since v1.1
      * 
-     * @deprecated This method is replaced with {@link #setSeqNumber(long)} with 
+     * @deprecated  WARNING:  Implementations may throw OperationNotSupportedException. This method is replaced with {@link #setSeqNumber(long)} with 
      * type long. 
      */
     public void setSequenceNumber( int sequenceNumber) 
@@ -109,7 +109,7 @@ public interface CSeqHeader extends Header {
     /**
      * Gets the sequence number of this CSeqHeader.
      *
-     * @deprecated This method is replaced with {@link #getSeqNumber()} with 
+     * @deprecated  WARNING:  Implementations may throw OperationNotSupportedException. This method is replaced with {@link #getSeqNumber()} with 
      * type long.
      * @return sequence number of the CSeqHeader
      * @since v1.1

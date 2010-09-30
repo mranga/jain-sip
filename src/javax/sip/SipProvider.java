@@ -281,7 +281,7 @@ public interface SipProvider {
      * Returns the ListeningPoint of this SipProvider. A SipProvider has a
      * single Listening Point at any specific point in time.
      *
-     * @deprecated Since v1.2. Note that in v1.1 a SipProvider could only be
+     * @deprecated  WARNING:  Implementations may throw OperationNotSupportedException. Since v1.2. Note that in v1.1 a SipProvider could only be
      * associated to a single listening point, this restriction has been lifted to allow
      * a SipProvider to have a specific ListeningPoints for each transport.
      * For backwards compatibility, this method will return the first
@@ -306,7 +306,7 @@ public interface SipProvider {
     /**
      * This method sets the ListeningPoint of the SipProvider.
      *
-     * @deprecated Since v1.2. Note that in v1.1 a SipProvider could only
+     * @deprecated  WARNING:  Implementations may throw OperationNotSupportedException. Since v1.2. Note that in v1.1 a SipProvider could only
      * be associated to a single listening point, this restriction has been lifted
      * to allow a SipProvider to have a specific ListeningPoints for each transport.
      * For backwards compatibility, this method will add the ListeningPoint to

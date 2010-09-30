@@ -56,7 +56,7 @@ public interface TimeStampHeader extends Header {
      * @param timeStamp - the new float timestamp value
      * @throws InvalidArgumentException if the timestamp value argument is a
      * negative value.
-     * @deprecated This method is replaced with {@link #setTimeStamp(float)}.
+     * @deprecated  WARNING:  Implementations may throw OperationNotSupportedException. This method is replaced with {@link #setTimeStamp(float)}.
      */
     public void setTimeStamp(float timeStamp) throws InvalidArgumentException;
     
@@ -64,7 +64,7 @@ public interface TimeStampHeader extends Header {
      * Gets the timestamp value of this TimeStampHeader.
      *
      * @return the timestamp value of this TimeStampHeader
-     * @deprecated This method is replaced with {@link #getTime()}.
+     * @deprecated  WARNING:  Implementations may throw OperationNotSupportedException. This method is replaced with {@link #getTime()}.
      */
     public float getTimeStamp();
     
@@ -97,7 +97,7 @@ public interface TimeStampHeader extends Header {
      * delay parameter is not set.
      * 
      * @return the delay value of this TimeStampHeader
-     * @deprecated This method is replaced with {@link #getTimeDelay()}.
+     * @deprecated  WARNING:  Implementations may throw OperationNotSupportedException. This method is replaced with {@link #getTimeDelay()}.
      */
 
     public float getDelay();    
@@ -109,7 +109,7 @@ public interface TimeStampHeader extends Header {
      * @param delay - the new float delay value
      * @throws InvalidArgumentException if the delay value argumenmt is a
      * negative value other than the default value <code>-1</code>.
-     * @deprecated This method is replaced with {@link #setTimeDelay(int)}.
+     * @deprecated  WARNING:  Implementations may throw OperationNotSupportedException. This method is replaced with {@link #setTimeDelay(int)}.
      */
 
     public void setDelay(float delay) throws InvalidArgumentException;

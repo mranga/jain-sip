@@ -1549,7 +1549,7 @@ public class SipStackImpl extends SIPTransactionStack implements
 	 * 
 	 * @param Appender
 	 *            - the log4j appender to add.
-	 * @deprecated TODO: remove this method May 11, 2010.
+	 * @deprecated  WARNING:  Implementations may throw OperationNotSupportedException. TODO: remove this method May 11, 2010.
 	 */
 	@Deprecated
 	public void addLogAppender(org.apache.log4j.Appender appender) {
@@ -1563,7 +1563,7 @@ public class SipStackImpl extends SIPTransactionStack implements
 	 * This method will be removed May 11, 2010 or shortly there after.
 	 * 
 	 * @return  the log4j logger.
-	 * @deprecated TODO: This method will be removed May 11, 2010.
+	 * @deprecated  WARNING:  Implementations may throw OperationNotSupportedException. TODO: This method will be removed May 11, 2010.
 	 */
 	@Deprecated
 	public org.apache.log4j.Logger getLogger() {

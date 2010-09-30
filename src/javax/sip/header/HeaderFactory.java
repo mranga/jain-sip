@@ -170,7 +170,7 @@ public interface HeaderFactory {
      * unexpectedly while parsing the method value.
      * @return the newly created CSeqHeader object.
      *
-     * @deprecated Since 1.2. Use {@link #createCSeqHeader(long, String)} method
+     * @deprecated  WARNING:  Implementations may throw OperationNotSupportedException. Since 1.2. Use {@link #createCSeqHeader(long, String)} method
      * with type long.
      */
     public CSeqHeader createCSeqHeader(int sequenceNumber, String method)

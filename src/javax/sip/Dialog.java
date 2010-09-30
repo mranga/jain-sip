@@ -261,7 +261,7 @@ public interface Dialog extends Serializable {
      * by one, and this value MUST be placed into the CSeq header field. If the
      * local sequence number is empty, an initial value MUST be chosen.
      *
-     * @deprecated This method is replaced with {@link #getLocalSeqNumber()} with
+     * @deprecated  WARNING:  Implementations may throw OperationNotSupportedException. This method is replaced with {@link #getLocalSeqNumber()} with
          * type long.
      * @see #getLocalSeqNumber()
      *
@@ -307,7 +307,7 @@ public interface Dialog extends Serializable {
      * the request is greater than the remote sequence number, the request is in
      * order.
      *
-     * @deprecated This method is replaced with {@link #getRemoteSeqNumber()} with
+     * @deprecated  WARNING:  Implementations may throw OperationNotSupportedException. This method is replaced with {@link #getRemoteSeqNumber()} with
          * type long.
      * @see #getRemoteSeqNumber()
      * @return the integer value of the remote sequence number, return zero if
@@ -651,7 +651,7 @@ public interface Dialog extends Serializable {
      * provided methods that do not expect a BYE to terminate a dialog. Such is
      * the case with SUBSCRIBE/NOTIFY within a Dialog that is created with an
      * INIVTE.
-         *
+     *
      */
     public void delete();
 
@@ -715,7 +715,7 @@ public interface Dialog extends Serializable {
      *            if true then the dialog is terminated when a BYE is received.
      * @throws SipException --
      *            if the dialog is already terminated.
-         * @since 1.2
+     * @since 1.2
      *
      */
     public void terminateOnBye(boolean terminateFlag) throws SipException;
@@ -796,7 +796,8 @@ public interface Dialog extends Serializable {
      * determined based on whether this is a server or client Dialog, see
      * {@link Dialog#isServer()}.
      *
-     * @deprecated Since v1.2. Reduces the amount of state that
+     * @deprecated  WARNING:  Implementations may throw OperationNotSupportedException. 
+     * This method is deprecated since v1.2 to reduces the amount of state that
      * the stack needs to keep track of. Note to developers : Store a reference
      * to the Dialog creating transaction in the Dialog Application Data if you
      * need to.

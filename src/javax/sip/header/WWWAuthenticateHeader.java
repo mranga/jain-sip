@@ -112,7 +112,7 @@ public interface WWWAuthenticateHeader extends Parameters, Header {
      * Sets the URI of the WWWAuthenicateHeader to the URI parameter value.
      *
      * @param uri - the new URI of this WWWAuthenicateHeader.
-     * @deprecated Since v1.2. URI is not a supported parameter for this header.
+     * @deprecated  WARNING:  Implementations may throw OperationNotSupportedException. Since v1.2. URI is not a supported parameter for this header.
      */
     public void setURI(URI uri);
 
@@ -121,7 +121,7 @@ public interface WWWAuthenticateHeader extends Parameters, Header {
      *
      * @return the URI representing the URI information, null if value is
      * not set.
-     * @deprecated Since v1.2. URI is not a supported parameter for this 
+     * @deprecated  WARNING:  Implementations may throw OperationNotSupportedException. Since v1.2. URI is not a supported parameter for this 
      * header. This method should return null.
      */
     public URI getURI();            

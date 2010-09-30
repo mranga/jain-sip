@@ -148,7 +148,7 @@ following SIP extensions:
 <ul>
 <li>RFC 2976: the INFO method </li>
 <li>RFC 3262: Reliability of provisional responses.  </li>
-<li>RFC 3265: Event Notification Framework.  </li>
+<li>RFC 3265: Event Notification Framework (SUBSCRIBE and NOTIFY methods).  </li>
 <li>RFC 3311: UPDATE method. </li>
 <li>RFC 2236: Reason Header.  </li>
 <li>RFC 3911: The SIP Join Header </li>
@@ -157,18 +157,16 @@ following SIP extensions:
 <li>RFC 3515: The REFER method </li>
 <li>RFC 3581: An Extension to the Session Initiation Protocol (SIP) for Symmetric Response Routing </li>
 <li>RFC 3903: PUBLISH method </li>
-<li>RFC 3455  Private Header (P-Header) Extensions to the Session Initiation </li>
-Protocol (SIP) for the 3rd-Generation Partnership Project (3GPP) </li>
+<li>RFC 3455  Private Header (P-Header) Extensions to the Session Initiation Protocol (SIP) for the 3rd-Generation Partnership Project (3GPP) </li>
 <li>RFC 5002 : The Session Initiation Protocol (SIP) P-Profile-Key Private Header </li>
 <li>RFC 3325 : Private Extensions to the Session Initiation Protocol (SIP) for Asserted Identity within Trusted Networks, </li>
 <li>RFC 3327 : Session Initiation Protocol (SIP) Extension Header Field for Registering Non-Adjacent Contacts  </li>
 <li>RFC 3329 : Security Mechanism Agreement for the  Session Initiation Protocol (SIP) </li>
-<li>RFC 3608 : Session Initiation Protocol (SIP) Extension Header Field
-            for Service Route Discovery During Registration</li>
+<li>RFC 3608 : Session Initiation Protocol (SIP) Extension Header Field for Service Route Discovery During Registration</li>
 </ul>
 
 
-<p>This specificaiton standardizes the interface to the generic transactional
+<p>This specification standardizes the interface to the generic transactional
 model defined by the SIP protocol, providing access to dialog functionality
 from the transaction interface. The architecture is developed for the J2SE
 environment therefore is event based utilizing the Listener/Provider event
@@ -183,9 +181,8 @@ responses to initiated dialogs or new incoming dialogs.</p>
 
 <p>This specification is extensible by design. It defines a generic extension
 header interface that can be used by applications that utilize headers that are
-not supported directly by this specification. The design also defines a
-mechanism to support future dialog creation methods via the use of Java
-Properties. Configuration elements can be managed statically via properties or
+not supported directly by this specification. 
+Configuration elements can be managed statically via properties or
 dynamcially via ListeningPoints i.e. IP addresses, ports and transports or
 Router function.&nbsp;</p>
 
@@ -193,8 +190,7 @@ Router function.&nbsp;</p>
 stateful or transaction stateful components such as stateful proxy servers
 (without being dialog stateful). The default handling of message
 retransmissions is dependent on the application. All retransmissions are
-handled by the stack for user agents (ie. dialog stateful applications). </p>
-
+handled by the stack for user agents (ie. dialog stateful applications). 
 </p>
 
 <h2>Specification Leads</h2>

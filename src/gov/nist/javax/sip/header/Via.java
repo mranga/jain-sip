@@ -168,7 +168,7 @@ public class Via
     /**
      * Accessor for the comment field.
      * @return comment field.
-     * @deprecated RFC 2543 support feature.
+     * @deprecated  WARNING:  Implementations may throw OperationNotSupportedException. RFC 2543 support feature.
      */
     public String getComment() {
         return comment;
@@ -241,7 +241,7 @@ public class Via
     /**
      * Set the comment member
      * @param c String to set.
-     * @deprecated This is an RFC 2543 feature.
+     * @deprecated  WARNING:  Implementations may throw OperationNotSupportedException. This is an RFC 2543 feature.
      */
     public void setComment(String c) {
         comment = c;

@@ -204,7 +204,7 @@ public interface ClientTransaction extends Transaction {
      * transaction.
      * @throws SipException if this method is called before a final response 
      * is received for the transaction.
-     * @deprecated Since v1.2. As a transaction that received
+     * @deprecated  WARNING:  Implementations may throw OperationNotSupportedException. Since v1.2. As a transaction that received
      * a 2xx response terminates immediately, it cannot be used for creating
      * the corresponding ACK. If this transaction created a dialog, the 
      * {@link Dialog#createAck(long)} method

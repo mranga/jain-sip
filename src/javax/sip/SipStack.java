@@ -492,7 +492,7 @@ public interface SipStack {
      * @throws InvalidArgumentException
      *             if the specified port is invalid.
      *
-     * @deprecated Since v1.2. This has been replaced by
+     * @deprecated  WARNING:  Implementations may throw OperationNotSupportedException. Since v1.2. This has been replaced by
      *  {@link SipStack#createListeningPoint(String, int, String)  }
      * For backwards compatibility with v1.1 implementations should support this method.
      * Implementations should throw <it>TransportNotSupportedException</it>
@@ -710,7 +710,7 @@ public interface SipStack {
      * notified if the underlying transaction expires with a
      * {@link Timeout#TRANSACTION}notification encapsulated in a TimeoutEvent.
      *
-     * @deprecated Since v1.2. This retransmission filter property has been deprecated
+     * @deprecated  WARNING:  Implementations may throw OperationNotSupportedException. Since v1.2. This retransmission filter property has been deprecated
      * as a SIP Stack property. Applications can enable retransmission alerts by using the
      * {@link ServerTransaction#enableRetransmissionAlerts()} method.
      *

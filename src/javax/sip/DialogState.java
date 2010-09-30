@@ -181,13 +181,13 @@ public final class DialogState implements Serializable{
      * This constant value indicates the internal value of the "Completed" 
      * constant.
      * <br>This constant has an integer value of 2.
-     * @deprecated Since v1.2. This state does not exist in a dialog.
+     * @deprecated  WARNING:  Implementations may throw OperationNotSupportedException. Since v1.2. This state does not exist in a dialog.
      */    
     public static final int _COMPLETED = 2;
     
     /**
      * This constant value indicates that the dialog state is "Completed".
-     * @deprecated Since v1.2. This state does not exist in a dialog.
+     * @deprecated  WARNING:  Implementations may throw OperationNotSupportedException. Since v1.2. This state does not exist in a dialog.
      */        
     public final static DialogState COMPLETED = new DialogState(_COMPLETED);
 

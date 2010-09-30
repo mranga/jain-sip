@@ -122,7 +122,7 @@ public interface Router {
      * Gets the ListIterator of the hops of the default Route.
      * This method may return null if a default route is not defined.
      *
-     * @deprecated Since v1.2. This method is replaced with
+     * @deprecated  WARNING:  Implementations may throw OperationNotSupportedException. Since v1.2. This method is replaced with
      * {@link Router#getNextHop(Request)} method which returns the next
      * Hop for this request.
      *
