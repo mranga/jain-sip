@@ -29,6 +29,7 @@
 
 package gov.nist.javax.sip.header.ims;
 
+import javax.sip.header.PathHeader;
 import javax.sip.header.ims.PAccessNetworkInfoHeader;
 import javax.sip.header.ims.PAssertedIdentityHeader;
 import javax.sip.header.ims.PAssociatedURIHeader;
@@ -41,7 +42,6 @@ import javax.sip.header.ims.PProfileKeyHeader;
 import javax.sip.header.ims.PServedUserHeader;
 import javax.sip.header.ims.PUserDatabaseHeader;
 import javax.sip.header.ims.PVisitedNetworkIDHeader;
-import javax.sip.header.ims.PathHeader;
 import javax.sip.header.ims.PrivacyHeader;
 import javax.sip.header.ims.SecurityClientHeader;
 import javax.sip.header.ims.SecurityServerHeader;

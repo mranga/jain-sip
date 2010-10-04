@@ -6,6 +6,7 @@ import gov.nist.core.StackLogger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+
 /**
  * The class takes standard Http Authentication details and returns a response according to the
  * MD5 algorithm

@@ -79,9 +79,9 @@ import java.io.Serializable;
  * <p>
  * The Listener MUST ACK the 2xx response associated with an INVITE dialog.
  * Retransmissions of the ACK in response to subsequent INVITE requests are
- * handled by the dialog layer. If a listener does not ACK a 2XX response
- * immediately, the implementation will terminate the Dialog automatically and
- * remove it from the stack when the listener completes its execution.
+ * handled by the dialog layer. If the Listener does not ACK the INVITE 2xx
+ * response, the SipListener will asynchronously receive a DilaogTimeoutEvent.
+ * (See {@link SipListener#processDialogTimeout(DialogTimeoutEvent)}).
  * <p>
  * The dialog layer MUST respond with an automatic error response when <a href =
  * "http://www.ietf.org/rfc/rfc3261.txt">RFC3261</a> specifies that the User

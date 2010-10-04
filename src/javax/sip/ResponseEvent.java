@@ -26,7 +26,8 @@
 package javax.sip;
 
 
-import java.util.*;
+import java.util.EventObject;
+
 import javax.sip.message.Response;
 
 /**
@@ -72,12 +73,14 @@ public class ResponseEvent extends EventObject {
     * for application processing.
     *
     * @param source - the source of ResponseEvent i.e. the SipProvider
+    * @param listeningPoint - the listening point over which the response was received by the stack.
     * @param clientTransaction - client transaction upon which
     * this Response was sent
     * @param response - the Response message received by the SipProvider
     */
-    public ResponseEvent(Object source, ClientTransaction clientTransaction, Dialog dialog,  Response response) {
+    public ResponseEvent(Object source, ListeningPoint listeningPoint, ClientTransaction clientTransaction, Dialog dialog,  Response response) {
         super(source);
+        m_listeningPoint = listeningPoint;
         m_response = response;
         m_transaction = clientTransaction;
         m_dialog = dialog;
@@ -169,7 +172,7 @@ public class ResponseEvent extends EventObject {
      * Note that this transaction can be in a TERMINATED state.
      * The Original transaction contains the context corresponding
      * to the forked response. This is useful for applications during
-     * response processing. If a forked response is recieved by the
+     * response processing. If a forked response is received by the
      * stack after the MAX_FORK_TIME setting for the SIP Stack,
      * this field can be set to null when the response is delivered
      * to the application.
@@ -181,7 +184,21 @@ public class ResponseEvent extends EventObject {
     public ClientTransaction getOriginalTransaction() {
         return this.m_originalTransaction;
     }
+    
+   
+    /**
+     * Get the listening point over which this response was receieved.
+     * 
+     * @return the listening point over which the response was received.
+     * 
+     * @since 2.0
+     * 
+     */
+    public ListeningPoint getListeningPoint() {
+        return m_listeningPoint;
+    }
     // internal variables
+    private ListeningPoint m_listeningPoint;
     private Response m_response;
     private ClientTransaction m_transaction;
     private Dialog m_dialog;

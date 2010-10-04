@@ -18,7 +18,6 @@ import javax.sip.header.ims.PChargingVectorHeader;
 import javax.sip.header.ims.PMediaAuthorizationHeader;
 import javax.sip.header.ims.PPreferredIdentityHeader;
 import javax.sip.header.ims.PVisitedNetworkIDHeader;
-import javax.sip.header.ims.PathHeader;
 import javax.sip.header.ims.PrivacyHeader;
 import javax.sip.header.ims.SecurityClientHeader;
 import javax.sip.header.ims.SecurityServerHeader;

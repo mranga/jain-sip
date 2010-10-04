@@ -140,9 +140,13 @@ public interface ServerTransaction extends Transaction {
      * after it removes the transaction some time after the Transaction state is set to
      * {@link TransactionState#TERMINATED } ;
      * after which, it maintains no record of the Transaction.
+     * 
+     * @deprecated This method is no longer supported in version 2.0.
+     *  WARNING:  Implementations may throw OperationNotSupportedException.
      *
      * @throws SipException if a Dialog is already associated with the ServerTransaction
      * when the method is called.
+     * 
      *
      * @since 1.2
      */

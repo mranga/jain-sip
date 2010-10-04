@@ -22,9 +22,9 @@ public class ResponseEventExt extends ResponseEvent {
      * @param dialog - the dialog associated with this event.
      * @param response - the response associated with this event.
      */
-    public ResponseEventExt(Object source, ClientTransactionExt clientTransaction, 
+    public ResponseEventExt(Object source, ListeningPointExt listeningPoint, ClientTransactionExt clientTransaction, 
             Dialog dialog,  Response response) {
-        super(source,clientTransaction,dialog,response);
+        super(source,listeningPoint, clientTransaction,dialog,response);
       
     }
 

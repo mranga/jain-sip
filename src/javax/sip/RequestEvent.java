@@ -60,7 +60,8 @@ import javax.sip.message.Request;
  * @since 1.1
  */
 public class RequestEvent extends EventObject {
-
+    
+  
     /**
     * Constructs a RequestEvent encapsulating the Request that has been received
     * by the underlying SipProvider. This RequestEvent once created is passed to
@@ -72,9 +73,10 @@ public class RequestEvent extends EventObject {
     * this Request was sent
     * @param request - the Request message received by the SipProvider
     */
-    public RequestEvent(Object source, ServerTransaction serverTransaction, Dialog dialog, Request request) {
+    public RequestEvent(Object source, ListeningPoint listeningPoint, ServerTransaction serverTransaction, Dialog dialog, Request request) {
         super(source);
         m_transaction = serverTransaction;
+        m_listeningPoint = listeningPoint;
         m_request = request;
         m_dialog  = dialog;
    }
@@ -110,9 +112,21 @@ public class RequestEvent extends EventObject {
     public Dialog getDialog() {
         return m_dialog;
     }
+    
+    
+    /**
+     * Get the listening point over which the request was received.
+     * 
+     * @return - the listening point over which the request was received.
+     */
+    public ListeningPoint getListeningPoint() {
+        return m_listeningPoint;
+    }
 
+  
 
     // internal variables
+    private ListeningPoint m_listeningPoint;
     private Request m_request;
     private ServerTransaction m_transaction;
     private Dialog  m_dialog;

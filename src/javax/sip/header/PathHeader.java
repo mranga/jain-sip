@@ -19,20 +19,18 @@
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 /*******************************************
- * PRODUCT OF PT INOVACAO- EST DEPARTMENT *
+ * PRODUCT OF PT INOVACAO- EST DEPARTMENT  *
  *******************************************/
-package javax.sip.header.ims;
+package javax.sip.header;
 
-import javax.sip.header.Header;
-import javax.sip.header.HeaderAddress;
-import javax.sip.header.Parameters;
 
 
 /**
  * SIP Path Header. 
  * The Path extension header field allows accumulating and transmitting
- *the list of proxies between UA1 and REGISTRAR. This mechanism is in many ways similar to the
- *  operation of Record-Route in dialog-initiating requests.
+ * the list of proxies between UA1 and REGISTRAR. 
+ * This mechanism is in many ways similar to the
+ * operation of Record-Route in dialog-initiating requests.
  * <a href= "http://www.faqs.org/rfcs/rfc3327.html"> See RFC 3327 for details </a>
  *
  * @author Oracle Inc., NIST

@@ -18,9 +18,7 @@
  * the software.
  *
  * Permission to use this software is contingent upon your acceptance
- * of the terms of this agreement
- *
- * .
+ * of the terms of this agreement.
  *
  */
 /******************************************************************************
@@ -1261,6 +1259,7 @@ class DialogFilter implements ServerRequestInterface, ServerResponseInterface {
                     // knows
                     // about it.
                     sipEvent = new RequestEvent((SipProvider) sipProvider,
+                            (ListeningPoint) this.listeningPoint,
                             (ServerTransaction) transaction,
                             subscriptionDialog, (Request) sipRequest);
                 } else {
@@ -1269,6 +1268,7 @@ class DialogFilter implements ServerRequestInterface, ServerResponseInterface {
                      * not know about it.
                      */
                     sipEvent = new RequestEvent((SipProvider) sipProvider,
+                            (ListeningPoint) this.listeningPoint,
                             null, subscriptionDialog, (Request) sipRequest);
                 }
 
@@ -1280,7 +1280,8 @@ class DialogFilter implements ServerRequestInterface, ServerResponseInterface {
 
                 // Got a notify out of the blue - just pass it up
                 // for stateless handling by the application.
-                sipEvent = new RequestEvent(sipProvider, null, null,
+                sipEvent = new RequestEvent(sipProvider, (ListeningPoint) this.listeningPoint,
+                         null, null,
                         (Request) sipRequest);
             }
 
@@ -1292,10 +1293,11 @@ class DialogFilter implements ServerRequestInterface, ServerResponseInterface {
                     && (((SIPServerTransaction) transaction)
                             .isTransactionMapped())) {
                 sipEvent = new RequestEvent(sipProvider,
+                        this.listeningPoint,
                         (ServerTransaction) transaction, dialog,
                         (Request) sipRequest);
             } else {
-                sipEvent = new RequestEvent(sipProvider, null, dialog,
+                sipEvent = new RequestEvent(sipProvider, this.listeningPoint, null, dialog,
                         (Request) sipRequest);
             }
         }
@@ -1424,6 +1426,7 @@ class DialogFilter implements ServerRequestInterface, ServerResponseInterface {
             // statelessly.
 
             ResponseEvent sipEvent = new ResponseEventExt(sipProvider,
+                    this.listeningPoint,
                     transaction, dialog, (Response) response);
 
             if (sipStack.getMaxForkTime() != 0
@@ -1449,6 +1452,7 @@ class DialogFilter implements ServerRequestInterface, ServerResponseInterface {
 
         // Here if there is an assigned dialog
         ResponseEvent responseEvent = new ResponseEventExt(sipProvider,
+                this.listeningPoint,
                 (ClientTransactionExt) transaction, dialog, (Response) response);
         if (sipStack.getMaxForkTime() != 0
                 && SIPTransactionStack.isDialogCreated(response.getCSeqHeader().getMethod())) {
@@ -1698,6 +1702,7 @@ class DialogFilter implements ServerRequestInterface, ServerResponseInterface {
                     "sending response to TU for processing ");        
 
         ResponseEvent responseEvent = new ResponseEventExt(sipProvider,
+                 this.listeningPoint,
                 (ClientTransactionExt) transaction, sipDialog,
                 (Response) sipResponse);
 

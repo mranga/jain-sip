@@ -28,7 +28,7 @@
  *******************************************/
 package gov.nist.javax.sip.header.ims;
 
-import javax.sip.header.ims.PathHeader;
+import javax.sip.header.PathHeader;
 
 import gov.nist.javax.sip.header.SIPHeaderList;
 
