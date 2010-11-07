@@ -184,37 +184,8 @@
 	</TR>
 	<TR>
 		<TD>
-			<P CLASS="msonormal" ALIGN=CENTER><B>REJECTED CHANGES - Not deemed
-			necessary by Spec leads</B></P>
-		</TD>
-	</TR>
-	<TR>
-		<TD>
-			<P CLASS="msonormal" STYLE="margin-bottom: 0.17in">&nbsp;</P>
-			<H3>Package javax.sip</H3>
-			<P CLASS="msonormal" STYLE="margin-left: 0.25in">Limit the
-			architecture to have a single SipProvider in the architecture.&nbsp;
-			Multiple SipProviders were supported in JSIPv1.1 to enable
-			messaging over different transports. This can still be achieved by
-			limiting a single SipProvider in the system and mandating that the
-			SipProvider uses the same transport for sending responses that was
-			used for sending the outbound request.</P>
-			<H4 STYLE="margin-left: 0.25in"><FONT SIZE=3>SipProvider<BR></FONT><FONT SIZE=3><SPAN STYLE="font-weight: normal">Add
-			new method getNewClientDialog(Response).<BR>Add new method
-			getNewServerDialog(Response).<BR>Deprecate setListeningPoint() and
-			getListeningPoint() methods<BR>Documentation clarification on
-			refined architecture object model.</SPAN></FONT></H4>
-			<H4 STYLE="margin-left: 0.25in"><FONT SIZE=3>Dialog<BR></FONT><FONT SIZE=3><SPAN STYLE="font-weight: normal">sendAck()
-			method behaviour clarified. </SPAN></FONT>
-			</H4>
-			<H4 STYLE="margin-left: 0.25in"><FONT SIZE=3>SipStack<BR></FONT><FONT SIZE=3><SPAN STYLE="font-weight: normal">Add
-			new NETWORK_LAYER_PATH property.<BR>Deprecate
-			createSipProvider(ListeningPoint) method.<BR>Add new
-			createSipProvider() method.</SPAN></FONT></H4>
-			<H3>Package javax.sip.address</H3>
-			<P CLASS="msonormal" STYLE="margin-left: 0.25in"><B>New
-			Classes<BR></B>Add new interface NetworkLayer.java</P>
-			<H4>&nbsp;</H4>
+			<P CLASS="msonormal" ALIGN=CENTER><B>REJECTED CHANGES - Deemed
+			not necessary by Spec leads</B></P>
 		</TD>
 	</TR>
 	<TR>

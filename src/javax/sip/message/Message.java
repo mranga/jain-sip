@@ -462,7 +462,7 @@ public interface Message extends Cloneable, Serializable {
      * (instead, we would just make a copy of the pointer).
      *
      * @param applicationData - un-interpreted application data.
-     * @since v2.0
+     * @since 2.0
      *
      */
 
@@ -475,7 +475,7 @@ public interface Message extends Cloneable, Serializable {
      * data. This is the responsibility of the application.
      *
      * @return application data associated with the message by the application.
-     * @since v2.0
+     * @since 2.0
      *
      */
     public Object getApplicationData();
@@ -486,7 +486,7 @@ public interface Message extends Cloneable, Serializable {
      * a multipart mime content list. If the content type is not multipart mime
      * then the list will have a single element in it. 
      * 
-     * @since v2.0
+     * @since 2.0
      * @throws ParseException if the content type is multipart mime but the content
      *  is not properly encoded.
      *  
@@ -496,21 +496,21 @@ public interface Message extends Cloneable, Serializable {
     /**
      * Get the topmost Via header.
      * 
-     * @since v2.0
+     * @since 2.0
      */
     public ViaHeader getTopmostViaHeader();
     
     /**
      * Get the From header or null if none present.
      * 
-     * @since v2.0
+     * @since 2.0
      */
     public FromHeader getFrom();
     
     /**
      * Get the To header or null if none present.
      * 
-     * @since v2.0
+     * @since 2.0
      */
     public ToHeader getTo();
     
@@ -518,21 +518,21 @@ public interface Message extends Cloneable, Serializable {
     /**
      * Get the callId header or null if none present.
      * 
-     * @since v2.0
+     * @since 2.0
      */
     public CallIdHeader getCallId();
     
     /**
      * Get the CSeq header or null if none present.
      * 
-     * @since v2.0
+     * @since 2.0
      */
     public  CSeqHeader getCSeq();
     
     /**
      * Get the content type header or null if none present.
      * 
-     * @since v2.0
+     * @since 2.0
      */
     public ContentTypeHeader getContentType();
     
@@ -540,7 +540,7 @@ public interface Message extends Cloneable, Serializable {
     /**
      * Get the first line of the request or response.
      * 
-     * @since v2.0
+     * @since 2.0
      */
     public String getFirstLine();
 

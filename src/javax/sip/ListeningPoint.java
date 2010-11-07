@@ -162,6 +162,7 @@ public interface ListeningPoint extends Cloneable, Serializable {
     /**
      * Transport constant: SCTP
      *
+     * @since 2.0
      */
     public static final String SCTP = "SCTP";
 

@@ -200,21 +200,22 @@ public interface Transaction extends Serializable{
 
 
     /**
-     * Get the Sip Provider associated with this transaction
-     * 
+     * Get the Sip Provider associated with this transaction.
      * @since 2.0
      */
     public SipProvider getSipProvider();
 
     /**
-     * Returns the IP address of the upstream/downstream hop from which this message was initially received
-     * @return the IP address of the upstream/downstream hop from which this message was initially received
+     * Returns the IP address of the peer IP address (upstream/downstream) hop from which this message was initially received.
+     * Will be null when the client transaction is first created.
+     * @return the IP address of the peer IP address (upstream/downstream) hop from which this message was initially received
      * @since 2.0
      */
     public String getPeerAddress();
     /**
-     * Returns the port of the upstream/downstream hop from which this message was initially received
-     * @return the port of the upstream/downstream hop from which this message was initially received
+     * Returns the port of the peer port (upstream/downstream hop) from which this message was initially received.
+     * Will be undefined when the client transaction is first created.
+     * @return the port of the peer port from which this message was initially received
      * @since 2.0
      */
     public int getPeerPort();
@@ -228,18 +229,20 @@ public interface Transaction extends Serializable{
     /**
      * return the ip address on which this message was initially received
      * @return the ip address on which this message was initially received
+     * @since 2.0
      */
     public String getHost();
     /**
      * return the port on which this message was initially received
      * @return the port on which this message was initially received
+     * @since 2.0
      */
     public int getPort();
     
     /**
      * Return the Cipher Suite that was used for the SSL handshake. 
      * 
-     * @return     Returns the cipher suite in use by the session which was produced by the handshake.
+     * @return Returns the cipher suite in use by the session which was produced by the handshake.
      * @throws UnsupportedOperationException if this is not a secure transaction.
      * @since 2.0
      */
@@ -265,26 +268,19 @@ public interface Transaction extends Serializable{
    /**
     * Extract identities from certificates exchanged over TLS, based on IETF guidelines
     * @return list of authenticated identities
+    * @since 2.0
     */
    public List<String> extractCertIdentities() throws SSLPeerUnverifiedException;
 
-   /**
-    * retrieve the value of release references to know if the stack performs optimizations
-    * on cleanup to save on memory
-    * @return release references value
-    * 
-    * @since 2.0
-    */
-   public boolean isReleaseReferences();
    
    /**
-    * If set to true it will release all references that it no longer needs. This will include the reference to the
-    * Request, Response, Dialogs, Any unused timers etc. This will significantly reduce memory
-    * consumption under high load. An implementation of this specification is free to not do nothing meaningful
-    * whent this method is called.
+    * Provide a hint to the stack to release all references that it no longer needs. After this method 
+    * is called, the stack may release references that it no longer needs. This will include the reference to the
+    * Response, Dialogs, any unused timers etc. This will significantly reduce memory consumption under high load. 
+    * This is an optimization. An implementation of this specification is free to do nothing 
+    * when this method is called by the application.
     *
     * @param releaseReferences 
-    * 
     * @since 2.0
     */
    public void setReleaseReferences(boolean releaseReferences);     
