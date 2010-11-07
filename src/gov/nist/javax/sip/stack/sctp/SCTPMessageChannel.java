@@ -250,6 +250,9 @@ final class SCTPMessageChannel extends MessageChannel
      */
     private void processMessage( SIPMessage sipMessage, long rxTime ) {
     	SIPTransactionStack sipStack = processor.getSIPStack();
+    	 sipMessage.setRemoteAddress(this.peerAddress.getAddress());
+    	 sipMessage.setRemotePort(this.getPeerPort());
+
         if (sipMessage instanceof SIPRequest) {
             SIPRequest sipRequest = (SIPRequest) sipMessage;
 
@@ -378,13 +381,4 @@ final class SCTPMessageChannel extends MessageChannel
     	processor.removeChannel( this );
     }
 
-	@Override
-	public void setViaHost(String viaHost) {
-		// TODO processor.setSentBy( viaHost );
-	}
-
-	@Override
-	public void setViaPort(int viaPort) {
-		// TODO processor.setSentBy( viaPort );
-	}
 }

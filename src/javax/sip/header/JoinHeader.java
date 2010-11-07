@@ -1,7 +1,7 @@
 /*
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Unpublished - rights reserved under the Copyright Laws of the United States.
- * Copyright  2010 Oracle inc., Inc. All rights reserved.
+ * Copyright  2010 Oracle Inc. All rights reserved.
  *
  * Use is subject to license terms.
  *

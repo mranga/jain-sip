@@ -168,7 +168,7 @@ import javax.sip.message.Response;
  *
  * </pre>
  *
- * @version 1.2 $Revision: 1.144 $ $Date: 2010/09/17 20:06:59 $
+ * @version 1.2 $Revision: 1.148 $ $Date: 2010/10/25 18:55:01 $
  * @author M. Ranganathan
  *
  */
@@ -584,6 +584,7 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
         // Flags whether the select message is part of this transaction
         boolean transactionMatches = false;
         final String method = messageToTest.getCSeq().getMethod();
+        SIPRequest origRequest = getOriginalRequest();
         // Invite Server transactions linger in the terminated state in the
         // transaction
         // table and are matched to compensate for
@@ -622,16 +623,16 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
                         transactionMatches = this.getMethod().equals(Request.CANCEL)
                                 && getBranch().equalsIgnoreCase(messageBranch)
                                 && topViaHeader.getSentBy().equals(
-                                        getOriginalRequest().getTopmostVia()
+                                         origRequest.getTopmostVia()
                                                 .getSentBy());
 
                     } else {
                         // Matching server side transaction with only the
                         // branch parameter.
-                    	if(originalRequest != null) {
+                    	if(origRequest != null) {
                     		transactionMatches = getBranch().equalsIgnoreCase(messageBranch)
                                 && topViaHeader.getSentBy().equals(
-                                		getOriginalRequest().getTopmostVia()
+                                          origRequest.getTopmostVia()
                                                 .getSentBy());
                     	} else {
                     		transactionMatches = getBranch().equalsIgnoreCase(messageBranch)
@@ -641,6 +642,9 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
                     }
 
                 } else {
+                    // force the reparsing only on non RFC 3261 messages 
+                    origRequest = (SIPRequest) getRequest();
+                    
                     // This is an RFC2543-compliant message; this code is here
                     // for backwards compatibility.
                     // It is a weak check.
@@ -648,14 +652,14 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
                     // top Via headers are the same, the
                     // SIPMessage matches this transaction. An exception is for
                     // a CANCEL request, which is not deemed
-                    // to be part of an otherwise-matching INVITE transaction.
-                    String originalFromTag = super.originalRequest.getFromTag();
+                    // to be part of an otherwise-matching INVITE transaction.                    
+                    String originalFromTag = origRequest.getFromTag();
 
                     String thisFromTag = messageToTest.getFrom().getTag();
 
                     boolean skipFrom = (originalFromTag == null || thisFromTag == null);
 
-                    String originalToTag = super.originalRequest.getToTag();
+                    String originalToTag = origRequest.getToTag();
 
                     String thisToTag = messageToTest.getTo().getTag();
 
@@ -665,20 +669,20 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
                     // the CSeq method of the original request must
                     // be CANCEL for it to have a chance at matching.
                     if (messageToTest.getCSeq().getMethod().equalsIgnoreCase(Request.CANCEL)
-                            && !getOriginalRequest().getCSeq().getMethod().equalsIgnoreCase(
+                            && !origRequest.getCSeq().getMethod().equalsIgnoreCase(
                                     Request.CANCEL)) {
                         transactionMatches = false;
-                    } else if ((isResponse || getOriginalRequest().getRequestURI().equals(
+                    } else if ((isResponse || origRequest.getRequestURI().equals(
                             ((SIPRequest) messageToTest).getRequestURI()))
                             && (skipFrom || originalFromTag != null && originalFromTag.equalsIgnoreCase(thisFromTag))
                             && (skipTo || originalToTag != null && originalToTag.equalsIgnoreCase(thisToTag))
-                            && getOriginalRequest().getCallId().getCallId().equalsIgnoreCase(
+                            && origRequest.getCallId().getCallId().equalsIgnoreCase(
                                     messageToTest.getCallId().getCallId())
-                            && getOriginalRequest().getCSeq().getSeqNumber() == messageToTest
+                            && origRequest.getCSeq().getSeqNumber() == messageToTest
                                     .getCSeq().getSeqNumber()
                             && ((!messageToTest.getCSeq().getMethod().equals(Request.CANCEL)) || 
                                     getMethod().equals(messageToTest.getCSeq().getMethod()))
-                            && topViaHeader.equals(getOriginalRequest().getTopmostVia())) {
+                            && topViaHeader.equals(origRequest.getTopmostVia())) {
 
                         transactionMatches = true;
                     }
@@ -814,7 +818,7 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
                     // Resend the last response to
                     // the client             
                     // Send the message to the client       
-                    resendLastResponseAsBytes(isReliable());
+                    resendLastResponseAsBytes();
                 } else if (transactionRequest.getMethod().equals(Request.ACK)) {
                     // This is passed up to the TU to suppress
                     // retransmission of OK
@@ -1151,7 +1155,7 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
                 if (!this.retransmissionAlertEnabled || sipStack.isTransactionPendingAck(this) ) {
                     // Retransmit last response until ack.
                 	if (lastResponseStatusCode / 100 >= 2 && !this.isAckSeen) {
-	                    resendLastResponseAsBytes(false);
+	                    resendLastResponseAsBytes();
                     }
                 } else {
                     // alert the application to retransmit the last response
@@ -1173,43 +1177,44 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
 
     // jeand we nullify the last response very fast to save on mem and help GC but we keep it as byte array
     // so this method is used to resend the last response either as a response or byte array depending on if it has been nullified
-    public void resendLastResponseAsBytes(boolean reliable) throws IOException {
-	
-    	if(!reliable) {
-	    	if(lastResponse != null) {
-	    		sendMessage(lastResponse);
-	        } else if (lastResponseAsBytes != null) {
-	            // Send the message to the client
+    public void resendLastResponseAsBytes() throws IOException {
+                    
+    	if(lastResponse != null) {
+    	    if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
+                sipStack.getStackLogger().logDebug("resend last response " + lastResponse);
+            }
+    		sendMessage(lastResponse);
+        } else if (lastResponseAsBytes != null) {
+            // Send the message to the client
 //		    	if(!checkStateTimers(lastResponseStatusCode)) {
 //		        	return;
 //		        }
-		    	if(isReliable()) {
-		    		getMessageChannel().sendMessage(lastResponseAsBytes, this.getPeerInetAddress(), this.getPeerPort(), false);
-		    	} else {
-		    		Hop hop = sipStack.addressResolver.resolveAddress(new HopImpl(lastResponseHost, lastResponsePort,
-		                    lastResponseTransport));
-		
-		            MessageChannel messageChannel = ((SIPTransactionStack) getSIPStack())
-		                    .createRawMessageChannel(this.getSipProvider().getListeningPoint(
-		                            hop.getTransport()).getIPAddress(), this.getPort(), hop);
-		            if (messageChannel != null) {
-		                messageChannel.sendMessage(lastResponseAsBytes, InetAddress.getByName(hop.getHost()), hop.getPort(), false);                                
-		            } else {
-		                throw new IOException("Could not create a message channel for " + hop + " with source IP:Port "+
-		                		this.getSipProvider().getListeningPoint(
-		                                hop.getTransport()).getIPAddress() + ":" + this.getPort());
-		            }                    		
-		    	}
-	        }
-    	} else {
-    		getMessageChannel().sendMessage(pendingReliableResponseAsBytes, this.getPeerInetAddress(), this.getPeerPort(), false);
-    	}
-		
+            if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
+                sipStack.getStackLogger().logDebug("resend last response " + new String(lastResponseAsBytes));
+            }
+	    	if(isReliable()) {
+	    		getMessageChannel().sendMessage(lastResponseAsBytes, this.getPeerInetAddress(), this.getPeerPort(), false);
+	    	} else {
+	    		Hop hop = sipStack.addressResolver.resolveAddress(new HopImpl(lastResponseHost, lastResponsePort,
+	                    lastResponseTransport));
+	
+	            MessageChannel messageChannel = ((SIPTransactionStack) getSIPStack())
+	                    .createRawMessageChannel(this.getSipProvider().getListeningPoint(
+	                            hop.getTransport()).getIPAddress(), this.getPort(), hop);
+	            if (messageChannel != null) {
+	                messageChannel.sendMessage(lastResponseAsBytes, InetAddress.getByName(hop.getHost()), hop.getPort(), false);                                
+	            } else {
+	                throw new IOException("Could not create a message channel for " + hop + " with source IP:Port "+
+	                		this.getSipProvider().getListeningPoint(
+	                                hop.getTransport()).getIPAddress() + ":" + this.getPort());
+	            }                    		
+	    	}
+        }
 	}
 
 	private void fireReliableResponseRetransmissionTimer() {
         try {
-        	resendLastResponseAsBytes(true);
+        	resendLastResponseAsBytes();
         } catch (IOException e) {
             if (sipStack.isLoggingEnabled())
                 sipStack.getStackLogger().logException(e);
@@ -1599,6 +1604,7 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
     }
 
     public boolean equals(Object other) {
+    	if(other == null) return false;
         if (!other.getClass().equals(this.getClass())) {
             return false;
         }

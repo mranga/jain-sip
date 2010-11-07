@@ -197,8 +197,57 @@ public class ResponseEvent extends EventObject {
     public ListeningPoint getListeningPoint() {
         return m_listeningPoint;
     }
+    /**
+     * Set the remote port from which response was received. Applications should not use
+     * this method. This method is reserved for use by applications which may use it
+     * to set the remote port.
+     * 
+     * @since 2.0
+     */
+    public void setRemotePort(int remotePort) {
+        this.remotePort = remotePort;
+    }
+
+    /**
+     * Get the remote port from which response was received.
+     * 
+     * 
+     * @since 2.0
+     * 
+     * @return the remote Port as read from the inbound packet/connection.
+     * 
+     */
+    public int getRemotePort() {
+        return remotePort;
+    }
+
+    /**
+     * Get the remote IP addr. from which request was received.
+     * 
+     * @since 2.0
+     * 
+     * @return the remoteIp address as read from the inbound packet/connection.
+     * 
+     */
+    public String getRemoteIpAddress() {
+        return remoteIpAddress;
+    }
+
+    /**
+     * Set the remote IP addr. from which request was received.
+     * Applications should not use this method. This method is expected
+     * to be used by implementations to set the remote IP address.
+     * 
+     * @since 2.0
+     * 
+     */
+    public void setRemoteIpAddress(String remoteIpAddress) {
+        this.remoteIpAddress = remoteIpAddress;
+    }
     // internal variables
     private ListeningPoint m_listeningPoint;
+    private String remoteIpAddress;
+    private int remotePort;
     private Response m_response;
     private ClientTransaction m_transaction;
     private Dialog m_dialog;

@@ -125,6 +125,26 @@ public class RequestEvent extends EventObject {
 
   
 
+    public void setRemoteIpAddress(String remoteIpAddress) {
+        this.remoteIpAddress = remoteIpAddress;
+    }
+
+    public String getRemoteIpAddress() {
+        return remoteIpAddress;
+    }
+
+    public void setRemotePort(int remotePort) {
+        this.remotePort = remotePort;
+    }
+
+    public int getRemotePort() {
+        return remotePort;
+    }
+
+
+
+    private String remoteIpAddress;
+    private int remotePort;
     // internal variables
     private ListeningPoint m_listeningPoint;
     private Request m_request;

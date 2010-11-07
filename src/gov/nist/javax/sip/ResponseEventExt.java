@@ -1,6 +1,5 @@
 package gov.nist.javax.sip;
 
-
 import javax.sip.Dialog;
 import javax.sip.ResponseEvent;
 import javax.sip.message.Response;
@@ -8,11 +7,12 @@ import gov.nist.javax.sip.message.SIPResponse;
 
 
 /**
- * Extension for ResponseEvent. 
+ * Extension for ResponseEvent.
  * 
  * @since v2.0
  */
 public class ResponseEventExt extends ResponseEvent {
+    private boolean isRetransmission;
     /**
      * Constructor. This is just a stub for backwards compatibility.
      * 
@@ -34,6 +34,14 @@ public class ResponseEventExt extends ResponseEvent {
      * @return true if the response event is for a forked response.
      */
     public boolean isRetransmission() {
-        return ((SIPResponse)getResponse()).isRetransmission();
+        return isRetransmission;
     }
+
+    /**
+     * @param isRetransmission the isRetransmission to set
+     */
+    public void setRetransmission(boolean isRetransmission) {
+        this.isRetransmission = isRetransmission;
+    }
+
 }

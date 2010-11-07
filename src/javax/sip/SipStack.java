@@ -655,7 +655,7 @@ public interface SipStack {
      * Get the dialog in the Join header.
      *
      * @return Dialog object matching the Join header, provided it is in an appropriate state to
-     *         be replaced, <code>null</code> otherwise
+     *         be Joined, <code>null</code> otherwise
      *
      * @since 2.0
      */

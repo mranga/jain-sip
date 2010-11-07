@@ -160,19 +160,19 @@ public class VersionerTask extends Task {
                     File antPropertiesFile = new File( this.antprops);
                     antPropertiesFile.createNewFile();
                     bw=new BufferedWriter(new FileWriter(antPropertiesFile));
-                    bw.write("jain-sip-ri-jar=jain-sip-ri-1.2."+(localVersion + 1) + ".jar\n");
-                    bw.write("jain-sip-sdp-jar=jain-sip-sdp-1.2."+(localVersion + 1) + ".jar\n");
-                    bw.write("jain-sip-src-tar=jain-sip-src-1.2."+(localVersion + 1) + ".tar.gz\n");
-                    bw.write("jain-sip-javadoc-tar=jain-sip-javadoc-1.2."+(localVersion + 1) + ".tar.gz\n");
+                    bw.write("jain-sip-ri-jar=jain-sip-ri-2.0."+(localVersion + 1) + ".jar\n");
+                    bw.write("jain-sip-sdp-jar=jain-sip-sdp-2.0."+(localVersion + 1) + ".jar\n");
+                    bw.write("jain-sip-src-tar=jain-sip-src-2.0."+(localVersion + 1) + ".tar.gz\n");
+                    bw.write("jain-sip-javadoc-tar=jain-sip-javadoc-2.0."+(localVersion + 1) + ".tar.gz\n");
 
-                    bw.write("jain-sip-all-tar=jain-sip-1.2." +(localVersion + 1) + ".tar.gz\n");
-                    bw.write("jain-sip-tck-jar=jain-sip-tck-1.2."+(localVersion + 1) + ".jar\n");
+                    bw.write("jain-sip-all-tar=jain-sip-2.0." +(localVersion + 1) + ".tar.gz\n");
+                    bw.write("jain-sip-tck-jar=jain-sip-tck-2.0."+(localVersion + 1) + ".jar\n");
                     bw.write("sdp_jar=jain-sdp-1.0."+(localVersion + 1) + ".jar\n");
                     bw.write("sdp-src-jar=jain-sdp-src-1.0."+(localVersion + 1) + ".jar\n");
-                    bw.write("jain-sip-src-jar=jain-sip-src-1.2." + +(localVersion + 1) + ".jar\n");
+                    bw.write("jain-sip-src-jar=jain-sip-src-2.0." + +(localVersion + 1) + ".jar\n");
                     
-                    bw.write("jain-sip-sctp-jar=jain-sip-sctp-1.2."+(localVersion + 1) + ".jar\n");
-                    bw.write("unit_test_jar=jain-sip-unit-test-1.2." + (localVersion+1) + ".jar\n");
+                    bw.write("jain-sip-sctp-jar=jain-sip-sctp-2.0."+(localVersion + 1) + ".jar\n");
+                    bw.write("unit_test_jar=jain-sip-unit-test-2.0." + (localVersion+1) + ".jar\n");
                     bw.flush();
                     bw.close();
                     bw=new BufferedWriter(new FileWriter(this.timeStampFileName));

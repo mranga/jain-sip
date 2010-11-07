@@ -90,7 +90,7 @@ import javax.sip.message.Response;
  * 
  * 
  * 
- * @version 1.2 $Revision: 1.79 $ $Date: 2010/07/16 15:15:58 $
+ * @version 1.2 $Revision: 1.82 $ $Date: 2010/10/28 03:20:38 $
  */
 public class UDPMessageChannel extends MessageChannel implements
         ParseExceptionListener, Runnable, RawMessageChannel {
@@ -443,6 +443,10 @@ public class UDPMessageChannel extends MessageChannel implements
             }
             return;
         }
+        
+        if(sipStack.sipEventInterceptor != null) {
+        	sipStack.sipEventInterceptor.beforeMessage(sipMessage);
+        }
         // For a request first via header tells where the message
         // is coming from.
         // For response, just get the port from the packet.
@@ -485,7 +489,9 @@ public class UDPMessageChannel extends MessageChannel implements
         }
 
         this.processMessage(sipMessage);
-
+        if(sipStack.sipEventInterceptor != null) {
+        	sipStack.sipEventInterceptor.afterMessage(sipMessage);
+        }
     }
 
     /**
@@ -494,6 +500,8 @@ public class UDPMessageChannel extends MessageChannel implements
      * @param sipMessage
      */
     public void processMessage(SIPMessage sipMessage) {
+        sipMessage.setRemoteAddress(this.peerAddress);
+        sipMessage.setRemotePort(this.getPeerPort());
 
         if (sipMessage instanceof SIPRequest) {
             SIPRequest sipRequest = (SIPRequest) sipMessage;
@@ -1010,17 +1018,6 @@ public class UDPMessageChannel extends MessageChannel implements
             mythread.interrupt();
             mythread = null;
         }
-    }
-
-    
-    public void setViaHost(String viaHost) {
-        this.myAddress = viaHost;
-        
-    }
-
- 
-    public void setViaPort(int viaPort) {
-        this.myPort = viaPort;
     }
 
 }

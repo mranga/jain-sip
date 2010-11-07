@@ -46,6 +46,8 @@ Where avaliable targets are:
 
         - javadoc -> Builds java documentation.
 
+        - javadoc-jain -> Builds java documentation only for the JAIN-SIP API.
+
         - compiletools -> Compiles the tools directory.
 
         - compileexamples -> Compiles the examples directory.

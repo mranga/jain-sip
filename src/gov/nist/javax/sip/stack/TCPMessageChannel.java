@@ -78,7 +78,7 @@ import javax.sip.message.Response;
  * 
  * @author M. Ranganathan <br/>
  * 
- * @version 1.2 $Revision: 1.77 $ $Date: 2010/08/06 20:55:57 $
+ * @version 1.2 $Revision: 1.80 $ $Date: 2010/10/28 03:20:37 $
  */
 public class TCPMessageChannel extends MessageChannel implements
         SIPMessageListener, Runnable, RawMessageChannel {
@@ -200,14 +200,7 @@ public class TCPMessageChannel extends MessageChannel implements
 
     }
     
-    public void setViaHost(String viaAddress) {
-        this.myAddress = viaAddress;
-    }
-    
-    public void setViaPort(int viaPort) {
-        this.myPort = viaPort;
-    }
-
+ 
     /**
      * Returns "true" as this is a reliable transport.
      */
@@ -555,6 +548,8 @@ public class TCPMessageChannel extends MessageChannel implements
 
                 return;
             }
+            sipMessage.setRemoteAddress(this.peerAddress);
+            sipMessage.setRemotePort(this.getPeerPort());
 
             ViaList viaList = sipMessage.getViaHeaders();
             // For a request
@@ -598,15 +593,17 @@ public class TCPMessageChannel extends MessageChannel implements
                 // Use this for outgoing messages as well.
                 if (!this.isCached && mySock != null) { // self routing makes
                                                         // mySock=null
-                                                        // https://jain-sip.dev.java.net/issues/show_bug.cgi?id=297
-                    ((TCPMessageProcessor) this.messageProcessor)
-                            .cacheMessageChannel(this);
+                                                        // https://jain-sip.dev.java.net/issues/show_bug.cgi?id=297                    
                     this.isCached = true;
                     int remotePort = ((java.net.InetSocketAddress) mySock
                             .getRemoteSocketAddress()).getPort();
                     String key = IOHandler.makeKey(mySock.getInetAddress(),
                             remotePort);
                     sipStack.ioHandler.putSocket(key, mySock);
+                    // since it can close the socket it needs to be after the mySock usage otherwise
+                    // it the socket will be disconnected and NPE will be thrown in some edge cases
+                    ((TCPMessageProcessor) this.messageProcessor)
+                            .cacheMessageChannel(this);
                 }
             }
 

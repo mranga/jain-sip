@@ -1,15 +1,16 @@
 package test.unit.gov.nist.javax.sip.stack;
 
 import gov.nist.javax.sip.DialogExt;
-import gov.nist.javax.sip.SipProviderExt;
-import gov.nist.javax.sip.message.SIPMessage;
-import gov.nist.javax.sip.message.SIPRequest;
-import gov.nist.javax.sip.stack.MessageChannel;
-import gov.nist.javax.sip.stack.SIPMessageValve;
+import gov.nist.javax.sip.stack.CallAnalysisInterceptor;
+import gov.nist.javax.sip.stack.CallAnalyzer;
+import gov.nist.javax.sip.stack.CallAnalyzer.MetricAnalysisConfiguration;
+import gov.nist.javax.sip.stack.CallAnalyzer.MetricReference;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Properties;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 import javax.sip.ClientTransaction;
 import javax.sip.Dialog;
@@ -44,16 +45,57 @@ import javax.sip.message.MessageFactory;
 import javax.sip.message.Request;
 import javax.sip.message.Response;
 
+
 import junit.framework.TestCase;
 
-/**
- * Test for SIP_MESSAGE_VALVE callback
- * 
- * @author Vladimir Ralev <vralev@redhat.com>
- *
- */
-public class SIPMessageValveTest extends TestCase {
-
+public class SIPEventInterceptorTest extends TestCase{
+	static int count;
+	static int stuck = 50;
+	public void testCallAnalyzerConcurrencyAndLeaks() throws Exception {
+		ExecutorService ex = Executors.newFixedThreadPool(400);
+		final CallAnalyzer tp = new CallAnalyzer();
+		final MetricReference sec = new MetricReference("sec");
+		MetricReference se1c = new MetricReference("se111c");
+		tp.configure(sec, new MetricAnalysisConfiguration(10,500,500));
+		tp.startAnalysis(sec);
+		tp.startAnalysis(se1c);
+		Runnable r = new Runnable() {
+			
+			public void run() {
+				tp.enter(sec);
+				try {
+					if(++count % 10000==0) {
+						System.out.println("Avg " + tp.getMetricStats(sec).averageTime);
+						Thread.sleep(1000);
+					}
+					
+					Thread.sleep(stuck);
+					
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				tp.leave(sec);
+			}
+		};
+		for(int q=0; q<200000; q++) {
+			ex.execute(r);
+		}
+		
+		System.out.println("size:" + tp.getNumberOfThreads());
+		//Thread.sleep(5000);
+		ex.shutdown();
+		ex.awaitTermination(60, TimeUnit.SECONDS);
+		ex.shutdownNow();
+		ex = null;
+		System.gc();
+		System.gc();Thread.sleep(1000);
+		System.out.println("size:" + tp.getNumberOfThreads());
+		
+		assertTrue(Math.abs(tp.getMetricStats(sec).averageTime - stuck)<10); // wrong avg time
+		assertEquals(0, tp.getNumberOfThreads()); // Memory leaking
+	}
+	
     public class Shootme implements SipListener {
 
         private  AddressFactory addressFactory;
@@ -251,7 +293,7 @@ public class SIPMessageValveTest extends TestCase {
                     "shootmelog.txt");
             properties.setProperty("gov.nist.javax.sip.AUTOMATIC_DIALOG_ERROR_HANDLING", "false");
             properties.setProperty("javax.sip.AUTOMATIC_DIALOG_SUPPORT", "off");
-            properties.setProperty("gov.nist.javax.sip.SIP_MESSAGE_VALVE", SIPMessageValveImpl.class.getCanonicalName());
+            properties.setProperty("gov.nist.javax.sip.SIP_EVENT_INTERCEPTOR", CallAnalysisInterceptor.class.getName());
 
             try {
                 // Create SipStack object
@@ -368,11 +410,16 @@ public class SIPMessageValveTest extends TestCase {
         
         public void processResponse(ResponseEvent responseReceivedEvent) {
         	lastResponseCode = responseReceivedEvent.getResponse().getStatusCode();
-            if ( responseReceivedEvent.getResponse().getStatusCode() != 603) {
-
-                fail("Expected 603 here from the valve. Got " + responseReceivedEvent.getResponse());
-            }
-
+        	try {
+        		if(responseReceivedEvent.getResponse().getStatusCode() == 200) {
+        			Request r = responseReceivedEvent.getClientTransaction().createAck();
+        			sipProvider.sendRequest(r);
+        		}
+        		//responseReceivedEvent.getClientTransaction().sendRequest(r);
+        	} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }
 
         public void processTimeout(javax.sip.TimeoutEvent timeoutEvent) {
@@ -417,7 +464,7 @@ public class SIPMessageValveTest extends TestCase {
             properties.setProperty("gov.nist.javax.sip.TRACE_LEVEL", "DEBUG");
             properties.setProperty("javax.sip.AUTOMATIC_DIALOG_SUPPORT", "off");
             properties.setProperty("gov.nist.javax.sip.AUTOMATIC_DIALOG_ERROR_HANDLING","false");
-            properties.setProperty("gov.nist.javax.sip.SIP_MESSAGE_VALVE", SIPMessageValveImpl.class.getCanonicalName());
+            properties.setProperty("gov.nist.javax.sip.SIP_EVENT_INTERCEPTOR", CallAnalysisInterceptor.class.getName());
 
             try {
                 // Create SipStack object
@@ -592,21 +639,12 @@ public class SIPMessageValveTest extends TestCase {
         }
     }
 
-    private test.unit.gov.nist.javax.sip.stack.SIPMessageValveTest.Shootme shootme;
-    private test.unit.gov.nist.javax.sip.stack.SIPMessageValveTest.Shootist shootist;
+    private Shootme shootme;
+    private Shootist shootist;
 
-    public void setUp() {
-        this.shootme = new Shootme();
+    public void testInterceptor() {
+    	this.shootme = new Shootme();
         this.shootist = new Shootist();
-
-
-    }
-    public void tearDown() {
-        shootist.terminate();
-        shootme.terminate();
-    }
-
-    public void testSipMessageValve() {
         this.shootme.init();
         this.shootist.init();
         try {
@@ -614,10 +652,9 @@ public class SIPMessageValveTest extends TestCase {
         } catch (Exception ex) {
 
         }
-        if(this.shootist.lastResponseCode != 603) fail("We expected 603");
-        if(SIPMessageValveImpl.lastResponseCode != 603) fail("We expected 603");
-        assertTrue(SIPMessageValveImpl.inited);
+        assertTrue(shootme.acks>0);
+        shootist.terminate();
+        shootme.terminate();
     }
-
 
 }
