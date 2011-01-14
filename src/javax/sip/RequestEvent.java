@@ -124,6 +124,11 @@ public class RequestEvent extends EventObject {
     }
 
   
+    /**
+     * Set the remote IP address.
+     * This method is only for use by implementations.
+     * @since 2.0
+     */
 
     public void setRemoteIpAddress(String remoteIpAddress) {
         this.remoteIpAddress = remoteIpAddress;

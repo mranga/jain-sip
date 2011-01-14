@@ -25,9 +25,12 @@ g * Conditions Of Use
  */
 package gov.nist.javax.sip.stack;
 
+import gov.nist.core.CommonLogger;
 import gov.nist.core.HostPort;
 import gov.nist.core.InternalErrorHandler;
 import gov.nist.core.LogWriter;
+import gov.nist.core.ServerLogger;
+import gov.nist.core.StackLogger;
 import gov.nist.javax.sip.SIPConstants;
 import gov.nist.javax.sip.ServerTransactionExt;
 import gov.nist.javax.sip.SipProviderImpl;
@@ -168,13 +171,13 @@ import javax.sip.message.Response;
  *
  * </pre>
  *
- * @version 1.2 $Revision: 1.148 $ $Date: 2010/10/25 18:55:01 $
+ * @version 1.2 $Revision: 1.150 $ $Date: 2010/12/02 22:04:15 $
  * @author M. Ranganathan
  *
  */
 public class SIPServerTransaction extends SIPTransaction implements ServerRequestInterface,
         javax.sip.ServerTransaction, ServerTransactionExt {
-
+	private static StackLogger logger = CommonLogger.getLogger(SIPServerTransaction.class);
 	public static final String CONTENT_TYPE_APPLICATION = "application";
 	public static final String CONTENT_SUBTYPE_SDP = "sdp";
     // force the listener to see transaction
@@ -188,7 +191,7 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
 
     private SIPDialog dialog;
     // jeand needed because we nullify the dialog ref early and keep only the dialogId to save on mem and help GC
-    private String dialogId;
+    protected String dialogId;
 
     // the unacknowledged SIPResponse
 
@@ -333,7 +336,7 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
 
                 }
             } catch (Exception ex) {
-                sipStack.getStackLogger().logError("unexpected exception", ex);
+                logger.logError("unexpected exception", ex);
             }
         }
     }
@@ -346,8 +349,8 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
     class SendTrying extends SIPStackTimerTask {
 
         protected SendTrying() {
-            if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG))
-                sipStack.getStackLogger().logDebug("scheduled timer for " + SIPServerTransaction.this);
+            if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG))
+                logger.logDebug("scheduled timer for " + SIPServerTransaction.this);
 
         }
 
@@ -357,18 +360,18 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
             int realState = serverTransaction.getRealState();
 
             if (realState < 0 || TransactionState._TRYING == realState) {
-                if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG))
-                    sipStack.getStackLogger().logDebug(" sending Trying current state = "
+                if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG))
+                    logger.logDebug(" sending Trying current state = "
                             + serverTransaction.getRealState());
                 try {
                     serverTransaction.sendMessage(serverTransaction.getOriginalRequest()
                             .createResponse(100, "Trying"));
-                    if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG))
-                        sipStack.getStackLogger().logDebug(" trying sent "
+                    if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG))
+                        logger.logDebug(" trying sent "
                                 + serverTransaction.getRealState());
                 } catch (IOException ex) {
-                    if (sipStack.isLoggingEnabled())
-                        sipStack.getStackLogger().logError("IO error sending  TRYING");
+                    if (logger.isLoggingEnabled())
+                        logger.logError("IO error sending  TRYING");
                 }
             }
 
@@ -378,8 +381,8 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
     class TransactionTimer extends SIPStackTimerTask {
 
         public TransactionTimer() {
-            if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
-                sipStack.getStackLogger().logDebug("TransactionTimer() : " + getTransactionId());
+            if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
+                logger.logDebug("TransactionTimer() : " + getTransactionId());
             }
 
         }
@@ -428,9 +431,9 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
      *
      */
 
-    private void sendResponse(SIPResponse transactionResponse) throws IOException {
-    	if ( sipStack.getStackLogger().isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
-    		sipStack.getStackLogger().logDebug("sipServerTransaction::sendResponse " + transactionResponse.getFirstLine());
+    protected void sendResponse(SIPResponse transactionResponse) throws IOException {
+    	if ( logger.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
+    		logger.logDebug("sipServerTransaction::sendResponse " + transactionResponse.getFirstLine());
     	}
         try {
             // RFC18.2.2. Sending Responses
@@ -540,9 +543,9 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
         }        
         // Only one outstanding request for a given server tx.
 
-        if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
-            sipStack.getStackLogger().logDebug("Creating Server Transaction" + this.getBranchId());
-            sipStack.getStackLogger().logStackTrace();
+        if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
+            logger.logDebug("Creating Server Transaction" + this.getBranchId());
+            logger.logStackTrace();
         }
 
     }
@@ -744,9 +747,9 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
         // transaction at a time. For a given server transaction
         // the listener sees only one event at a time.
 
-        if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
-            sipStack.getStackLogger().logDebug("processRequest: " + transactionRequest.getFirstLine());
-            sipStack.getStackLogger().logDebug("tx state = " + this.getRealState());
+        if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
+            logger.logDebug("processRequest: " + transactionRequest.getFirstLine());
+            logger.logDebug("tx state = " + this.getRealState());
         }
 
         try {
@@ -798,8 +801,8 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
                 } else {
                     // According to RFC3261 Application should not Ack in
                     // CONFIRMED state
-                    if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
-                        sipStack.getStackLogger().logDebug("ACK received for server Tx "
+                    if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
+                        logger.logDebug("ACK received for server Tx "
                                 + this.getTransactionId() + " not delivering to application!");
 
                     }
@@ -827,8 +830,8 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
                     else
                         this.semRelease();
                 }
-                if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG))
-                	sipStack.getStackLogger().logDebug("completed processing retransmitted request : "
+                if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG))
+                	logger.logDebug("completed processing retransmitted request : "
                         + transactionRequest.getFirstLine() + this + " txState = "
                         + this.getState() + " lastResponse = " + this.lastResponseAsBytes);
                 return;
@@ -870,8 +873,8 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
                     }
 
                 } else if (transactionRequest.getMethod().equals(Request.CANCEL)) {
-                    if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG))
-                        sipStack.getStackLogger().logDebug("Too late to cancel Transaction");
+                    if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG))
+                        logger.logDebug("Too late to cancel Transaction");
                     this.semRelease();
                     // send OK and just ignore the CANCEL.
                     try {
@@ -881,13 +884,13 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
                         // just ignore the IOException.
                     }
                 }
-                if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG))
-                	sipStack.getStackLogger().logDebug("Dropping request " + getRealState());
+                if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG))
+                	logger.logDebug("Dropping request " + getRealState());
             }
 
         } catch (IOException e) {
-        	if (sipStack.isLoggingEnabled())
-        		sipStack.getStackLogger().logError("IOException " ,e);
+        	if (logger.isLoggingEnabled())
+        		logger.logError("IOException " ,e);
             this.semRelease();
             this.raiseIOExceptionEvent();
         }
@@ -901,8 +904,8 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
      * @param messageToSend Response to process and send.
      */
     public void sendMessage(SIPMessage messageToSend) throws IOException {
-        if ( sipStack.getStackLogger().isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
-            sipStack.getStackLogger().logDebug("sipServerTransaction::sendMessage " + messageToSend.getFirstLine());
+        if ( logger.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
+            logger.logDebug("sipServerTransaction::sendMessage " + messageToSend.getFirstLine());
         }
         // Message typecast as a response
         final SIPResponse  transactionResponse = (SIPResponse) messageToSend;
@@ -924,7 +927,7 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
                 if (!originalRequestHasPort)
                     transactionResponse.getTopmostVia().removePort();
             } catch (ParseException ex) {
-               sipStack.getStackLogger().logError("UnexpectedException",ex);
+               logger.logError("UnexpectedException",ex);
                throw new IOException("Unexpected exception");
             }
 
@@ -937,8 +940,8 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
             }
 
             if(!checkStateTimers(statusCode)) {
-            	if (sipStack.getStackLogger().isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
-            		sipStack.getStackLogger().logDebug("checkStateTimers returned false -- not sending message");
+            	if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
+            		logger.logDebug("checkStateTimers returned false -- not sending message");
             	}
             	return;
             }
@@ -946,8 +949,8 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
             try {
                 // Send the message to the client.
                 // Record the last message sent out.
-                if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
-                    sipStack.getStackLogger().logDebug(
+                if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
+                    logger.logDebug(
                             "sendMessage : tx = " + this + " getState = " + this.getState());
                 }
                 lastResponse = transactionResponse;
@@ -1146,8 +1149,8 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
     protected void fireRetransmissionTimer() {
 
         try {
-            if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
-                sipStack.getStackLogger().logDebug("fireRetransmissionTimer() -- " + this + " state " + getState());
+            if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
+                logger.logDebug("fireRetransmissionTimer() -- " + this + " state " + getState());
             }
             // Resend the last response sent by this transaction
             if (isInviteTransaction() && (lastResponse != null || lastResponseAsBytes != null)) {
@@ -1167,8 +1170,8 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
 
             }
         } catch (IOException e) {
-            if (sipStack.isLoggingEnabled())
-                sipStack.getStackLogger().logException(e);
+            if (logger.isLoggingEnabled())
+                logger.logException(e);
             raiseErrorEvent(SIPTransactionErrorEvent.TRANSPORT_ERROR);
 
         }
@@ -1180,8 +1183,8 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
     public void resendLastResponseAsBytes() throws IOException {
                     
     	if(lastResponse != null) {
-    	    if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
-                sipStack.getStackLogger().logDebug("resend last response " + lastResponse);
+    	    if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
+                logger.logDebug("resend last response " + lastResponse);
             }
     		sendMessage(lastResponse);
         } else if (lastResponseAsBytes != null) {
@@ -1189,10 +1192,22 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
 //		    	if(!checkStateTimers(lastResponseStatusCode)) {
 //		        	return;
 //		        }
-            if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
-                sipStack.getStackLogger().logDebug("resend last response " + new String(lastResponseAsBytes));
+            if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
+                logger.logDebug("resend last response " + new String(lastResponseAsBytes));
             }
+            
 	    	if(isReliable()) {
+	    	    if (logger.isLoggingEnabled(ServerLogger.TRACE_MESSAGES)) {
+	    	        // Issue 343 : we have to log the retransmission 
+	    	        try {	    	            
+    	    	        SIPResponse lastReparsedResponse = (SIPResponse) sipStack.getMessageParserFactory().createMessageParser(sipStack).parseSIPMessage(lastResponseAsBytes, true, false, null);
+    	    	        getMessageChannel().logMessage(lastReparsedResponse, this.getPeerInetAddress(), this.getPeerPort(), System.currentTimeMillis());
+    	    	    } catch (ParseException e) {
+                        if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
+                            logger.logDebug("couldn't reparse last response " + new String(lastResponseAsBytes));
+                        }
+                    }   
+	    	    }
 	    		getMessageChannel().sendMessage(lastResponseAsBytes, this.getPeerInetAddress(), this.getPeerPort(), false);
 	    	} else {
 	    		Hop hop = sipStack.addressResolver.resolveAddress(new HopImpl(lastResponseHost, lastResponsePort,
@@ -1202,6 +1217,17 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
 	                    .createRawMessageChannel(this.getSipProvider().getListeningPoint(
 	                            hop.getTransport()).getIPAddress(), this.getPort(), hop);
 	            if (messageChannel != null) {
+	                if (logger.isLoggingEnabled(ServerLogger.TRACE_MESSAGES)) {
+	                    // Issue 343 : we have to log the retransmission
+                        try {
+                            SIPResponse lastReparsedResponse = (SIPResponse) sipStack.getMessageParserFactory().createMessageParser(sipStack).parseSIPMessage(lastResponseAsBytes, true, false, null);
+                            getMessageChannel().logMessage(lastReparsedResponse, this.getPeerInetAddress(), this.getPeerPort(), System.currentTimeMillis());
+                        } catch (ParseException e) {
+                            if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
+                                logger.logDebug("couldn't reparse last response " + new String(lastResponseAsBytes));
+                            }
+                        }	                                 
+	                }
 	                messageChannel.sendMessage(lastResponseAsBytes, InetAddress.getByName(hop.getHost()), hop.getPort(), false);                                
 	            } else {
 	                throw new IOException("Could not create a message channel for " + hop + " with source IP:Port "+
@@ -1216,8 +1242,8 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
         try {
         	resendLastResponseAsBytes();
         } catch (IOException e) {
-            if (sipStack.isLoggingEnabled())
-                sipStack.getStackLogger().logException(e);
+            if (logger.isLoggingEnabled())
+                logger.logException(e);
             this.setState(TransactionState._TERMINATED);
             raiseErrorEvent(SIPTransactionErrorEvent.TRANSPORT_ERROR);
 
@@ -1229,14 +1255,14 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
      */
     protected void fireTimeoutTimer() {
 
-        if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG))
-            sipStack.getStackLogger().logDebug("SIPServerTransaction.fireTimeoutTimer this = " + this
+        if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG))
+            logger.logDebug("SIPServerTransaction.fireTimeoutTimer this = " + this
                     + " current state = " + this.getRealState() + " method = "
                     + this.getMethod());
 
         if (isInviteTransaction() && sipStack.removeTransactionPendingAck(this) ) {
-            if ( sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG) ) {
-                sipStack.getStackLogger().logDebug("Found tx pending ACK - returning");
+            if ( logger.isLoggingEnabled(LogWriter.TRACE_DEBUG) ) {
+                logger.logDebug("Found tx pending ACK - returning");
             }
             return;
             
@@ -1392,7 +1418,7 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
                            throw new SipException("cannot send response -- unacked povisional");
                        }
                     } catch (InterruptedException ex) {
-                        sipStack.getStackLogger().logError ("Interrupted acuqiring PRACK sem");
+                        logger.logError ("Interrupted acuqiring PRACK sem");
                         throw new SipException("Cannot aquire PRACK sem");
                     }
                   
@@ -1418,8 +1444,8 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
                         // the user.
                         sipResponse.getTo().setTag(Utils.getInstance().generateTag());
                     } else if (dialog.getLocalTag() != null && sipResponse.getToTag() == null) {
-                    	if ( sipStack.getStackLogger().isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
-                    		sipStack.getStackLogger().logDebug("assigning toTag : serverTransaction = " + this + " dialog " 
+                    	if ( logger.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
+                    		logger.logDebug("assigning toTag : serverTransaction = " + this + " dialog " 
                     				+ dialog + " tag = " + dialog.getLocalTag());
                     	}
                         sipResponse.setToTag(dialog.getLocalTag());
@@ -1451,8 +1477,8 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
             } else if (fromTag != null) {
                 sipResponse.getFrom().setTag(fromTag);
             } else {
-                if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG))
-                    sipStack.getStackLogger().logDebug("WARNING -- Null From tag in request!!");
+                if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG))
+                    logger.logDebug("WARNING -- Null From tag in request!!");
             }
             // See if the dialog needs to be inserted into the dialog table
             // or if the state of the dialog needs to be changed.
@@ -1496,14 +1522,14 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
             }
 
         } catch (IOException ex) {
-            if (sipStack.isLoggingEnabled())
-                sipStack.getStackLogger().logException(ex);
+            if (logger.isLoggingEnabled())
+                logger.logException(ex);
             this.setState(TransactionState._TERMINATED);
             raiseErrorEvent(SIPTransactionErrorEvent.TRANSPORT_ERROR);
             throw new SipException(ex.getMessage());
         } catch (java.text.ParseException ex1) {
-            if (sipStack.isLoggingEnabled())
-                sipStack.getStackLogger().logException(ex1);
+            if (logger.isLoggingEnabled())
+                logger.logException(ex1);
             this.setState(TransactionState._TERMINATED);
             throw new SipException(ex1.getMessage());
         }
@@ -1576,16 +1602,16 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
     protected void startTransactionTimerJ(long time) {
 	        if (this.transactionTimerStarted.compareAndSet(false, true)) {
 	        	if (sipStack.getTimer() != null && sipStack.getTimer().isStarted() ) {
-	        		if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
-	                    sipStack.getStackLogger().logDebug("starting TransactionTimerJ() : " + getTransactionId() + " time " + time);
+	        		if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
+	                    logger.logDebug("starting TransactionTimerJ() : " + getTransactionId() + " time " + time);
 	                }
 	                // The timer is set to null when the Stack is
 	                // shutting down.
 	        		SIPStackTimerTask task = new SIPStackTimerTask () {                                                                            
                         
                         public void runTask() {
-                            if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
-                               sipStack.getStackLogger().logDebug("executing TransactionTimerJ() : " + getTransactionId());
+                            if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
+                               logger.logDebug("executing TransactionTimerJ() : " + getTransactionId());
                             }
                             fireTimeoutTimer();
                             cleanUp();
@@ -1631,8 +1657,8 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
      *      gov.nist.javax.sip.message.SIPMessage)
      */
     public void setDialog(SIPDialog sipDialog, String dialogId) {
-        if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG))
-            sipStack.getStackLogger().logDebug("setDialog " + this + " dialog = " + sipDialog);
+        if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG))
+            logger.logDebug("setDialog " + this + " dialog = " + sipDialog);
         this.dialog = sipDialog;
        	this.dialogId = dialogId;
         if (dialogId != null)
@@ -1862,14 +1888,14 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
     // jeand cleanup the state of the stx to help GC
     public void cleanUp() {
     	// Remove it from the set
-        if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG))
-            sipStack.getStackLogger().logDebug("removing" + this);
+        if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG))
+            logger.logDebug("removing" + this);
         
     	if(isReleaseReferences()) {
     		
 	    	// release the connection associated with this transaction.
-	        if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
-	            sipStack.getStackLogger().logDebug("cleanup : "
+	        if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
+	            logger.logDebug("cleanup : "
 	                    + getTransactionId());
 	        }
 	        // we keep the request in a byte array to be able to recreate it
@@ -1879,7 +1905,7 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
 					originalRequest = (SIPRequest) sipStack.getMessageParserFactory().createMessageParser(sipStack).parseSIPMessage(originalRequestBytes, true, false, null);
 //					originalRequestBytes = null;
 				} catch (ParseException e) {
-					sipStack.getStackLogger().logError("message " + originalRequestBytes + "could not be reparsed !");
+					logger.logError("message " + originalRequestBytes + "could not be reparsed !");
 				}
 			} else if (originalRequest != null && originalRequestBytes == null) {
 			    originalRequestBytes = originalRequest.encodeAsBytes(this.getTransport());
@@ -1915,11 +1941,11 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
 	            // Close the encapsulated socket if stack is configured
 	            close(); 
 	        } else {
-	            if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG)
+	            if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG)
 	                    && (!sipStack.cacheServerConnections)
 	                    && isReliable()) {
 	                int useCount = getMessageChannel().useCount;
-	                sipStack.getStackLogger().logDebug("Use Count = " + useCount);
+	                logger.logDebug("Use Count = " + useCount);
 	            }
 	        }
             // don't clean up because on sending 200 OK to CANCEL otherwise we try to start the transaction timer
@@ -1934,8 +1960,8 @@ public class SIPServerTransaction extends SIPTransaction implements ServerReques
     // clean up the state of the stx when it goes to completed or terminated to help GC
     protected void cleanUpOnTimer() {
     	if(isReleaseReferences()) {
-	    	if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
-	            sipStack.getStackLogger().logDebug("cleanup on timer : "
+	    	if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
+	            logger.logDebug("cleanup on timer : "
 	                    + getTransactionId());
 	        }
 	    	if(dialog != null && getMethod().equals(Request.CANCEL)) {

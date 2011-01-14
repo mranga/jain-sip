@@ -28,6 +28,8 @@
  *******************************************************************************/
 package gov.nist.javax.sip.stack;
 
+import gov.nist.core.CommonLogger;
+import gov.nist.core.LogLevels;
 import gov.nist.core.LogWriter;
 import gov.nist.core.StackLogger;
 import gov.nist.javax.sip.SipStackImpl;
@@ -65,6 +67,8 @@ import javax.net.ssl.SSLSocket;
  */
 
 public class IOHandler {
+	
+	private static StackLogger logger = CommonLogger.getLogger(IOHandler.class);
 
     private SipStackImpl sipStack;
 
@@ -197,10 +201,10 @@ public class IOHandler {
 
             SSLSocket sslsock = (SSLSocket) clientSock;
 
-            if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
-                sipStack.getStackLogger().logDebug(
+            if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
+                logger.logDebug(
                         "inaddr = " + dst);
-                sipStack.getStackLogger().logDebug(
+                logger.logDebug(
                         "port = " + dstPort);
             }
 
@@ -212,8 +216,8 @@ public class IOHandler {
             sslsock.setEnabledProtocols(sipStack.getEnabledProtocols());
             sslsock.startHandshake();
 
-            if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
-                this.sipStack.getStackLogger().logDebug(
+            if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
+                this.logger.logDebug(
                         "Handshake passed");
             }
 
@@ -227,8 +231,8 @@ public class IOHandler {
                 throw new IOException(ex.getMessage());
             }
 
-            if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
-                this.sipStack.getStackLogger().logDebug(
+            if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
+                this.logger.logDebug(
                         "TLS Security policy passed");
             }
 
@@ -261,16 +265,16 @@ public class IOHandler {
         int max_retry = isClient ? 2 : 1;
         // Server uses TCP transport. TCP client sockets are cached
         int length = bytes.length;
-        if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
-            sipStack.getStackLogger().logDebug(
+        if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
+            logger.logDebug(
                     "sendBytes " + transport + " inAddr "
                             + receiverAddress.getHostAddress() + " port = "
                             + contactPort + " length = " + length + " isClient " + isClient );
 
         }
-        if (sipStack.isLoggingEnabled()
+        if (logger.isLoggingEnabled(LogLevels.TRACE_INFO)
                 && sipStack.isLogStackTraceOnMessageSend()) {
-            sipStack.getStackLogger().logStackTrace(StackLogger.TRACE_INFO);
+            logger.logStackTrace(StackLogger.TRACE_INFO);
         }
         if (transport.compareToIgnoreCase(TCP) == 0) {
             String key = makeKey(receiverAddress, contactPort);
@@ -284,10 +288,10 @@ public class IOHandler {
                 clientSock = getSocket(key);
                 while (retry_count < max_retry) {
                     if (clientSock == null) {
-                        if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
-                            sipStack.getStackLogger().logDebug(
+                        if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
+                            logger.logDebug(
                                     "inaddr = " + receiverAddress);
-                            sipStack.getStackLogger().logDebug(
+                            logger.logDebug(
                                     "port = " + contactPort);
                         }
                         // note that the IP Address for stack may not be
@@ -310,14 +314,14 @@ public class IOHandler {
                             writeChunks(outputStream, bytes, length);
                             break;
                         } catch (IOException ex) {
-                            if (sipStack
+                            if (logger
                                     .isLoggingEnabled(LogWriter.TRACE_ERROR))
-                                sipStack.getStackLogger().logWarning(
+                                logger.logInfo(
                                         "IOException occured retryCount "
                                                 + retry_count);
-                            if (sipStack
+                            if (logger
                                     .isLoggingEnabled(LogWriter.TRACE_DEBUG))
-                                sipStack.getStackLogger().logDebug(
+                                logger.logDebug(
                                         "Removing and Closing socket");
                             // old connection is bad.
                             // remove from our table.
@@ -336,8 +340,8 @@ public class IOHandler {
                     }
                 }
             } catch (IOException ex) {
-                if (sipStack.isLoggingEnabled(LogWriter.TRACE_ERROR)) {
-                    sipStack.getStackLogger().logError(
+                if (logger.isLoggingEnabled(LogWriter.TRACE_ERROR)) {
+                    logger.logError(
                             "Problem sending: sendBytes " + transport
                                     + " inAddr "
                                     + receiverAddress.getHostAddress()
@@ -380,8 +384,8 @@ public class IOHandler {
                             .getViaPort());
                     clientSock = this.getSocket(key);
                     if (clientSock == null) {
-                        if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
-                            sipStack.getStackLogger().logDebug(
+                        if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
+                            logger.logDebug(
                                     "inaddr = " + receiverAddress +
                                     " port = " + contactPort);
                         }
@@ -393,8 +397,8 @@ public class IOHandler {
                         putSocket(key, clientSock);
                         return clientSock;
                     } else {
-                        if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
-                            sipStack.getStackLogger().logDebug(
+                        if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
+                            logger.logDebug(
                                     "sending to " + key );
                         }
                         try {
@@ -403,13 +407,13 @@ public class IOHandler {
                             writeChunks(outputStream, bytes, length);
                             return clientSock;
                         } catch (IOException ioe) {
-                            if (sipStack
+                            if (logger
                                     .isLoggingEnabled(LogWriter.TRACE_ERROR))
-                                sipStack.getStackLogger().logError(
+                                logger.logError(
                                         "IOException occured  ", ioe);
-                            if (sipStack
+                            if (logger
                                     .isLoggingEnabled(LogWriter.TRACE_DEBUG))
-                                sipStack.getStackLogger().logDebug(
+                                logger.logDebug(
                                         "Removing and Closing socket");
                             // old connection is bad.
                             // remove from our table.
@@ -423,7 +427,7 @@ public class IOHandler {
                         }
                     }
                 } else {
-                    sipStack.getStackLogger().logError("IOException occured at " , ex);
+                    logger.logError("IOException occured at " , ex);
                     throw ex;
                 }
             } finally {
@@ -432,10 +436,10 @@ public class IOHandler {
 
             if (clientSock == null) {
 
-                if (sipStack.isLoggingEnabled(LogWriter.TRACE_ERROR)) {
-                    sipStack.getStackLogger().logError(
+                if (logger.isLoggingEnabled(LogWriter.TRACE_ERROR)) {
+                    logger.logError(
                             this.socketTable.toString());
-                    sipStack.getStackLogger().logError(
+                    logger.logError(
                             "Could not connect to " + receiverAddress + ":"
                                     + contactPort);
                 }
@@ -464,10 +468,10 @@ public class IOHandler {
                                         senderAddress);
                         SSLSocket sslsock = (SSLSocket) clientSock;
 
-                        if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
-                            sipStack.getStackLogger().logDebug(
+                        if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
+                            logger.logDebug(
                                     "inaddr = " + receiverAddress);
-                            sipStack.getStackLogger().logDebug(
+                            logger.logDebug(
                                     "port = " + contactPort);
                         }
                         HandshakeCompletedListener listner = new HandshakeCompletedListenerImpl(
@@ -478,8 +482,8 @@ public class IOHandler {
                         sslsock.setEnabledProtocols(sipStack
                                 .getEnabledProtocols());
                         sslsock.startHandshake();
-                        if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
-                            this.sipStack.getStackLogger().logDebug(
+                        if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
+                            this.logger.logDebug(
                                     "Handshake passed");
                         }
                         // allow application to enforce policy by validating the
@@ -495,8 +499,8 @@ public class IOHandler {
                             throw new IOException(ex.getMessage());
                         }
 
-                        if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
-                            this.sipStack.getStackLogger().logDebug(
+                        if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
+                            this.logger.logDebug(
                                     "TLS Security policy passed");
                         }
                         OutputStream outputStream = clientSock
@@ -511,14 +515,14 @@ public class IOHandler {
                             writeChunks(outputStream, bytes, length);
                             break;
                         } catch (IOException ex) {
-                            if (sipStack.isLoggingEnabled())
-                                sipStack.getStackLogger().logException(ex);
+                            if (logger.isLoggingEnabled())
+                                logger.logException(ex);
                             // old connection is bad.
                             // remove from our table.
                             removeSocket(key);
 
                             try {
-                                sipStack.getStackLogger().logDebug(
+                                logger.logDebug(
                                         "Closing socket");
                                 clientSock.close();
                             } catch (Exception e) {
@@ -545,8 +549,8 @@ public class IOHandler {
                             .getViaPort());
                     clientSock = this.getSocket(key);
                     if (clientSock == null) {
-                        if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
-                            sipStack.getStackLogger().logDebug(
+                        if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
+                            logger.logDebug(
                                     "inaddr = " + receiverAddress +
                                     " port = " + contactPort);
                         }
@@ -562,16 +566,16 @@ public class IOHandler {
                         sslsock.setEnabledProtocols(sipStack
                                 .getEnabledProtocols());
                         sslsock.startHandshake();
-                        if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
-                            this.sipStack.getStackLogger().logDebug(
+                        if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
+                            this.logger.logDebug(
                                     "Handshake passed");
                         }
                         writeChunks(outputStream, bytes, length);
                         putSocket(key, clientSock);
                         return sslsock;
                     } else {
-                        if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
-                            sipStack.getStackLogger().logDebug(
+                        if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
+                            logger.logDebug(
                                     "sending to " + key );
                         }
                         try {
@@ -580,13 +584,13 @@ public class IOHandler {
                             writeChunks(outputStream, bytes, length);
                             return clientSock;
                         } catch (IOException ioe) {
-                            if (sipStack
+                            if (logger
                                     .isLoggingEnabled(LogWriter.TRACE_ERROR))
-                                sipStack.getStackLogger().logError(
+                                logger.logError(
                                         "IOException occured  ", ioe);
-                            if (sipStack
+                            if (logger
                                     .isLoggingEnabled(LogWriter.TRACE_DEBUG))
-                                sipStack.getStackLogger().logDebug(
+                                logger.logDebug(
                                         "Removing and Closing socket");
                             // old connection is bad.
                             // remove from our table.
@@ -652,8 +656,8 @@ public class IOHandler {
             creationSemaphore = socketCreationMap.putIfAbsent(key, newCreationSemaphore);
             if(creationSemaphore == null) {
                 creationSemaphore = newCreationSemaphore;       
-                if (sipStack.getStackLogger().isLoggingEnabled(StackLogger.TRACE_DEBUG)) {
-                    sipStack.getStackLogger().logDebug("new Semaphore added for key " + key);
+                if (logger.isLoggingEnabled(StackLogger.TRACE_DEBUG)) {
+                    logger.logDebug("new Semaphore added for key " + key);
                 }
             }
         }
@@ -673,8 +677,8 @@ public class IOHandler {
      * Close all the cached connections.
      */
     public void closeAll() {
-        if (sipStack.isLoggingEnabled(LogWriter.TRACE_DEBUG))
-            sipStack.getStackLogger()
+        if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG))
+            logger
                     .logDebug(
                             "Closing " + socketTable.size()
                                     + " sockets from IOHandler");

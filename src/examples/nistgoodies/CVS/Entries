@@ -1,2 +1,7 @@
 /README.txt/1.2/Mon Dec 11 03:44:27 2006//
-D
+D/configlogger////
+D/leakaudit////
+D/match////
+D/messagevalve////
+D/pluggablelogger////
+D/threadaudit////
