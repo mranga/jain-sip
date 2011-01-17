@@ -385,21 +385,30 @@ class EventScanner implements Runnable {
             }
 
         } else if (sipEvent instanceof DialogTimeoutEvent) {
-            try {
-                // Check for null as listener could be removed.
-                if (sipListener != null && sipListener instanceof SipListenerExt) {
-                    ((SipListenerExt)sipListener).processDialogTimeout((DialogTimeoutEvent) sipEvent);                    
-                } else {
-                    if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
-                        logger.logDebug("DialogTimeoutEvent not delivered" );
-                    }
-                }
-            } catch (Exception ex) {
-                // We cannot let this thread die under any
-                // circumstances. Protect ourselves by logging
-                // errors to the console but continue.
-                logger.logException(ex);
-            }
+        	try {
+        		// Check for null as listener could be removed.
+        		if (sipListener != null) {
+        			try {
+        				// Accept this error for binary backwards compatibility.
+        				((SipListenerExt)sipListener).processDialogTimeout((DialogTimeoutEvent) sipEvent); 			
+        			} catch (AbstractMethodError ame) {
+        				if (logger.isLoggingEnabled())
+        					logger.logWarning(
+        							"Unable to call sipListener.processDialogTimeout");
+        			} catch (Exception ex) {
+        				logger.logException(ex);
+        			}
+        		} else {
+        			if (logger.isLoggingEnabled(LogWriter.TRACE_DEBUG)) {
+        				logger.logDebug("DialogTimeoutEvent not delivered" );
+        			}
+        		}
+        	} catch (Exception ex) {
+        		// We cannot let this thread die under any
+        		// circumstances. Protect ourselves by logging
+        		// errors to the console but continue.
+        		logger.logException(ex);
+        	}
 
         } else if (sipEvent instanceof IOExceptionEvent) {
             try {
