@@ -279,4 +279,10 @@ public class Subscriber implements SipListener {
 
         System.out.println("Transaction Time out");
     }
+
+	@Override
+	public void processDialogTimeout(DialogTimeoutEvent timeoutEvent) {
+		// TODO Auto-generated method stub
+		
+	}
 }

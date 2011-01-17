@@ -214,4 +214,10 @@ public class LeakingApp implements SipListener {
     public Set getActiveCallIDs() {
         return dialogs.keySet();
     }
+
+	@Override
+	public void processDialogTimeout(DialogTimeoutEvent timeoutEvent) {
+		// TODO Auto-generated method stub
+		
+	}
 }

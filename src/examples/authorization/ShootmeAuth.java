@@ -278,4 +278,9 @@ public class ShootmeAuth implements SipListener {
 
     }
 
+	@Override
+	public void processDialogTimeout(DialogTimeoutEvent timeoutEvent) {
+		System.out.println("Dialog timed out");		
+	}
+
 }

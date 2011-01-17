@@ -500,6 +500,14 @@ public class Shootist  implements SipListener {
         logger.info("Dialog Terminated Event!");
 
     }
+    
+    
+    public void processDialogTimeout(DialogTimeoutEvent timeoutEvent) {
+		System.out.println("Unexpected DialogTimeout event");
+		System.exit(0);
+		
+	}
+   
 
     /////////////////////////////////////////////////////////////////////////////////
     // main method
@@ -517,5 +525,6 @@ public class Shootist  implements SipListener {
         }
 
     }
+
 
 }

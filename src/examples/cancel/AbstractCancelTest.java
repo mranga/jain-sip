@@ -9,6 +9,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.sip.DialogTerminatedEvent;
+import javax.sip.DialogTimeoutEvent;
 import javax.sip.IOExceptionEvent;
 import javax.sip.RequestEvent;
 import javax.sip.ResponseEvent;
@@ -132,6 +133,11 @@ public abstract class AbstractCancelTest extends TestCase implements SipListener
         getSipListener(dialogTerminatedEvent).processDialogTerminated(
                 dialogTerminatedEvent);
 
+    }
+    
+    @Override
+    public void processDialogTimeout( DialogTimeoutEvent dte) {
+    	
     }
 
 }

@@ -38,7 +38,12 @@ import java.util.EventObject;
  */
 public class DialogTimeoutEvent extends EventObject {
 	private static final long serialVersionUID = -2514000059989311925L;
-	public enum Reason {AckNotReceived, AckNotSent,ReInviteTimeout,EarlyStateTimeout,CannotAcquireAckSemaphoreForOk};	    
+	public enum Reason {
+        AckNotReceived,    // UAC ACK is not seen after OK is sent
+        AckNotSent, 	   // UAS did not send ACK after receiving OK. 
+        ReInviteTimeout,   // B2BUACould not send re-INVITE (blocked waiting for prior Transaction to complete). 
+        EarlyStateTimeout  // Dialog stuck in early state.
+	};	
 	/**
      * Constructs a DialogTerminatedEvent to indicate a dialog
      * timeout.

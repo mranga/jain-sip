@@ -335,4 +335,9 @@ public class Phone implements SipListener {
 
     }
 
+	@Override
+	public void processDialogTimeout(DialogTimeoutEvent timeoutEvent) {
+		System.out.println("Unexpected DialogTimeoutEvent");
+	}
+
 }

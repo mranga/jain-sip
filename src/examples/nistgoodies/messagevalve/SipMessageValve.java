@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 import javax.sip.DialogTerminatedEvent;
+import javax.sip.DialogTimeoutEvent;
 import javax.sip.IOExceptionEvent;
 import javax.sip.ListeningPoint;
 import javax.sip.PeerUnavailableException;
@@ -107,6 +108,12 @@ public class SipMessageValve implements SIPMessageValve {
         }
 
 		public void processIOException(IOExceptionEvent exceptionEvent) {
+			
+		}
+
+		@Override
+		public void processDialogTimeout(DialogTimeoutEvent timeoutEvent) {
+			// TODO Auto-generated method stub
 			
 		}
 

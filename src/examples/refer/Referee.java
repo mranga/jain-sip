@@ -434,4 +434,10 @@ public class Referee implements SipListener {
         logger.info("dialog terminated:" + dialogTerminatedEvent );
     }
 
+	
+	   public void processDialogTimeout(DialogTimeoutEvent timeoutEvent) {
+			System.out.println("Unexpected DialogTimeout event");
+			System.exit(0);
+			
+		}
 }

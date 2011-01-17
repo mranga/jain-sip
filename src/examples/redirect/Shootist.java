@@ -428,4 +428,11 @@ public class Shootist extends TestCase implements SipListener {
         assertTrue(this.byeReceived  && this.redirectReceived );
 
     }
+    
+    public void processDialogTimeout(DialogTimeoutEvent timeoutEvent) {
+		System.out.println("Unexpected DialogTimeout event");
+		System.exit(0);
+		
+	}
+	
 }

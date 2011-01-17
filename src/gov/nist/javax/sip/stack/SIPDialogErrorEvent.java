@@ -83,11 +83,11 @@ public class SIPDialogErrorEvent extends EventObject {
     		this.errorID = DIALOG_ACK_NOT_SENT_TIMEOUT;
     	} else if ( reason == DialogTimeoutEvent.Reason.ReInviteTimeout) {
     		this.errorID = DIALOG_REINVITE_TIMEOUT;
-    	} else if (reason == DialogTimeoutEvent.Reason.CannotAcquireAckSemaphoreForOk) {
-    		this.errorID = DIALOG_ERROR_INTERNAL_COULD_NOT_TAKE_ACK_SEM;
     	} else if ( reason == DialogTimeoutEvent.Reason.EarlyStateTimeout) {
     	    this.errorID = EARLY_STATE_TIMEOUT;
-    	}
+    	} else {
+            this.errorID = DIALOG_ERROR_INTERNAL_COULD_NOT_TAKE_ACK_SEM;
+        }
     }
 
     /**

@@ -86,8 +86,11 @@ public class Publisher implements SipListener {
     private Publisher() {
 
     }
-    public static void main(String[] args) {
-
-    }
-
+    
+    public void processDialogTimeout(DialogTimeoutEvent timeoutEvent) {
+		System.out.println("Unexpected event");
+		System.exit(0);
+		
+	}
+	
 }

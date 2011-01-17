@@ -19,7 +19,7 @@ import java.util.*;
  * is the guy that gets shot.
  *
  *@author Daniel Martinez
- *@author Ivelin Ivanov
+ *@author Carolyn Beeton
  */
 
 public class Shootist implements SipListener, TlsSecurityPolicy {
@@ -458,4 +458,15 @@ public class Shootist implements SipListener, TlsSecurityPolicy {
             throw new SecurityException("Certificate identity does not match requested domain");
         }
     }
+	@Override
+	public void processDialogTimeout(DialogTimeoutEvent timeoutEvent) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void enforceTlsPolicy(ClientTransaction transaction)
+			throws SecurityException {
+		// TODO Auto-generated method stub
+		
+	}
 }

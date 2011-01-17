@@ -11,6 +11,7 @@ import javax.sip.ClientTransaction;
 import javax.sip.Dialog;
 import javax.sip.DialogState;
 import javax.sip.DialogTerminatedEvent;
+import javax.sip.DialogTimeoutEvent;
 import javax.sip.IOExceptionEvent;
 import javax.sip.InvalidArgumentException;
 import javax.sip.ListeningPoint;
@@ -358,4 +359,10 @@ public class ShootistAuth implements SipListener {
         System.out.println("dialogTerminatedEvent");
 
     }
+
+	@Override
+	public void processDialogTimeout(DialogTimeoutEvent timeoutEvent) {
+		System.out.println("Dialog timed out event received");
+		
+	}
 }

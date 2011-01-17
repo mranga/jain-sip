@@ -11,6 +11,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.sip.DialogTerminatedEvent;
+import javax.sip.DialogTimeoutEvent;
 import javax.sip.IOExceptionEvent;
 import javax.sip.RequestEvent;
 import javax.sip.ResponseEvent;
@@ -161,5 +162,11 @@ public class ForkedInviteTest extends TestCase implements SipListener {
                 dialogTerminatedEvent);
 
     }
+
+	@Override
+	public void processDialogTimeout(DialogTimeoutEvent timeoutEvent) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

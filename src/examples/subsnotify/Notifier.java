@@ -355,5 +355,11 @@ public class Notifier implements SipListener {
         // TODO Auto-generated method stub
 
     }
+    
+    public void processDialogTimeout(DialogTimeoutEvent timeoutEvent) {
+		System.out.println("Unexpected DialogTimeout event");
+		System.exit(0);
+		
+	}
 
 }

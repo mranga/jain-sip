@@ -314,4 +314,10 @@ public class Referer implements SipListener {
 
         logger.info("Transaction Time out");
     }
+    public void processDialogTimeout(DialogTimeoutEvent timeoutEvent) {
+		System.out.println("Unexpected DialogTimeout event");
+		System.exit(0);
+		
+	}
+	
 }

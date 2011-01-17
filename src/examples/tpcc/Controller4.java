@@ -353,6 +353,7 @@ public class Controller4 implements SipListener {
                 "controllerlog.txt");
         properties.setProperty("gov.nist.javax.sip.TRACE_LEVEL", "DEBUG");
         properties.setProperty("gov.nist.javax.sip.LOG_MESSAGE_CONTENT", "true");
+        properties.setProperty("javax.sip.IS_BACK_TO_BACK_USER_AGENT", "true");
 
         logger.addAppender(new ConsoleAppender(new SimpleLayout()));
         logger.addAppender(new FileAppender(new SimpleLayout(),
@@ -434,5 +435,27 @@ public class Controller4 implements SipListener {
     public void processDialogTerminated(
             DialogTerminatedEvent dialogTerminatedEvent) {
         logger.info("dialogTerminatedEvent");
+    }
+    
+    @Override
+    public void processDialogTimeout(DialogTimeoutEvent timeoutEvent) {
+    	try {
+    		Dialog dialog1 = inviteFirst.getDialog();
+    		Dialog dialog2 = inviteSecond.getDialog();
+    		if ( dialog1.getState() != DialogState.TERMINATED ) {
+    			Request bye = dialog1.createRequest(Request.BYE);
+    			ClientTransaction ctx = dialog1.getSipProvider().getNewClientTransaction(bye);
+    			dialog1.sendRequest(ctx);
+
+    		}
+    		if ( dialog2.getState() != DialogState.TERMINATED ) {
+    			Request bye = dialog1.createRequest(Request.BYE);
+    			ClientTransaction ctx = dialog1.getSipProvider().getNewClientTransaction(bye);
+    			dialog1.sendRequest(ctx);
+
+    		}
+    	} catch (Exception ex) {
+    	}
+
     }
 }

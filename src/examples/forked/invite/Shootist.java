@@ -360,4 +360,10 @@ public class Shootist extends TestCase implements SipListener {
         logger.info("dialogTerminatedEvent");
 
     }
+
+	@Override
+	public void processDialogTimeout(DialogTimeoutEvent timeoutEvent) {
+		// TODO Auto-generated method stub
+		
+	}
 }

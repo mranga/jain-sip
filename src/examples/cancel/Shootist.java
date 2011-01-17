@@ -384,6 +384,11 @@ public class Shootist extends TestCase implements SipListener {
 
     }
 
+	@Override
+	public void processDialogTimeout(DialogTimeoutEvent timeoutEvent) {
+		
+	}
+
 
 
 

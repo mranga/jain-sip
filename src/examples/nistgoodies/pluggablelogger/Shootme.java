@@ -304,4 +304,10 @@ public class Shootme implements SipListener {
 
     }
 
+
+	public void processDialogTimeout(DialogTimeoutEvent timeoutEvent) {
+		System.out.println("Unexpected event");
+		System.exit(0);
+	}
+
 }

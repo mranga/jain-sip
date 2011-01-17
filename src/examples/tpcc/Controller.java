@@ -332,6 +332,7 @@ public class Controller implements SipListener {
         properties.setProperty("gov.nist.javax.sip.SERVER_LOG",
                 "controllerlog.txt");
         properties.setProperty("gov.nist.javax.sip.TRACE_LEVEL", "16");
+        properties.setProperty("javax.sip.IS_BACK_TO_BACK_USER_AGENT", "true");
 
         try {
             sipStack = sipFactory.createSipStack(properties);
@@ -373,7 +374,28 @@ public class Controller implements SipListener {
             e.printStackTrace();
         }
     }
+    
+    @Override
+    public void processDialogTimeout(DialogTimeoutEvent timeoutEvent) {
+    	try {
+    		Dialog dialog1 = inviteFirst.getDialog();
+    		Dialog dialog2 = inviteSecond.getDialog();
+    		if ( dialog1.getState() != DialogState.TERMINATED ) {
+    			Request bye = dialog1.createRequest(Request.BYE);
+    			ClientTransaction ctx = dialog1.getSipProvider().getNewClientTransaction(bye);
+    			dialog1.sendRequest(ctx);
 
+    		}
+    		if ( dialog2.getState() != DialogState.TERMINATED ) {
+    			Request bye = dialog1.createRequest(Request.BYE);
+    			ClientTransaction ctx = dialog1.getSipProvider().getNewClientTransaction(bye);
+    			dialog1.sendRequest(ctx);
+
+    		}
+    	} catch (Exception ex) {
+    	}
+
+    }
     public static void main(String args[]) {
         new Controller().init();
     }
@@ -397,4 +419,6 @@ public class Controller implements SipListener {
             DialogTerminatedEvent dialogTerminatedEvent) {
         System.out.println("dialogTerminatedEvent");
     }
+
+	
 }

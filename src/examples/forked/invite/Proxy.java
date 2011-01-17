@@ -9,6 +9,7 @@ import java.util.Properties;
 
 import javax.sip.ClientTransaction;
 import javax.sip.DialogTerminatedEvent;
+import javax.sip.DialogTimeoutEvent;
 import javax.sip.IOExceptionEvent;
 import javax.sip.ListeningPoint;
 import javax.sip.RequestEvent;
@@ -266,5 +267,11 @@ public class Proxy extends TestCase implements SipListener {
 
 
     }
+
+	@Override
+	public void processDialogTimeout(DialogTimeoutEvent timeoutEvent) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

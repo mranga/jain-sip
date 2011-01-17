@@ -300,5 +300,10 @@ public class Shootme extends TestCase implements SipListener {
         assertTrue(this.dialogTerminationCount == this.dialogCount);
 
     }
-
+    public void processDialogTimeout(DialogTimeoutEvent timeoutEvent) {
+		System.out.println("Unexpected DialogTimeout event");
+		System.exit(0);
+		
+	}
+	
 }

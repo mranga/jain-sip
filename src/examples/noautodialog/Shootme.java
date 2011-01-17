@@ -314,4 +314,10 @@ public class Shootme implements SipListener {
 
     }
 
+	@Override
+	public void processDialogTimeout(DialogTimeoutEvent timeoutEvent) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

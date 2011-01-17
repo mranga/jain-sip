@@ -440,4 +440,10 @@ public class Shootist implements SipListener {
         System.out.println("Dialog Terminated Event!");
 
     }
+
+
+	public void processDialogTimeout(DialogTimeoutEvent timeoutEvent) {
+		// TODO Auto-generated method stub
+		
+	}
 }
