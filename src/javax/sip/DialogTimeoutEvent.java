@@ -11,7 +11,7 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *
  * Module Name   : JSIP Specification
- * File Name     : DialogDoesNotExistException.java
+ * File Name     : DialogTimeoutEvent
  * Author        : Jean Deruelle
  *
  *  HISTORY
