@@ -171,7 +171,7 @@ import java.util.*;
  * </p>
  * </td>
  * <td align="left" valign="top">
- * <p class="table">
+ * <p class="table"<b>Deprecated v2.0</b> >
  * This configuration value informs the underlying implementation of supported
  * extension methods that create new dialog's. This list must not include methods
  * that are natively supported by this specification such as INVITE, SUBSCRIBE and REFER.
@@ -181,6 +181,7 @@ import java.util.*;
  * assuming the implementation understands the method. If more than one method
  * is supported in this property each extension should be seprated with a colon
  * for example "FOO:BAR". This property is optional.
+ * This property is no longer supported in version 2.0.
  * </p>
  * </td>
  * </tr>

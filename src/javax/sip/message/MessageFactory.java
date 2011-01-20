@@ -148,7 +148,8 @@ public interface MessageFactory {
      * @return the newly created Response object.
      * @throws ParseException which signals that an error has been reached
      * unexpectedly while parsing the statusCode or the body.
-     * @deprecated This method is deprecated since version 2.0. Please use 
+     * @deprecated This method is deprecated since version 2.0. MaxForwards header
+     * is not required for the response. Please use 
      * {@link MessageFactory#createResponse(int, CallIdHeader, CSeqHeader, FromHeader, 
      * ToHeader, List, ContentTypeHeader, Object)}
      * @see MessageFactory#createResponse
@@ -198,7 +199,8 @@ public interface MessageFactory {
      * @return the newly created Response object.
      * @throws ParseException which signals that an error has been reached
      * unexpectedly while parsing the statusCode or the body.
-     * @deprecated This method is not supported since version 2.0. 
+     * @deprecated This method is not supported since version 2.0 because MaxForwards
+     * header is not relevant for the response.
      * Please use {@link MessageFactory#createResponse(int, CallIdHeader, 
      * CSeqHeader, FromHeader, ToHeader, List, ContentTypeHeader, byte[])}
      */
@@ -245,7 +247,8 @@ public interface MessageFactory {
      * @return the newly created Response object.
      * @throws ParseException which signals that an error has been reached
      * unexpectedly while parsing the statusCode.
-     * @deprecated since version 2.0. Please use {@link MessageFactory#createResponse(int,
+     * @deprecated since version 2.0 as MaxForwards header is not relevant for the response.
+     *  Please use {@link MessageFactory#createResponse(int,
      *  CallIdHeader, CSeqHeader, FromHeader, ToHeader, List)}
      */
     public Response createResponse(int statusCode, CallIdHeader callId,
@@ -338,6 +341,58 @@ public interface MessageFactory {
      *
      */
     public Response createResponse( String response) throws ParseException;
+    
+    /**
+     * Set the common UserAgent header for all Requests created from this message factory.
+     * This header is applied to all Messages created from this Factory object except those
+     * that take String for an argument and create Message from the given String.
+     *
+     * @param userAgent -- the user agent header to set.
+     *
+     */
+
+    public void setDefaultUserAgentHeader(UserAgentHeader userAgent);
+
+
+    /**
+     * Set the common Server header for all Responses created from this message factory.
+     * This header is applied to all Messages created from this Factory object except those
+     * that take String for an argument and create Message from the given String.
+     *
+     * @param userAgent -- the user agent header to set.
+     * 
+     * @since 2.0
+     *
+     */
+
+    public void setDefaultServerHeader(ServerHeader userAgent);
+
+    /**
+     * Set default charset used for encoding String content. Note that this
+     * will be applied to all content that is encoded. The default is UTF-8.
+     * 
+     * @since 2.0
+     *
+     * @param charset -- charset to set.
+     * @throws NullPointerException if null arg
+     * @throws IllegalArgumentException if Charset is not a known charset.
+     *
+     */
+    public  void setDefaultContentEncodingCharset(String charset)
+            throws NullPointerException,IllegalArgumentException ;
+    
+    /**
+     * Create a MultipartMime attachment from a list of content type, subtype and content.
+     * 
+     * @since 2.0
+     * 
+     * @throws NullPointerException, IllegalArgumentException
+     */
+    public MultipartMimeContent createMultipartMimeContent(ContentTypeHeader multipartMimeContentTypeHeader,
+            String[] contentType, 
+            String[] contentSubtype, 
+            String[] contentBody);
+    
 
 
 

@@ -95,6 +95,8 @@ c:/jakarta-ant/bin/ant all
     <property name="log4j_jar" value="${log4j}" />
     <property name="jdom_jar" value="${jdom}"/>
     <property name="ant_jar" value="${ant}"/>
+    <property environment="env" />
+    <property name="tools_jar" value="${env.JAVA_HOME}/lib/tools.jar" />
 
 
     <property environment="sys" />
@@ -195,10 +197,8 @@ c:/jakarta-ant/bin/ant all
             </javadoc>
         </target>
 
-        <target name="javadoc-jain">
-
+           <target name="javadoc-jain" depends="changelog">
             <mkdir dir='javadoc-jain' />
-
             <javadoc packagenames="javax.sip.*,javax.sip.header.*,javax.sip.message.*,javax.sip.address.*,javax.sip.header.ims.*" sourcepath="${srcroot}" overview="src/javax/sip/overview.html" destdir="javadoc-jain" use="true" splitindex="true" windowtitle="JAIN-SIP-2.0 Specification" doctitle="JAIN-SIP-2.0 Specification" public="true" author="true" version="true" defaultexcludes="yes" additionalparam="-breakiterator">
                 <classpath>
                     <pathelement location="${jain-sip-api-jar}" />
@@ -221,9 +221,18 @@ c:/jakarta-ant/bin/ant all
                             </font>
                 ]]>
             </bottom>
-                    </javadoc>
-                </target>
+             </javadoc>
+             <copy file="change-log.html" toDir="javadoc-jain" />
+             </target>
 
+           <target name="changelog" depends="doclet">
+               <javadoc packagenames="javax.sip.*,javax.sip.header.*,javax.sip.message.*,javax.sip.address.*,javax.sip.header.ims.*" sourcepath="${srcroot}" 
+            	public="true" author="true" version="true" defaultexcludes="yes" additionalparam="-breakiterator" doclet="changelog.TwoZeroDoclet" docletpath="classes">
+               <classpath>
+                   <pathelement location="${tools_jar}" />
+               </classpath>
+                </javadoc>
+           </target>
                 <!-- Compile the stack and libraries -->
                 <target name="compileapi" depends="init">
                     <jain-javac includes="javax/sip/**/*.java" />
@@ -260,6 +269,15 @@ c:/jakarta-ant/bin/ant all
                         </classpath>
                     </jain-javac>
                 </target>
+                <!-- Doclet tools -->
+                <target name="doclet" depends="init">
+                    <jain-javac srcdir="doclet/src" includes="changelog/*.java">
+                        <classpath>
+                            <pathelement location="${tools_jar}" />
+                        </classpath>
+                    </jain-javac>
+                </target>
+
                 <!-- Compile and build jars -->
                 <target name="compileri" depends="clean,init,compileapi">
                     <jain-javac includes="gov/nist/core/**/*.java, gov/nist/javax/sip/**/*.java"
